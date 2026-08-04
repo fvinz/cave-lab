@@ -46,7 +46,7 @@ export const HERO = {
   formulaResult: "Cave Lab",
 };
 
-export const VALORI = ["Curiosità", "Comunità", "Sostenibilità", "Creatività"];
+export const VALORI = ["Comunità", "Creatività", "Curiosità", "Sostenibilità"];
 
 /* Foto del borgo di Cave usata nella sezione Territorio.
    Fonte: Wikimedia Commons, licenza CC BY-SA 3.0 — l'attribuzione
@@ -62,20 +62,21 @@ export const TERRITORIO_FOTO = {
 
 /* Tavola periodica delle attività */
 export const ELEMENTI = [
-  { symbol: "Cu", name: "Cultura", color: "#7C3AED", desc: "Mostre, rassegne, presentazioni di libri e incontri che fanno pensare (e discutere)." },
-  { symbol: "Am", name: "Ambiente", color: "#22A55E", desc: "Giornate ecologiche, cura del verde pubblico e sensibilizzazione sulla sostenibilità." },
-  { symbol: "Ev", name: "Eventi", color: "#FFC53D", dark: true, desc: "Feste, sagre, concerti e serate che riportano vita nelle piazze del paese." },
-  { symbol: "So", name: "Sociale", color: "#FF5C8A", desc: "Raccolte fondi, iniziative di solidarietà e supporto alle realtà più fragili del territorio." },
-  { symbol: "Te", name: "Territorio", color: "#2CC7C7", desc: "Passeggiate, itinerari e valorizzazione del centro storico e delle bellezze di Cave." },
-  { symbol: "Cr", name: "Creatività", color: "#8C6BFF", desc: "Laboratori artistici, contest fotografici e progetti creativi a cielo aperto." },
+  { symbol: "Cu", name: "Cultura", color: "#7C3AED", desc: "Momenti che fanno pensare, confrontare e scoprire qualcosa di nuovo, insieme." },
+  { symbol: "Am", name: "Ambiente", color: "#22A55E", desc: "Cura del territorio e attenzione a un futuro più sostenibile per il paese." },
+  { symbol: "Ev", name: "Eventi", color: "#FFC53D", dark: true, desc: "Occasioni che riportano vita e movimento nelle piazze del paese." },
+  { symbol: "So", name: "Sociale", color: "#FF5C8A", desc: "Iniziative di solidarietà e vicinanza a chi ne ha più bisogno." },
+  { symbol: "Te", name: "Territorio", color: "#2CC7C7", desc: "Riscoperta e valorizzazione delle bellezze e degli angoli nascosti di Cave." },
+  { symbol: "Cr", name: "Creatività", color: "#8C6BFF", desc: "Progetti ed espressioni creative che nascono a cielo aperto." },
 ];
 
 /* Quaderno degli esperimenti: eventi e progetti in corso */
 export const EVENTI = [
-  { date: "Settembre · in corso", title: "Cave in Festa", desc: "Tre giorni di musica, street food e artigianato locale nel centro storico, organizzati con le attività del paese." },
-  { date: "Ottobre", title: "Puliamo il Borgo", desc: "Giornata di volontariato ambientale tra vicoli, sentieri e aree verdi, aperta a tutte le età." },
-  { date: "Novembre", title: "Cave Lab Talks", desc: "Un ciclo di incontri con chi il territorio lo vive e lo racconta: artigiani, storici, giovani imprenditori." },
-  { date: "Dicembre", title: "Mercatino delle Feste", desc: "Bancarelle, luci e cioccolata calda: il Natale di Cave visto dai suoi ragazzi." },
+  { date: "Martedì 18 agosto", title: "Cinema sotto le stelle — Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
+  { date: "Martedì 11 agosto", title: "Cinema sotto le stelle — Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
+  { date: "Martedì 28 luglio", title: "Cinema sotto le stelle — Mediterraneo", desc: "Il capolavoro Premio Oscar di Gabriele Salvatores, nel giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
+  { date: "Martedì 14 luglio", title: "Cinema sotto le stelle — L'incredibile storia dell'Isola delle Rose", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
+  { date: "5–14 giugno · concluso", title: "Cave League 2026", desc: "Il torneo tra i rioni di Cave si è chiuso con la Super Bowl Night finale e le premiazioni all'Anfiteatro del Calcio." },
 ];
 
 export const CAVE_LEAGUE = {
@@ -85,7 +86,7 @@ export const CAVE_LEAGUE = {
   /* I numeri vivono nelle statistiche qui sotto: il recap racconta,
      non ripete. */
   recap:
-    "Dieci giorni all'Anfiteatro del Calcio, i rioni schierati uno contro l'altro e una piazza che non ha mai smesso di tifare: la Cave League ha acceso l'estate di Cave.",
+    "Dieci giorni all'Anfiteatro, le squadre schierate una contro l'altra e una piazza che non ha mai smesso di tifare: la Cave League ha acceso l'estate di Cave.",
 
   /* Podio finale 2026 */
   podium: {

@@ -1,35 +1,35 @@
+import { useEffect, useRef } from "react";
 import Icon from "./Icon.jsx";
 import useReveal from "../hooks/useReveal.js";
 import { HERO, SOCIAL } from "../content.js";
 
 export default function Hero() {
   const scope = useReveal();
+  const videoRef = useRef(null);
+
+  /* Niente autoplay per chi preferisce meno movimento: il video resta
+     fermo sul poster (già un frame rappresentativo). */
+  useEffect(() => {
+    const mm = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mm.matches) videoRef.current?.pause();
+  }, []);
 
   return (
     <section className="hero" aria-label="Sezione di apertura" ref={scope}>
-      <div className="hero-bg" aria-hidden="true">
-        <span className="bubble bubble-1"></span>
-        <span className="bubble bubble-2"></span>
-        <span className="bubble bubble-3"></span>
-        <span className="bubble bubble-4"></span>
-        <span className="bubble bubble-5"></span>
-        <svg className="molecule molecule-a" viewBox="0 0 200 200" aria-hidden="true">
-          <line x1="40" y1="40" x2="100" y2="100" stroke="currentColor" strokeWidth="4" />
-          <line x1="160" y1="60" x2="100" y2="100" stroke="currentColor" strokeWidth="4" />
-          <line x1="70" y1="160" x2="100" y2="100" stroke="currentColor" strokeWidth="4" />
-          <circle cx="40" cy="40" r="14" />
-          <circle cx="160" cy="60" r="10" />
-          <circle cx="70" cy="160" r="12" />
-          <circle cx="100" cy="100" r="18" />
-        </svg>
-        <svg className="molecule molecule-b" viewBox="0 0 160 160" aria-hidden="true">
-          <line x1="20" y1="130" x2="80" y2="70" stroke="currentColor" strokeWidth="4" />
-          <line x1="140" y1="40" x2="80" y2="70" stroke="currentColor" strokeWidth="4" />
-          <circle cx="20" cy="130" r="10" />
-          <circle cx="140" cy="40" r="14" />
-          <circle cx="80" cy="70" r="16" />
-        </svg>
-      </div>
+      <video
+        ref={videoRef}
+        className="hero-video"
+        poster="/video/hero-drone-poster.jpg"
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+      >
+        <source src="/video/hero-drone.webm" type="video/webm" />
+        <source src="/video/hero-drone.mp4" type="video/mp4" />
+      </video>
+      <div className="hero-scrim" aria-hidden="true"></div>
 
       <div className="container hero-inner">
         <p className="eyebrow" data-reveal>

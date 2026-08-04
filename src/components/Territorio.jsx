@@ -40,7 +40,6 @@ export default function Territorio() {
             reso accessibile a chi lo abita e a chi lo scopre per la prima volta. Ogni
             evento che organizziamo è un piccolo esperimento per farlo succedere.
           </p>
-          <a href="#galleria" className="link-inline">Guarda gli scatti dal territorio ↓</a>
         </div>
       </div>
     </section>

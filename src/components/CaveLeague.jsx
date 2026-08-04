@@ -24,9 +24,14 @@ export default function CaveLeague() {
         <div className="league-header" data-reveal>
           <p className="kicker kicker-center">{CAVE_LEAGUE.kicker}</p>
           <h2 className="section-title section-title-center league-title">
-            <span className="league-badge" aria-hidden="true">
-              <Icon name="trophy" />
-            </span>
+            <img
+              src="/cave-league/logo-badge-white.png"
+              alt=""
+              aria-hidden="true"
+              className="league-badge"
+              width="105"
+              height="144"
+            />
             Cave League
           </h2>
           <p className="league-edition">{CAVE_LEAGUE.edition}</p>

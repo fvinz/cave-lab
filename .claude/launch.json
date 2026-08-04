@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["vite", "--port", "5199", "--strictPort"],
       "port": 5199
+    },
+    {
+      "name": "caveleague-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "caveleague", "--", "--port", "5299", "--strictPort"],
+      "port": 5299
     }
   ]
 }

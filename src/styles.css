@@ -332,49 +332,35 @@ body::after {
    ========================================================================== */
 .hero {
   position: relative;
-  padding-block: var(--space-2xl) var(--space-xl);
+  min-height: min(92vh, 820px);
+  display: flex;
+  align-items: flex-end;
   overflow: hidden;
+  padding-block: var(--space-xl);
 }
-.hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.hero-bg::before {
-  /* scintillii minerali — strato denso */
-  content: "";
+.hero-video {
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(2px 2px at 12% 22%, rgba(255, 255, 255, 1), transparent 100%),
-    radial-gradient(1.5px 1.5px at 28% 68%, rgba(233, 229, 244, 0.9), transparent 100%),
-    radial-gradient(2.5px 2.5px at 46% 12%, rgba(201, 180, 255, 1), transparent 100%),
-    radial-gradient(1.5px 1.5px at 62% 45%, rgba(255, 255, 255, 0.8), transparent 100%),
-    radial-gradient(2px 2px at 74% 80%, rgba(157, 123, 255, 0.95), transparent 100%),
-    radial-gradient(1.5px 1.5px at 85% 28%, rgba(255, 255, 255, 0.85), transparent 100%),
-    radial-gradient(2px 2px at 93% 60%, rgba(201, 180, 255, 0.8), transparent 100%),
-    radial-gradient(1.5px 1.5px at 8% 85%, rgba(233, 229, 244, 0.7), transparent 100%),
-    radial-gradient(2px 2px at 38% 90%, rgba(255, 255, 255, 0.65), transparent 100%),
-    radial-gradient(1.5px 1.5px at 55% 72%, rgba(201, 180, 255, 0.75), transparent 100%),
-    radial-gradient(1px 1px at 20% 40%, rgba(255, 255, 255, 0.7), transparent 100%),
-    radial-gradient(2px 2px at 68% 18%, rgba(233, 229, 244, 0.8), transparent 100%),
-    radial-gradient(1px 1px at 80% 50%, rgba(201, 180, 255, 0.7), transparent 100%),
-    radial-gradient(1.5px 1.5px at 33% 30%, rgba(157, 123, 255, 0.6), transparent 100%),
-    radial-gradient(1px 1px at 50% 55%, rgba(255, 255, 255, 0.5), transparent 100%),
-    radial-gradient(2px 2px at 15% 60%, rgba(201, 180, 255, 0.65), transparent 100%);
-  animation: twinkle 4s ease-in-out infinite alternate;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
-.hero-bg::after {
-  /* alone luminoso dietro al titolo, come la luce sulla targa */
-  content: "";
+.hero-scrim {
+  /* Velo per la leggibilità del testo sopra il video: più denso a sinistra
+     dove sta il testo, e sui bordi alto/basso. */
   position: absolute;
   inset: 0;
-  background: radial-gradient(600px 340px at 38% 42%, rgba(157, 123, 255, 0.14), transparent 70%);
+  z-index: 1;
+  background:
+    linear-gradient(100deg, rgba(8, 6, 16, 0.94) 0%, rgba(10, 8, 20, 0.84) 30%, rgba(20, 14, 34, 0.5) 52%, rgba(30, 18, 46, 0.16) 74%, transparent 92%),
+    linear-gradient(to top, rgba(6, 4, 12, 0.88) 0%, rgba(6, 4, 12, 0.12) 42%, transparent 68%);
 }
 @keyframes twinkle {
   from { opacity: 0.5; }
   to { opacity: 1; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .hero-bg::before { animation: none; opacity: 0.8; }
-}
-.hero .hero-inner { position: relative; z-index: 1; }
+.hero .hero-inner { position: relative; z-index: 2; }
 /* La misura vincola i blocchi di testo, non il contenitore: così l'hero
    condivide il bordo sinistro con ogni sezione sottostante. */
 .hero .hero-title { max-width: 16ch; }
@@ -438,34 +424,6 @@ body::after {
 .formula-result { background: var(--color-yellow) !important; color: #17131F; }
 .formula-plus, .formula-eq { color: var(--color-muted); font-weight: 700; }
 
-/* floating decorative bubbles + molecules */
-.bubble {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(233, 229, 244, 0.35);
-  box-shadow: inset 0 0 18px rgba(157, 123, 255, 0.25), 0 0 22px rgba(157, 123, 255, 0.18);
-  opacity: 0.9;
-}
-.bubble-1 { width: 70px; height: 70px; top: 8%; right: 12%; background: var(--color-yellow-tint); animation: float-y 7s var(--ease-out) infinite; }
-.bubble-2 { width: 34px; height: 34px; top: 28%; right: 26%; background: var(--color-pink-tint); animation: float-y 5.5s var(--ease-out) infinite 0.4s; }
-.bubble-3 { width: 110px; height: 110px; bottom: 6%; right: 6%; background: var(--color-teal-tint); animation: float-y 9s var(--ease-out) infinite 0.2s; }
-.bubble-4 { width: 24px; height: 24px; top: 55%; right: 40%; background: var(--color-green-tint); animation: float-y 4.5s var(--ease-out) infinite 0.6s; }
-.bubble-5 { width: 48px; height: 48px; top: 4%; right: 42%; background: var(--color-violet-tint); animation: float-y 6.2s var(--ease-out) infinite 0.1s; }
-
-.molecule { position: absolute; color: var(--color-ink); opacity: 0.85; }
-.molecule circle { fill: var(--color-surface); stroke: currentColor; stroke-width: 4; }
-.molecule-a { width: 180px; right: 4%; top: 12%; animation: spin-slow 30s linear infinite; }
-.molecule-b { width: 130px; right: 22%; bottom: 4%; animation: spin-slow 22s linear infinite reverse; }
-
-@keyframes float-y {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-18px); }
-}
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 .scroll-cue {
   position: relative;
   z-index: 1;
@@ -496,7 +454,7 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bubble, .molecule, .scroll-cue-tube::after { animation: none; }
+  .scroll-cue-tube::after { animation: none; }
 }
 
 /* ==========================================================================
@@ -766,19 +724,10 @@ section[id] { scroll-margin-top: 96px; }
   text-shadow: 0 0 34px rgba(255, 176, 32, 0.35);
 }
 .league-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  background: var(--league-amber);
-  color: #1B1226;
-  border: 1.5px solid var(--line-strong);
-  border-radius: var(--radius-md);
-  transform: rotate(-6deg);
-  box-shadow: 0 0 28px rgba(255, 176, 32, 0.45);
+  height: clamp(64px, 9vw, 92px);
+  width: auto;
+  filter: drop-shadow(0 0 22px rgba(255, 176, 32, 0.35));
 }
-.league-badge svg { width: 36px; height: 36px; }
 
 .league-edition {
   display: table;
@@ -1322,7 +1271,14 @@ section[id] { scroll-margin-top: 96px; }
   .nav-cta { text-align: center; justify-content: center; }
 
   .hero-formula span:not(.formula-plus):not(.formula-eq) { padding: 0.3rem 0.6rem; font-size: 0.85rem; }
-  .molecule-a, .molecule-b { display: none; }
+  /* Sotto i 1024px il testo occupa quasi tutta la larghezza (non solo la
+     colonna sinistra come su desktop): il velo diagonale non basta più,
+     serve un oscuramento verticale uniforme su tutta l'altezza. */
+  .hero-scrim {
+    background:
+      linear-gradient(180deg, rgba(6, 4, 12, 0.82) 0%, rgba(6, 4, 12, 0.58) 20%, rgba(6, 4, 12, 0.7) 55%, rgba(6, 4, 12, 0.92) 100%),
+      linear-gradient(100deg, rgba(8, 6, 16, 0.55) 0%, transparent 60%);
+  }
 
   .chi-siamo-inner { grid-template-columns: 1fr; gap: var(--space-lg); }
   .league-stats { grid-template-columns: 1fr 1fr; gap: var(--space-2xs); }

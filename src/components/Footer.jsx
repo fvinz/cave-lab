@@ -51,7 +51,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="container footer-bottom">
-        <p>© {new Date().getFullYear()} Cave Lab. Fatto con curiosità (e qualche provetta) a Cave.</p>
+        <p>© {new Date().getFullYear()} Cave Lab.</p>
         <button className="back-to-top" aria-label="Torna in cima alla pagina" onClick={scrollTop}>
           <Icon name="arrowUp" className="" />
         </button>
