@@ -8,7 +8,10 @@ const { podium, siteUrl } = CAVE_LEAGUE;
 function PhotoTile({ photo }) {
   return (
     <figure className="league-photo">
-      <img src={photo.src} alt={photo.caption} width="1000" height="750" loading="lazy" />
+      <picture>
+        <source srcSet={photo.src.replace(/\.jpg$/, ".webp")} type="image/webp" />
+        <img src={photo.src} alt={photo.caption} width="1000" height="750" loading="lazy" />
+      </picture>
     </figure>
   );
 }
@@ -39,7 +42,12 @@ export default function CaveLeague() {
         </div>
 
         {/* Podio: l'intero blocco è un link al sito del torneo */}
-        <a href={siteUrl} className="league-podium" data-reveal>
+        <a
+          href={siteUrl}
+          className="league-podium"
+          data-reveal
+          aria-label="Vai alla classifica completa, calendario e statistiche della Cave League"
+        >
           <h3 className="league-podium-title">{podium.title}</h3>
 
           <ol className="podium-list">

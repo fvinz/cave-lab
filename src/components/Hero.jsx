@@ -7,11 +7,15 @@ export default function Hero() {
   const scope = useReveal();
   const videoRef = useRef(null);
 
-  /* Niente autoplay per chi preferisce meno movimento: il video resta
-     fermo sul poster (già un frame rappresentativo). */
+  /* Il video (3-4MB) non si scarica più via autoplay/preload: parte solo
+     via JS dopo il mount, e resta fermo sul poster per chi preferisce meno
+     movimento o è su una connessione lenta/a consumo. */
   useEffect(() => {
-    const mm = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mm.matches) videoRef.current?.pause();
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const conn = navigator.connection;
+    const slowConnection = conn?.saveData || /2g/.test(conn?.effectiveType || "");
+    if (reducedMotion || slowConnection) return;
+    videoRef.current?.play().catch(() => {});
   }, []);
 
   return (
@@ -20,7 +24,7 @@ export default function Hero() {
         ref={videoRef}
         className="hero-video"
         poster="/video/hero-drone-poster.jpg"
-        autoPlay
+        preload="none"
         muted
         loop
         playsInline

@@ -3,8 +3,14 @@ import useReveal from "../hooks/useReveal.js";
 import { VALORI } from "../content.js";
 
 /* Ogni valore ha il colore dell'elemento corrispondente nella
-   tavola periodica delle attività, così le due sezioni si parlano. */
-const VALORE_COLORI = ["#9D7BFF", "#3ECF9A", "#5AD7E0", "#FF7DAE"];
+   tavola periodica delle attività, così le due sezioni si parlano.
+   Riusa i token globali invece di duplicarne i valori esadecimali. */
+const VALORE_COLORI = [
+  "var(--color-violet-solid)",
+  "var(--color-green)",
+  "var(--color-teal)",
+  "var(--color-pink)",
+];
 
 export default function ChiSiamo() {
   const scope = useReveal();

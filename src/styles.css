@@ -11,6 +11,7 @@
   --color-border: #E9E5F4;
 
   --color-violet: #6B45D9;
+  --color-violet-solid: #9D7BFF;    /* pari all'rgb del tint: riuso nei componenti che servono un valore pieno */
   --color-violet-tint: rgba(157, 123, 255, 0.14);
   --color-green: #3ECF9A;
   --color-green-tint: rgba(62, 207, 154, 0.14);
@@ -67,6 +68,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidd
 body, h1, h2, h3, p, ul, ol, figure { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 img, svg { display: block; max-width: 100%; }
+picture { display: contents; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 input, textarea { font: inherit; color: inherit; }
@@ -428,8 +430,13 @@ body::after {
   position: relative;
   z-index: 1;
   display: flex;
+  flex-shrink: 0;
+  align-items: center;
   justify-content: center;
+  width: 44px;
+  height: 44px;
   margin-top: var(--space-lg);
+  margin-inline: auto;
 }
 .scroll-cue-tube {
   width: 22px;
@@ -675,7 +682,12 @@ section[id] { scroll-margin-top: 96px; }
   color: var(--color-muted);
   text-align: right;
 }
-.territorio-credito a { text-decoration: underline; text-underline-offset: 2px; }
+.territorio-credito a {
+  display: inline-block;
+  padding-block: var(--space-3xs);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .territorio-credito a:hover { color: var(--color-violet-light); }
 
 
@@ -1169,8 +1181,15 @@ section[id] { scroll-margin-top: 96px; }
 }
 .brand-tile-footer img { filter: invert(1) brightness(1.05); }
 .footer-tagline { font-size: 0.9rem; opacity: 0.85; }
-.footer-nav { display: flex; flex-wrap: wrap; gap: var(--space-md); font-weight: 700; }
-.footer-nav a { opacity: 0.85; transition: opacity var(--dur-fast) var(--ease-out); }
+.footer-nav { display: flex; flex-wrap: wrap; gap: var(--space-xs); font-weight: 700; margin-inline: calc(var(--space-2xs) * -1); }
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: var(--space-2xs);
+  opacity: 0.85;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
 .footer-nav a:hover { opacity: 1; text-decoration: underline; }
 
 .footer-social { display: flex; gap: var(--space-sm); }

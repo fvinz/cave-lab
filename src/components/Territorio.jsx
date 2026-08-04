@@ -8,14 +8,17 @@ export default function Territorio() {
     <section className="section section-atto section-territorio" id="territorio" ref={scope}>
       <div className="container section-grid section-grid-reverse">
         <figure className="territorio-visual" data-reveal>
-          <img
-            className="territorio-foto"
-            src={TERRITORIO_FOTO.src}
-            alt={TERRITORIO_FOTO.alt}
-            width="1100"
-            height="825"
-            loading="lazy"
-          />
+          <picture>
+            <source srcSet={TERRITORIO_FOTO.src.replace(/\.jpg$/, ".webp")} type="image/webp" />
+            <img
+              className="territorio-foto"
+              src={TERRITORIO_FOTO.src}
+              alt={TERRITORIO_FOTO.alt}
+              width="1100"
+              height="825"
+              loading="lazy"
+            />
+          </picture>
           <figcaption className="territorio-credito">
             Foto di{" "}
             <a href={TERRITORIO_FOTO.creditoUrl} target="_blank" rel="noopener noreferrer">

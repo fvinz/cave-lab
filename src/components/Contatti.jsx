@@ -13,7 +13,7 @@ const CANALI = [
     href: `https://wa.me/${SOCIAL.whatsapp}?text=${encodeURIComponent(
       "Ciao Cave Lab! Ho visto il sito e vorrei saperne di più."
     )}`,
-    color: "#3ECF9A",
+    color: "var(--color-green)",
     external: true,
     primary: true,
   },
@@ -23,7 +23,7 @@ const CANALI = [
     value: SOCIAL.instagramHandle,
     hint: "Siamo attivi ogni giorno tra storie, reel e messaggi.",
     href: SOCIAL.instagramUrl,
-    color: "#FF7DAE",
+    color: "var(--color-pink)",
     external: true,
   },
   {
@@ -32,7 +32,7 @@ const CANALI = [
     value: SOCIAL.email,
     hint: "Per proposte, collaborazioni e richieste più lunghe.",
     href: `mailto:${SOCIAL.email}?subject=${encodeURIComponent("Ciao Cave Lab!")}`,
-    color: "#9D7BFF",
+    color: "var(--color-violet-solid)",
   },
 ];
 

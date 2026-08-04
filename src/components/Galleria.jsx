@@ -27,7 +27,10 @@ export default function Galleria() {
                 className="insta-tile"
                 aria-label={`${post.caption} — apri il post su Instagram`}
               >
-                <img src={post.img} alt={post.caption} width="640" height="640" loading="lazy" />
+                <picture>
+                  <source srcSet={post.img.replace(/\.jpg$/, ".webp")} type="image/webp" />
+                  <img src={post.img} alt={post.caption} width="640" height="640" loading="lazy" />
+                </picture>
                 <span className="insta-tile-overlay" aria-hidden="true">
                   <Icon name="instagram" className="insta-tile-icon" />
                   <span className="insta-tile-caption">{post.caption}</span>
