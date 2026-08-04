@@ -1,5 +1,16 @@
 {
   "rewrites": [
     { "source": "/league/:path((?!assets/|cl-white\\.png).*)", "destination": "/league/index.html" }
+  ],
+  "redirects": [
+    { "source": "/calendario", "destination": "/league/calendario", "permanent": false },
+    { "source": "/classifica", "destination": "/league/classifica", "permanent": false },
+    { "source": "/statistiche", "destination": "/league/statistiche", "permanent": false },
+    { "source": "/squadre", "destination": "/league/squadre", "permanent": false },
+    { "source": "/squadre/:teamId", "destination": "/league/squadre/:teamId", "permanent": false },
+    { "source": "/giocatori/:playerId", "destination": "/league/giocatori/:playerId", "permanent": false },
+    { "source": "/partite/:matchId", "destination": "/league/partite/:matchId", "permanent": false },
+    { "source": "/admin", "destination": "/league/admin", "permanent": false },
+    { "source": "/admin/:path*", "destination": "/league/admin/:path*", "permanent": false }
   ]
 }

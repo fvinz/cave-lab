@@ -18,6 +18,8 @@ export const SOCIAL = {
    e il link al post. Per aggiungere un post: salva l'anteprima in
    public/instagram/<codice>.jpg e aggiungi { img, url, caption } qui. */
 export const INSTAGRAM_POSTS = [
+  { img: "/instagram/DbTKDdysHtX.jpg", url: "https://www.instagram.com/reel/DbTKDdysHtX/", caption: "Cinema sotto le stelle — serata con Mediterraneo di Salvatores" },
+  { img: "/instagram/DZPr16lsm_I.jpg", url: "https://www.instagram.com/reel/DZPr16lsm_I/", caption: "Le interviste Cave League, versione meme" },
   { img: "/instagram/DasYAvRsac8.jpg", url: "https://www.instagram.com/p/DasYAvRsac8/", caption: "Cinema sotto le stelle: quattro martedì, quattro film" },
   { img: "/instagram/DZp_P1usxZd.jpg", url: "https://www.instagram.com/reel/DZp_P1usxZd/", caption: "Semplicemente, grazie" },
   { img: "/instagram/DZkMk9HMpwb.jpg", url: "https://www.instagram.com/p/DZkMk9HMpwb/", caption: "Super Bowl Night — Final Day" },
@@ -25,8 +27,6 @@ export const INSTAGRAM_POSTS = [
   { img: "/instagram/DZho0TcMUPC.jpg", url: "https://www.instagram.com/p/DZho0TcMUPC/", caption: "2026 is the new 2016" },
   { img: "/instagram/DZfFks9ssDF.jpg", url: "https://www.instagram.com/p/DZfFks9ssDF/", caption: "Cave Lab es otra cosa — latin night" },
   { img: "/instagram/DZcU00GsBKc.jpg", url: "https://www.instagram.com/reel/DZcU00GsBKc/", caption: "Quiz e premi tra il pubblico" },
-  { img: "/instagram/DZZ5MqaiEWi.jpg", url: "https://www.instagram.com/p/DZZ5MqaiEWi/", caption: "Abbiamo chiesto a ChatGPT…" },
-  { img: "/instagram/DZXK7aJjOvn.jpg", url: "https://www.instagram.com/p/DZXK7aJjOvn/", caption: "La passione per il calcio incontra chi lo racconta" },
 ];
 
 export const NAV_LINKS = [
