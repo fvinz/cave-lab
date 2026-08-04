@@ -1,0 +1,2 @@
+# Netlify: deep link dell'app Cave League (SPA) → index della sotto-app
+/league/*  /league/index.html  200

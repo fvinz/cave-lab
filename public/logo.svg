@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 248" role="img" aria-labelledby="caveLabLogoTitle" class="element-logo">
+  <title id="caveLabLogoTitle">Cave Lab — tessera stile tavola periodica con simbolo Ca</title>
+  <rect x="3" y="3" width="421" height="242" fill="none" stroke="currentColor" stroke-width="5"/>
+  <text x="16" y="158" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="900" font-size="150" fill="currentColor">Ca</text>
+  <text x="410" y="42" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="26" letter-spacing="1" fill="currentColor" text-anchor="end">00033</text>
+  <text x="16" y="192" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="800" font-size="32" fill="currentColor">Cave</text>
+  <text x="16" y="222" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="400" font-size="28" fill="currentColor">Lab</text>
+</svg>

@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/league/:path((?!assets/|cl-white\\.png).*)", "destination": "/league/index.html" }
+  ]
+}
