@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-06T00:00:00Z",
+  "title": "Design System: Cave Lab",
+  "extensions": {
+    "colorMeta": {
+      "amethyst-deep": { "role": "primary", "displayName": "Viola Ametista Profondo", "canonical": "#6B45D9", "tonalRamp": ["#160D33", "#241653", "#33207A", "#432AA3", "#6B45D9", "#8B6DE6", "#B69BFF", "#E4D9FF"] },
+      "amethyst-solid": { "role": "primary", "displayName": "Viola Ametista", "canonical": "#9D7BFF", "tonalRamp": ["#1B1233", "#2C1D54", "#402C7C", "#5A3EAA", "#9D7BFF", "#B69BFF", "#D2C0FF", "#EEE6FF"] },
+      "amethyst-text": { "role": "primary", "displayName": "Testo Ametista", "canonical": "#B69BFF", "tonalRamp": ["#211738", "#372757", "#4E3980", "#684FAD", "#8A6EDB", "#B69BFF", "#D5C6FF", "#F1EAFF"] },
+      "malachite": { "role": "secondary", "displayName": "Verde Malachite", "canonical": "#3ECF9A", "tonalRamp": ["#0B2E22", "#124A38", "#1B6C52", "#279470", "#3ECF9A", "#6FDFB6", "#A6EED2", "#DBFAEC"] },
+      "rhodochrosite": { "role": "secondary", "displayName": "Rosa Rodocrosite", "canonical": "#FF7DAE", "tonalRamp": ["#3A0F1F", "#5C1832", "#83224A", "#B22F64", "#FF7DAE", "#FF9FC2", "#FFC3DA", "#FFE7F0"] },
+      "turquoise": { "role": "secondary", "displayName": "Turchese", "canonical": "#5AD7E0", "tonalRamp": ["#0D2E31", "#154850", "#1F6B74", "#2E939C", "#5AD7E0", "#82E2E9", "#AEEEF2", "#DEF9FB"] },
+      "lilac-quartz": { "role": "tertiary", "displayName": "Quarzo Lilla", "canonical": "#C9B4FF", "tonalRamp": ["#251A45", "#3B2A6E", "#543C99", "#7256C6", "#C9B4FF", "#D9CBFF", "#E9DFFF", "#F8F4FF"] },
+      "amber": { "role": "tertiary", "displayName": "Ambra (Cave League)", "canonical": "#FFB020", "tonalRamp": ["#3D2600", "#603C00", "#8C5700", "#C17A00", "#FFB020", "#FFC24A", "#FFDA8F", "#FFF1D2"] },
+      "tile-cultura": { "role": "tertiary", "displayName": "Tessera Cultura", "canonical": "#7C3AED", "tonalRamp": ["#180A33", "#281252", "#3D1C7C", "#5827A8", "#7C3AED", "#9C6BF2", "#C1A2F7", "#E7DAFC"] },
+      "tile-ambiente": { "role": "tertiary", "displayName": "Tessera Ambiente", "canonical": "#22A55E", "tonalRamp": ["#062616", "#0C3F25", "#125F38", "#19834D", "#22A55E", "#5CC286", "#96DEB0", "#D3F3E0"] },
+      "tile-eventi": { "role": "tertiary", "displayName": "Tessera Eventi", "canonical": "#FFC53D", "tonalRamp": ["#3D2C00", "#604600", "#8C6600", "#C18E00", "#FFC53D", "#FFD670", "#FFE7A8", "#FFF6DE"] },
+      "tile-sociale": { "role": "tertiary", "displayName": "Tessera Sociale", "canonical": "#FF5C8A", "tonalRamp": ["#3D0A1B", "#601129", "#8C193C", "#C12454", "#FF5C8A", "#FF87A9", "#FFB3C9", "#FFE2EA"] },
+      "tile-territorio": { "role": "tertiary", "displayName": "Tessera Territorio", "canonical": "#2CC7C7", "tonalRamp": ["#072E2E", "#0D4B4B", "#146F6F", "#1C9797", "#2CC7C7", "#66D9D9", "#A0E9E9", "#DBF7F7"] },
+      "tile-creativita": { "role": "tertiary", "displayName": "Tessera Creatività", "canonical": "#8C6BFF", "tonalRamp": ["#1A1233", "#2B1E54", "#402C7C", "#5941A8", "#8C6BFF", "#AC94FF", "#CDBEFF", "#EEE7FF"] },
+      "silver-lilac": { "role": "neutral", "displayName": "Argento-Lilla", "canonical": "#ECE8F6", "tonalRamp": ["#171522", "#2B2838", "#403C55", "#5C5875", "#8C87A3", "#B9B5CC", "#DAD7E8", "#ECE8F6"] },
+      "deep-rock": { "role": "neutral", "displayName": "Roccia Profonda", "canonical": "#0A0812", "tonalRamp": ["#020103", "#050408", "#0A0812", "#120E20", "#1C1730", "#2C2645", "#443C63", "#655A8B"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Space Grotesk / Display", "purpose": "Hero title, section titles, kickers — geometric technical edge, 'laboratory signage' feel." },
+      "body": { "displayName": "Inter / Body", "purpose": "Running copy, descriptions, form and channel text." },
+      "league-display": { "displayName": "Barlow Condensed / League Voice", "purpose": "Cave League block exclusively — tall condensed sports-broadcast register, never used elsewhere." }
+    },
+    "shadows": [
+      { "name": "shadow-tile", "value": "0 10px 26px rgba(0,0,0,.55), 0 0 0 1px rgba(233,229,244,.08), 0 0 24px rgba(157,123,255,.10)", "purpose": "Resting glow for glass cards, buttons, canale contact tiles." },
+      { "name": "shadow-tile-hover", "value": "0 16px 36px rgba(0,0,0,.6), 0 0 0 1px rgba(233,229,244,.14), 0 0 38px rgba(157,123,255,.22)", "purpose": "Hover/focus state — brighter glow, deeper shadow, paired with a translateY lift, never a diagonal shift." },
+      { "name": "metal-edge", "value": "inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(0,0,0,.6), 0 6px 18px rgba(0,0,0,.5)", "purpose": "Brushed-metal plate edge highlight — header, footer, logo tile only." },
+      { "name": "league-glow", "value": "0 12px 28px rgba(0,0,0,.6), 0 0 38px rgba(255,176,32,.35)", "purpose": "Amber glow exclusive to the Cave League CTA button." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for hover lifts, reveal transitions." },
+      { "name": "dur-fast", "value": "180ms", "purpose": "Color and border-color transitions." },
+      { "name": "dur-base", "value": "260ms", "purpose": "Transform and shadow transitions (the crystal-lift hover)." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "1023px" },
+      { "name": "wide", "value": "1440px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call-to-action fill — the only button that carries the deep amethyst solid color, used for the highest-priority action per section.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Scrivici su WhatsApp</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.6rem; border: 1.5px solid rgba(233,229,244,.5); border-radius: 999px; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; font-size: 1rem; min-height: 44px; cursor: pointer; box-shadow: 0 10px 26px rgba(0,0,0,.55), 0 0 0 1px rgba(233,229,244,.08), 0 0 24px rgba(157,123,255,.10); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms cubic-bezier(0.16,1,0.3,1), background 180ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary { background: #6B45D9; color: #fff; } .ds-btn:hover, .ds-btn:focus-visible { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(0,0,0,.6), 0 0 0 1px rgba(233,229,244,.14), 0 0 38px rgba(157,123,255,.22); } .ds-btn:active { transform: translateY(0); box-shadow: 0 4px 12px rgba(0,0,0,.5); }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action — translucent glass fill, used alongside a primary button or standalone for lower-priority actions.",
+      "html": "<button class=\"ds-btn ds-btn-ghost\">Scopri di più</button>",
+      "css": ".ds-btn-ghost { background: rgba(28,22,46,.72); color: #ECE8F6; border: 1.5px solid rgba(233,229,244,.5); border-radius: 999px; padding: 0.9rem 1.6rem; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; min-height: 44px; box-shadow: 0 10px 26px rgba(0,0,0,.55), 0 0 0 1px rgba(233,229,244,.08); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-ghost:hover, .ds-btn-ghost:focus-visible { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(0,0,0,.6), 0 0 38px rgba(157,123,255,.22); }"
+    },
+    {
+      "name": "League Button",
+      "kind": "button",
+      "refersTo": "button-league",
+      "description": "The one place amber appears — exclusive CTA into the Cave League tournament sub-app, deliberately louder than the main palette.",
+      "html": "<button class=\"ds-btn-league\">Vai alla Cave League</button>",
+      "css": ".ds-btn-league { background: linear-gradient(180deg, #FFC24A, #FF9D0A); color: #1B1226; border: 1.5px solid #ECE8F6; border-radius: 999px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.15rem; padding: 1.05rem 2.2rem; box-shadow: 0 12px 28px rgba(0,0,0,.6), 0 0 38px rgba(255,176,32,.35); transition: box-shadow 260ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-league:hover, .ds-btn-league:focus-visible { box-shadow: 0 18px 38px rgba(0,0,0,.65), 0 0 48px rgba(255,176,32,.5); }"
+    },
+    {
+      "name": "Periodic Element Tile",
+      "kind": "custom",
+      "refersTo": "element-card",
+      "description": "Signature component: a chemistry-style element card echoing the brand's own logo plaque — atomic number, symbol, name, description.",
+      "html": "<article class=\"ds-element-card\" style=\"--tile-color:#5AD7E0\"><span class=\"ds-element-number\">08</span><span class=\"ds-element-symbol\">Ev</span><h3 class=\"ds-element-name\">Eventi</h3><p class=\"ds-element-desc\">Serate, tornei e ritrovi per la comunità.</p></article>",
+      "css": ".ds-element-card { position: relative; background: linear-gradient(165deg, color-mix(in srgb, var(--tile-color,#9D7BFF) 26%, transparent) 0%, rgba(14,11,22,.55) 78%); color: #ECE8F6; border: 1px solid color-mix(in srgb, var(--tile-color,#9D7BFF) 55%, rgba(233,229,244,.3)); border-radius: 18px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem; backdrop-filter: blur(6px); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 10px 26px rgba(0,0,0,.5), 0 0 28px color-mix(in srgb, var(--tile-color,#9D7BFF) 22%, transparent); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms cubic-bezier(0.16,1,0.3,1); } .ds-element-card:hover { transform: translateY(-5px) rotate(-0.5deg); } .ds-element-number { font-size: 0.75rem; color: color-mix(in srgb, var(--tile-color,#9D7BFF) 70%, #ECE8F6); opacity: .7; } .ds-element-symbol { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 600; color: var(--tile-color,#9D7BFF); text-shadow: 0 0 18px color-mix(in srgb, var(--tile-color,#9D7BFF) 60%, transparent); } .ds-element-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin: 0; } .ds-element-desc { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #A79DC6; margin: 0; }"
+    },
+    {
+      "name": "Contact Channel Card",
+      "kind": "card",
+      "refersTo": "canale",
+      "description": "Direct-contact card (WhatsApp / Instagram / email) — replaced a form that silently failed to send; every card resolves to a real, immediate channel.",
+      "html": "<a class=\"ds-canale\" style=\"--canale-color:#3ECF9A\" href=\"#\"><span class=\"ds-canale-icon\">💬</span><span class=\"ds-canale-body\"><strong>WhatsApp</strong><span>Rispondiamo entro 24h</span></span></a>",
+      "css": ".ds-canale { display: flex; align-items: center; gap: 1rem; padding: 2.5rem 1.5rem; border: 1px solid color-mix(in srgb, var(--canale-color,#B69BFF) 42%, rgba(233,229,244,.22)); border-radius: 28px; background: linear-gradient(165deg, color-mix(in srgb, var(--canale-color,#B69BFF) 15%, transparent), rgba(14,11,22,.5) 74%); box-shadow: 0 10px 26px rgba(0,0,0,.55), 0 0 0 1px rgba(233,229,244,.08), 0 0 24px rgba(157,123,255,.10); text-decoration: none; color: #ECE8F6; transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms cubic-bezier(0.16,1,0.3,1), border-color 180ms cubic-bezier(0.16,1,0.3,1); } .ds-canale:hover, .ds-canale:focus-visible { transform: translateY(-4px); border-color: var(--canale-color,#B69BFF); box-shadow: 0 18px 40px rgba(0,0,0,.55), 0 0 40px color-mix(in srgb, var(--canale-color,#B69BFF) 34%, transparent); } .ds-canale-icon { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.5rem; }"
+    },
+    {
+      "name": "Site Header",
+      "kind": "nav",
+      "refersTo": "site-header",
+      "description": "Sticky brushed-metal plate — the one nav surface that uses the metal material vocabulary instead of glass, echoing the logo plaque.",
+      "html": "<header class=\"ds-site-header\"><div class=\"ds-header-inner\"><span>Cave Lab</span><nav>Chi siamo · Attività · Eventi · Contatti</nav></div></header>",
+      "css": ".ds-site-header { position: sticky; top: 0; z-index: 100; background: repeating-linear-gradient(180deg, rgba(255,255,255,.028) 0 1px, transparent 1px 3px), linear-gradient(170deg, #55525F 0%, #35323F 34%, #201E28 68%, #131118 100%); border-bottom: 1px solid rgba(255,255,255,.16); box-shadow: inset 0 1px 0 rgba(255,255,255,.32), inset 0 -1px 0 rgba(0,0,0,.65), 0 8px 26px rgba(0,0,0,.55); } .ds-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1rem 1.5rem; color: #ECE8F6; font-family: 'Space Grotesk', sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Amethyst Geode Laboratory",
+    "overview": "Cave Lab reads as a scientific specimen tag mounted inside a real amethyst geode — the pinned reference is a photograph of a brushed-metal \"Ca / Cave / Lab / 00033\" plaque bolted to dark, crystal-studded rock, and the entire system was built to honor that object literally, not as a mood board. The site lives in two registers at once: the deep mineral world (dark blue-violet rock, crystal-dust sparkle, silver hairlines, brushed-metal plates) is the material, and the chemistry-lab vocabulary (periodic-table tiles, \"reazioni\", \"esperimenti\", \"il quaderno\") is the language spoken inside that material. Neither is decoration on top of the other; they are the same idea told twice. The system rejects two easy defaults: it is not a flat \"dark mode\" palette (every surface has depth — glass, metal, or crystal, never a solid flat fill pretending to be neutral), and it is not brutalist despite the periodic-table grid motif (no hard offset shadows, no diagonal snap-hover; the brutalist tile aesthetic from an earlier iteration was deliberately replaced with soft crystal glow and vertical lift).",
+    "keyCharacteristics": [
+      "Dark mineral canvas with layered radial gradients (never a flat single-color background)",
+      "Two animated sparkle layers at non-harmonic periods, so the field never reads as a repeating texture",
+      "Brushed-metal plates (header, footer, logo tile) as a distinct material from the crystal glass cards",
+      "Every interactive surface lifts vertically toward the viewer on hover/focus, never diagonally",
+      "One secondary 'broadcast' register (amber-on-black, Barlow Condensed) reserved exclusively for the Cave League block"
+    ],
+    "rules": [
+      { "name": "The Deep-for-Fill Rule", "body": "Any surface large enough to carry white or light text uses amethyst-deep (#6B45D9), never amethyst-light (#9D7BFF) — the lighter step fails AA contrast with white text.", "section": "colors" },
+      { "name": "The One Broadcast Rule", "body": "Amber + Barlow Condensed is reserved for the Cave League block only. It reads as a different, louder channel precisely because it never appears anywhere else on the page.", "section": "colors" },
+      { "name": "The Rhythm-of-Three Rule", "body": "Vertical spacing between sections uses three deliberate weights — space-3xl opens a new act, space-2xl separates ordinary sections, space-xl links sections that continue the same act.", "section": "typography" },
+      { "name": "The Crystals-Lift Rule", "body": "Every interactive glass or metal surface moves vertically (translateY) toward the viewer on hover/focus and brightens its glow. Nothing shifts diagonally or scales aggressively.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep every interactive surface's hover state a vertical lift + glow brighten, per the Crystals-Lift Rule.",
+      "Do use amethyst-deep (#6B45D9), never amethyst-light (#9D7BFF), as a filled button background — the lighter step fails AA contrast with white text.",
+      "Do keep the Cave League block's amber/Barlow-Condensed voice exclusive to that section.",
+      "Do treat the periodic-table grid (6 tiles) and Instagram gallery (9 tiles) counts as structural — update the CSS grid columns if the count ever changes, to avoid an orphaned row.",
+      "Do keep every card and panel translucent or gradient-tinted; a flat opaque fill anywhere breaks the 'everything is glass, metal, or crystal' material logic."
+    ],
+    "donts": [
+      "Don't introduce a diagonal or scale-snap hover — that was the discarded brutalist-tile iteration's language, not this system's.",
+      "Don't flatten the sparkle/vignette background layers to a solid color 'for performance' without discussing it; they are load-bearing identity, confirmed against a user-supplied reference photo.",
+      "Don't use raw saturated yellow for the 'quarzo' accent — it must read as pale lilac-tinted crystal (#C9B4FF), not a warning color.",
+      "Don't reintroduce a contact form; the current direct WhatsApp/Instagram/email channels replaced one that silently failed to send."
+    ]
+  }
+}

@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
 import ChiSiamo from "./components/ChiSiamo.jsx";
@@ -25,6 +26,7 @@ export default function App() {
         <Contatti />
       </main>
       <Footer />
+      <Analytics />
     </>
   );
 }
