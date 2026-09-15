@@ -3,6 +3,7 @@ import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
 import ChiSiamo from "./components/ChiSiamo.jsx";
 import Attivita from "./components/Attivita.jsx";
+import Community from "./components/Community.jsx";
 import Eventi from "./components/Eventi.jsx";
 import CaveLeague from "./components/CaveLeague.jsx";
 import Territorio from "./components/Territorio.jsx";
@@ -19,6 +20,7 @@ export default function App() {
         <Hero />
         <ChiSiamo />
         <Attivita />
+        <Community />
         <Eventi />
         <CaveLeague />
         <Territorio />

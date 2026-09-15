@@ -10,7 +10,7 @@ export default function Galleria() {
   return (
     <section className="section section-continua section-galleria" id="galleria" ref={scope}>
       <div className="container">
-        <p className="kicker kicker-center" data-reveal>Elemento 06 · Scatti dal campo</p>
+        <p className="kicker kicker-center" data-reveal>Elemento 07 · Scatti dal campo</p>
         <h2 className="section-title section-title-center" data-reveal>Galleria</h2>
         <p className="section-text section-text-center" data-reveal>
           Gli ultimi scatti dal laboratorio: tocca una foto per aprire il post su Instagram.

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import Icon from "./Icon.jsx";
 import useReveal from "../hooks/useReveal.js";
-import { HERO, SOCIAL } from "../content.js";
+import { COMMUNITY, HERO, SOCIAL } from "../content.js";
 
 export default function Hero() {
   const scope = useReveal();
@@ -45,9 +45,9 @@ export default function Hero() {
         </h1>
         <p className="hero-lead" data-reveal>{HERO.lead}</p>
         <div className="hero-actions" data-reveal>
-          <a href="#contatti" className="btn btn-primary">
-            Unisciti all'esperimento
-            <Icon name="arrowRight" />
+          <a href={COMMUNITY.inviteUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+            <Icon name="whatsapp" />
+            Entra nella community
           </a>
           <a href={SOCIAL.instagramUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
             <Icon name="instagram" />

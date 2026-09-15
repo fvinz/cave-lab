@@ -1,6 +1,6 @@
 import Icon from "./Icon.jsx";
 import useReveal from "../hooks/useReveal.js";
-import { SOCIAL } from "../content.js";
+import { COMMUNITY, SOCIAL } from "../content.js";
 
 /* Contatti diretti: nessun form intermedio, così ogni messaggio
    arriva davvero a qualcuno dell'associazione. */
@@ -42,7 +42,7 @@ export default function Contatti() {
   return (
     <section className="section section-continua section-contatti" id="contatti" ref={scope}>
       <div className="container">
-        <p className="kicker kicker-center" data-reveal>Elemento 07 · Reazione finale</p>
+        <p className="kicker kicker-center" data-reveal>Elemento 08 · Reazione finale</p>
         <h2 className="section-title section-title-center" data-reveal>
           Unisciti all'esperimento
         </h2>
@@ -51,6 +51,24 @@ export default function Contatti() {
           e ti raccontiamo come funziona, quando ci vediamo e come dare una mano.
           Ogni buona reazione parte da due elementi che si incontrano.
         </p>
+
+        <a
+          href={COMMUNITY.inviteUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="canale canale-community"
+          style={{ "--canale-color": "var(--color-green)" }}
+          data-reveal
+        >
+          <span className="canale-icon" aria-hidden="true">
+            <Icon name="whatsapp" />
+          </span>
+          <span className="canale-body">
+            <span className="canale-label">Entra nella community WhatsApp</span>
+            <span className="canale-hint">Date, aggiornamenti e gruppi tematici come Pe Fratte, il gruppo trekking.</span>
+          </span>
+          <Icon name="arrowRight" className="canale-arrow" />
+        </a>
 
         <ul className="contatti-canali" data-reveal-stagger>
           {CANALI.map((c) => (

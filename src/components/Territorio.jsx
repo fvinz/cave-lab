@@ -31,7 +31,7 @@ export default function Territorio() {
           </figcaption>
         </figure>
         <div className="section-copy" data-reveal>
-          <p className="kicker">Elemento 05 · Radici</p>
+          <p className="kicker">Elemento 06 · Radici</p>
           <h2 className="section-title">Il nostro laboratorio a cielo aperto: Cave</h2>
           <p className="section-text">
             Tra i Monti Prenestini, a due passi da Roma, Cave è un piccolo borgo con una

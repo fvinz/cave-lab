@@ -70,17 +70,46 @@ export const ELEMENTI = [
   { symbol: "Cr", name: "Creatività", color: "#8C6BFF", desc: "Progetti ed espressioni creative che nascono a cielo aperto." },
 ];
 
-/* Quaderno degli esperimenti: eventi e progetti in corso */
+/* Community WhatsApp: un canale principale (il "nucleo") e gruppi
+   tematici ("gruppi funzionali"). Si entra dal link della community,
+   poi dentro WhatsApp ognuno sceglie i gruppi che gli interessano. */
+export const COMMUNITY = {
+  inviteUrl: "https://chat.whatsapp.com/DpbHhXpPIwR5AaKzbUE7BN",
+  nucleo: {
+    title: "Community Cave Lab",
+    desc: "Il canale principale: comunicazioni importanti, aggiornamenti generali e le date di tutti i nostri eventi.",
+  },
+  gruppi: [
+    {
+      symbol: "Pf",
+      name: "Pe Fratte",
+      tema: "Trekking",
+      color: "#3ECF9A",
+      desc: "Sentieri, natura e camminate all'aperto. Uno spazio di tutti: fai domande, condividi foto e proponi nuovi percorsi per le prossime uscite.",
+    },
+  ],
+  /* Gruppi annunciati ma non ancora attivi: segnaposto onesto,
+     niente nomi inventati finché non esistono davvero. */
+  prossimamente: "Nuovi gruppi tematici per altre attività sono in arrivo.",
+};
+
+/* Quaderno degli esperimenti: eventi e progetti.
+   `iso` è la data (di fine, per eventi su più giorni) in formato
+   AAAA-MM-GG: dopo quel giorno l'evento passa da solo tra i conclusi.
+   `gruppo` (facoltativo) è il simbolo di un gruppo in COMMUNITY. */
 export const EVENTI = [
-  { date: "Martedì 18 agosto", title: "Cinema sotto le stelle — Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
-  { date: "Martedì 11 agosto", title: "Cinema sotto le stelle — Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
-  { date: "Martedì 28 luglio", title: "Cinema sotto le stelle — Mediterraneo", desc: "Il capolavoro Premio Oscar di Gabriele Salvatores, nel giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
-  { date: "Martedì 14 luglio", title: "Cinema sotto le stelle — L'incredibile storia dell'Isola delle Rose", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
-  { date: "5–14 giugno · concluso", title: "Cave League 2026", desc: "Il torneo tra i rioni di Cave si è chiuso con la Super Bowl Night finale e le premiazioni all'Anfiteatro del Calcio." },
+  { iso: "2026-09-19", date: "Sabato 19 settembre", gruppo: "Pf", title: "Pe Fratte — Monte Scalambra", desc: "La prima uscita della community trekking. Ritrovo, orari e dettagli del percorso arrivano nel gruppo Pe Fratte." },
+  { iso: "2026-09-26", date: "Sabato 26 settembre", gruppo: "Pf", title: "Pe Fratte — Monte Autore", desc: "Seconda uscita di Pe Fratte. Tutte le informazioni pratiche vengono condivise nel gruppo." },
+  { iso: "2026-10-03", date: "Sabato 3 ottobre", gruppo: "Pf", title: "Pe Fratte — Monte Catillo", desc: "Terza uscita del calendario trekking. Dettagli e aggiornamenti nel gruppo Pe Fratte." },
+  { iso: "2026-08-18", date: "Martedì 18 agosto", title: "Cinema sotto le stelle — Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
+  { iso: "2026-08-11", date: "Martedì 11 agosto", title: "Cinema sotto le stelle — Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
+  { iso: "2026-07-28", date: "Martedì 28 luglio", title: "Cinema sotto le stelle — Mediterraneo", desc: "Il capolavoro Premio Oscar di Gabriele Salvatores, nel giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
+  { iso: "2026-07-14", date: "Martedì 14 luglio", title: "Cinema sotto le stelle — L'incredibile storia dell'Isola delle Rose", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
+  { iso: "2026-06-14", date: "5–14 giugno", title: "Cave League 2026", desc: "Il torneo tra i rioni di Cave si è chiuso con la Super Bowl Night finale e le premiazioni all'Anfiteatro del Calcio." },
 ];
 
 export const CAVE_LEAGUE = {
-  kicker: "Elemento 04 · L'esperimento più esplosivo",
+  kicker: "Elemento 05 · L'esperimento più esplosivo",
   edition: "Edizione 2026 · 5–14 giugno · Anfiteatro del Calcio",
   /* Riassunto dell'evento (dati reali dal torneo 2026) */
   /* I numeri vivono nelle statistiche qui sotto: il recap racconta,

@@ -23,6 +23,7 @@ export default function Footer() {
           {NAV_LINKS.map((link) => (
             <a key={link.href} href={link.href}>{link.label}</a>
           ))}
+          <a href="#community">Community</a>
           <a href="#contatti">Contatti</a>
         </nav>
 

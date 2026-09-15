@@ -97,7 +97,7 @@ export default function Header() {
               </li>
             ))}
             <li>
-              <a href="#contatti" className="nav-link nav-cta" onClick={() => setOpen(false)}>
+              <a href="#community" className="nav-link nav-cta" onClick={() => setOpen(false)}>
                 Unisciti a noi
               </a>
             </li>
