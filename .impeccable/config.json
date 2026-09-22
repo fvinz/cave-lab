@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [
+      "caveleague/src/routes/index.tsx",
+      "caveleague/src/lib/mockData.ts"
+    ],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-09-22T14:11:27.054Z",
+        "reason": "User confirmed: keep current fonts"
+      },
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "createdAt": "2026-09-22T14:11:27.071Z",
+        "reason": "User confirmed: keep current fonts"
+      }
+    ]
+  }
+}
