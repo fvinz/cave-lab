@@ -1,0 +1,16 @@
+{
+  "_readme": "Stato dello scraper automatico Instagram -> EVENTI (src/content.js). Ogni post Instagram gia' esaminato (che sia diventato un evento o sia stato scartato) viene registrato qui per shortcode, cosi' il task schedulato non lo ripropone ogni volta. Aggiornato dal task schedulato 'cave-lab-instagram-eventi'.",
+  "seen": {
+    "DbTKDdysHtX": { "status": "event", "note": "Cinema sotto le stelle - Mediterraneo (28/07), gia' in EVENTI" },
+    "DZPr16lsm_I": { "status": "skipped", "note": "Meme/intervista Cave League, non e' un annuncio di evento" },
+    "DasYAvRsac8": { "status": "event", "note": "Annuncio rassegna Cinema sotto le stelle, coperto dalle 4 date in EVENTI" },
+    "DZp_P1usxZd": { "status": "skipped", "note": "Post di ringraziamento, non un evento" },
+    "DZkMk9HMpwb": { "status": "event", "note": "Super Bowl Night / finale Cave League, gia' in EVENTI" },
+    "DZh3-sRMFDS": { "status": "skipped", "note": "Meme/intervista Cave League" },
+    "DZho0TcMUPC": { "status": "skipped", "note": "Serata DJ set collaterale al torneo, gia' coperta dall'evento Cave League 2026" },
+    "DZfFks9ssDF": { "status": "skipped", "note": "Serata DJ set collaterale al torneo, gia' coperta dall'evento Cave League 2026" },
+    "DZcU00GsBKc": { "status": "skipped", "note": "Meme/intervista Cave League" },
+    "DdUKLtYsHcL": { "status": "event", "note": "Lancio community Pe Fratte, riflesso nelle uscite in EVENTI" },
+    "DdhBXGHDFrz": { "status": "event", "note": "Recap prima uscita Pe Fratte (Monte Scalambra), gia' in EVENTI" }
+  }
+}
