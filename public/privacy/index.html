@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy e cookie — Cave Lab</title>
+    <meta name="description" content="Informativa sul trattamento dei dati personali e sull'uso dei cookie del sito cavelab.it." />
+    <meta name="theme-color" content="#0E0B17" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://cavelab.it/privacy" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;600&display=swap" />
+    <style>
+      :root {
+        --color-ink: #ECE8F6;
+        --color-bg: #0A0812;
+        --color-muted: #A79DC6;
+        --color-violet-light: #B69BFF;
+        --line: rgba(233, 229, 244, 0.22);
+        --font-display: "Space Grotesk", system-ui, sans-serif;
+        --font-body: "Inter", system-ui, -apple-system, sans-serif;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(900px 520px at 85% -10%, rgba(72, 98, 176, 0.62), transparent 64%),
+          radial-gradient(800px 600px at 0% 40%, rgba(140, 96, 235, 0.4), transparent 60%),
+          var(--color-bg);
+        background-attachment: fixed;
+        color: var(--color-ink);
+        font-family: var(--font-body);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      main { max-width: 68ch; margin: 0 auto; padding: 3rem 1rem 5rem; }
+      .back {
+        display: inline-block;
+        margin-bottom: 2.5rem;
+        font-family: var(--font-display);
+        font-weight: 600;
+        color: var(--color-violet-light);
+        text-decoration: none;
+      }
+      .back:hover { text-decoration: underline; text-underline-offset: 3px; }
+      h1, h2 { font-family: var(--font-display); line-height: 1.2; }
+      h1 { font-size: clamp(2rem, 6vw, 2.8rem); margin: 0 0 0.5rem; }
+      h2 { font-size: 1.2rem; margin: 2.5rem 0 0.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+      p, li { color: var(--color-muted); }
+      strong { color: var(--color-ink); font-weight: 600; }
+      a { color: var(--color-ink); text-underline-offset: 3px; }
+      ul { padding-left: 1.2rem; }
+      li + li { margin-top: 0.35rem; }
+      .updated { font-size: 0.9rem; }
+      .table-wrap { overflow-x: auto; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 0.75rem; }
+      th, td { text-align: left; padding: 0.6rem 0.75rem 0.6rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+      th { font-family: var(--font-display); font-weight: 600; color: var(--color-ink); }
+      td { color: var(--color-muted); }
+      code { font-size: 0.9em; color: var(--color-ink); }
+      button {
+        font: inherit;
+        font-family: var(--font-display);
+        font-weight: 600;
+        color: var(--color-ink);
+        background: none;
+        border: 1px solid rgba(233, 229, 244, 0.5);
+        border-radius: 999px;
+        padding: 0.5rem 1.1rem;
+        min-height: 40px;
+        cursor: pointer;
+      }
+      button:hover, button:focus-visible { background: #6B45D9; border-color: #6B45D9; }
+      .consent-state { margin-top: 0.75rem; font-size: 0.9rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">← Torna a Cave Lab</a>
+      <h1>Privacy e cookie</h1>
+      <p class="updated">Ultimo aggiornamento: 22 settembre 2026</p>
+
+      <p>
+        Questa pagina spiega quali dati raccoglie il sito <strong>cavelab.it</strong>,
+        perché li raccoglie e come puoi controllarli. Lo scriviamo nel modo più chiaro
+        possibile, come previsto dal Regolamento UE 2016/679 (GDPR) e dalle linee guida
+        del Garante per la protezione dei dati personali sui cookie.
+      </p>
+
+      <h2>Chi è il titolare del trattamento</h2>
+      <p>
+        <strong>Cave Lab APS</strong><br />
+        Viale Giorgioli 3, 00033 Cave (RM)<br />
+        Email: <a href="mailto:cave.lab2024@gmail.com">cave.lab2024@gmail.com</a>
+      </p>
+
+      <h2>Quali dati raccogliamo</h2>
+      <ul>
+        <li>
+          <strong>Statistiche di visita (Google Analytics)</strong>, solo se dai il consenso:
+          pagine viste, durata della visita, tipo di dispositivo e browser, città o regione
+          approssimativa. Google Analytics 4 non registra l'indirizzo IP completo.
+        </li>
+        <li>
+          <strong>Statistiche anonime (Vercel Analytics)</strong>: conteggi aggregati delle
+          visite, senza cookie e senza identificare chi visita il sito.
+        </li>
+        <li>
+          <strong>Dati tecnici di navigazione</strong>: l'indirizzo IP e i dati che ogni
+          browser invia quando carica una pagina, trattati dal fornitore di hosting e
+          dai servizi che forniscono i caratteri tipografici (Google Fonts).
+        </li>
+        <li>
+          <strong>Messaggi che ci mandi</strong>: se ci scrivi via email, WhatsApp o
+          Instagram, usiamo i tuoi dati solo per risponderti. Il sito non ha moduli
+          di contatto.
+        </li>
+      </ul>
+
+      <h2>Perché e su quale base</h2>
+      <ul>
+        <li>
+          <strong>Far funzionare il sito e tenerlo sicuro</strong>: legittimo interesse
+          (art. 6.1.f GDPR).
+        </li>
+        <li>
+          <strong>Capire come viene usato il sito</strong> con Google Analytics: il tuo
+          consenso (art. 6.1.a GDPR), che puoi ritirare in qualsiasi momento.
+        </li>
+        <li>
+          <strong>Rispondere ai tuoi messaggi</strong>: la tua richiesta (art. 6.1.b GDPR).
+        </li>
+      </ul>
+
+      <h2>Cookie usati dal sito</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Nome</th><th>Tipo</th><th>A cosa serve</th><th>Durata</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>cavelab-cookie-consent</code></td>
+              <td>Tecnico (memoria locale del browser)</td>
+              <td>Ricorda se hai accettato o rifiutato i cookie di statistica</td>
+              <td>Finché non lo cancelli</td>
+            </tr>
+            <tr>
+              <td><code>_ga</code></td>
+              <td>Statistica, di terza parte (Google)</td>
+              <td>Distingue i visitatori in forma pseudonima</td>
+              <td>2 anni</td>
+            </tr>
+            <tr>
+              <td><code>_ga_E0871PE6F8</code></td>
+              <td>Statistica, di terza parte (Google)</td>
+              <td>Mantiene lo stato della sessione di visita</td>
+              <td>2 anni</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        I cookie di Google Analytics vengono salvati <strong>solo dopo che hai cliccato
+        "Accetta"</strong>. Se rifiuti o ignori il banner, il sito funziona allo stesso modo.
+      </p>
+
+      <h2>Cambiare la tua scelta</h2>
+      <p id="consent-text">Puoi cambiare la tua scelta sui cookie in qualsiasi momento.</p>
+      <button type="button" id="consent-reset">Reimposta le preferenze</button>
+      <p class="consent-state" id="consent-state" role="status"></p>
+      <p>
+        Puoi anche cancellare i cookie dalle impostazioni del tuo browser, oppure
+        installare il
+        <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">componente
+        di disattivazione di Google Analytics</a>.
+      </p>
+
+      <h2>A chi arrivano i dati</h2>
+      <ul>
+        <li>
+          <strong>Google Ireland Ltd</strong> (Google Analytics, Google Fonts). Alcuni dati
+          possono essere trasferiti negli Stati Uniti, dove Google aderisce all'EU-US Data
+          Privacy Framework.
+          <a href="https://policies.google.com/privacy?hl=it" target="_blank" rel="noopener noreferrer">Informativa di Google</a>.
+        </li>
+        <li>
+          <strong>Vercel Inc.</strong>, che ospita il sito e fornisce le statistiche anonime.
+          <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Informativa di Vercel</a>.
+        </li>
+      </ul>
+      <p>Non vendiamo né cediamo i tuoi dati a nessuno.</p>
+
+      <h2>Per quanto tempo</h2>
+      <p>
+        I dati di Google Analytics restano disponibili per il periodo impostato nel nostro
+        account Google Analytics e comunque non oltre 14 mesi. I messaggi che ci mandi
+        restano finché servono per risponderti.
+      </p>
+
+      <h2>I tuoi diritti</h2>
+      <p>
+        Puoi chiederci in qualsiasi momento di accedere ai tuoi dati, correggerli,
+        cancellarli, limitarne l'uso, riceverli in un formato leggibile od opporti al
+        loro trattamento (artt. 15–22 GDPR). Scrivici a
+        <a href="mailto:cave.lab2024@gmail.com">cave.lab2024@gmail.com</a>.
+      </p>
+      <p>
+        Se pensi che i tuoi dati siano trattati in modo non corretto, puoi presentare
+        reclamo al
+        <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">Garante
+        per la protezione dei dati personali</a>.
+      </p>
+    </main>
+
+    <script>
+      (function () {
+        var KEY = "cavelab-cookie-consent";
+        var state = document.getElementById("consent-state");
+        var labels = { granted: "accettato", denied: "rifiutato" };
+        function show() {
+          var v = null;
+          try { v = localStorage.getItem(KEY); } catch (e) {}
+          state.textContent = v
+            ? "Scelta attuale: hai " + labels[v] + " i cookie di statistica."
+            : "Nessuna scelta salvata: il banner comparirà alla prossima visita del sito.";
+        }
+        document.getElementById("consent-reset").addEventListener("click", function () {
+          try { localStorage.removeItem(KEY); } catch (e) {}
+          show();
+        });
+        show();
+      })();
+    </script>
+  </body>
+</html>

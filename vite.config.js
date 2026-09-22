@@ -15,6 +15,10 @@ function leagueSpaFallback() {
         if (isLeagueRoute && !isFile) {
           req.url = '/league/index.html'
         }
+        // Pagina statica dell'informativa privacy (public/privacy/)
+        if (url === '/privacy' || url === '/privacy/') {
+          req.url = '/privacy/index.html'
+        }
         next()
       })
     },

@@ -10,6 +10,7 @@ import Territorio from "./components/Territorio.jsx";
 import Galleria from "./components/Galleria.jsx";
 import Contatti from "./components/Contatti.jsx";
 import Footer from "./components/Footer.jsx";
+import CookieBanner from "./components/CookieBanner.jsx";
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
         <Contatti />
       </main>
       <Footer />
+      <CookieBanner />
       <Analytics />
     </>
   );

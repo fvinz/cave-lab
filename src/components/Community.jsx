@@ -14,6 +14,7 @@ export default function Community() {
           La community di Cave Lab
         </h2>
         <p className="section-text section-text-center" data-reveal>
+          Ne fanno già parte <strong>{COMMUNITY.membri} persone</strong>.
           Su WhatsApp abbiamo un nucleo e tanti gruppi funzionali: entri nella community,
           ricevi date e aggiornamenti, e scegli i gruppi delle attività che ti interessano.
         </p>
@@ -38,7 +39,7 @@ export default function Community() {
 
           {/* Gruppi funzionali attivi */}
           {COMMUNITY.gruppi.map((g) => {
-            const uscite = EVENTI.filter((e) => e.gruppo === g.symbol && isInArrivo(e.iso))
+            const uscite = EVENTI.filter((e) => e.gruppo === g.symbol)
               .sort((a, b) => a.iso.localeCompare(b.iso));
             return (
               <article key={g.symbol} className="element-card community-gruppo" style={{ "--tile-color": g.color }}>
@@ -49,15 +50,21 @@ export default function Community() {
                 {uscite.length > 0 && (
                   <>
                     <h4 className="community-uscite-title">
-                      <Icon name="mountain" /> Prossime uscite
+                      <Icon name="mountain" /> Uscite
                     </h4>
                     <ul className="community-uscite">
-                      {uscite.map((u) => (
-                        <li key={u.iso}>
-                          <span className="community-uscita-data">{u.date}</span>
-                          <span className="community-uscita-meta">{u.title.split("— ").pop()}</span>
-                        </li>
-                      ))}
+                      {uscite.map((u) => {
+                        const conclusa = !isInArrivo(u.iso);
+                        return (
+                          <li key={u.iso} className={conclusa ? "is-conclusa" : undefined}>
+                            <span className="community-uscita-data">{u.date}</span>
+                            <span className="community-uscita-meta">
+                              {conclusa && <span className="community-uscita-stato">Fatta</span>}
+                              {u.title.split("— ").pop()}
+                            </span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </>
                 )}

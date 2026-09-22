@@ -1,6 +1,27 @@
 <!doctype html>
 <html lang="it">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E0871PE6F8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Consent Mode v2: tutto negato finché l'utente non accetta dal banner
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied'
+      });
+      try {
+        if (localStorage.getItem('cavelab-cookie-consent') === 'granted') {
+          gtag('consent', 'update', { analytics_storage: 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+
+      gtag('config', 'G-E0871PE6F8');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cave Lab — Associazione giovani per il territorio di Cave (RM)</title>

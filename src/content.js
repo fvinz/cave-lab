@@ -78,6 +78,7 @@ export const ELEMENTI = [
    poi dentro WhatsApp ognuno sceglie i gruppi che gli interessano. */
 export const COMMUNITY = {
   inviteUrl: "https://chat.whatsapp.com/DpbHhXpPIwR5AaKzbUE7BN",
+  membri: "più di 250",
   nucleo: {
     title: "Community Cave Lab",
     desc: "Il canale principale: comunicazioni importanti, aggiornamenti generali e le date di tutti i nostri eventi.",
@@ -103,6 +104,7 @@ export const COMMUNITY = {
 export const EVENTI = [
   { iso: "2026-09-19", date: "Sabato 19 settembre", gruppo: "Pf", title: "Pe Fratte — Monte Scalambra", desc: "La prima uscita della community trekking. Ritrovo, orari e dettagli del percorso arrivano nel gruppo Pe Fratte." },
   { iso: "2026-09-26", date: "Sabato 26 settembre", gruppo: "Pf", title: "Pe Fratte — Monte Autore", desc: "Seconda uscita di Pe Fratte. Tutte le informazioni pratiche vengono condivise nel gruppo." },
+  { iso: "2026-10-10", date: "Sabato 10 ottobre", title: "Evento segreto", desc: "Per ora è top secret: stiamo preparando qualcosa di speciale. Tutti i dettagli arrivano prima nella community." },
   { iso: "2026-10-03", date: "Sabato 3 ottobre", gruppo: "Pf", title: "Pe Fratte — Monte Catillo", desc: "Terza uscita del calendario trekking. Dettagli e aggiornamenti nel gruppo Pe Fratte." },
   { iso: "2026-08-18", date: "Martedì 18 agosto", title: "Cinema sotto le stelle — Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
   { iso: "2026-08-11", date: "Martedì 11 agosto", title: "Cinema sotto le stelle — Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },

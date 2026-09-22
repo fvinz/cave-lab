@@ -1,5 +1,6 @@
 import Icon from "./Icon.jsx";
 import { NAV_LINKS, SOCIAL } from "../content.js";
+import { openCookieBanner } from "./CookieBanner.jsx";
 
 export default function Footer() {
   const scrollTop = () => {
@@ -52,7 +53,13 @@ export default function Footer() {
         </div>
       </div>
       <div className="container footer-bottom">
-        <p>© {new Date().getFullYear()} Cave Lab.</p>
+        <p>
+          © {new Date().getFullYear()} Cave Lab. ·{" "}
+          <a className="footer-cookie-link" href="/privacy">Privacy</a> ·{" "}
+          <button type="button" className="footer-cookie-link" onClick={openCookieBanner}>
+            Preferenze cookie
+          </button>
+        </p>
         <button className="back-to-top" aria-label="Torna in cima alla pagina" onClick={scrollTop}>
           <Icon name="arrowUp" className="" />
         </button>

@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/privacy", "destination": "/privacy/index.html" },
     { "source": "/league/:path((?!assets/|cl-white\\.png).*)", "destination": "/league/index.html" }
   ],
   "redirects": [
