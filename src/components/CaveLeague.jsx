@@ -46,7 +46,7 @@ export default function CaveLeague() {
           href={siteUrl}
           className="league-podium"
           data-reveal
-          aria-label="Vai alla classifica completa, calendario e statistiche della Cave League"
+          aria-label="Vai al podio finale e ai marcatori della Cave League"
         >
           <h3 className="league-podium-title">{podium.title}</h3>
 
@@ -78,7 +78,7 @@ export default function CaveLeague() {
               </span>
             </span>
             <span className="podium-hint">
-              Tutte le partite, la classifica e le statistiche
+              Il podio e i marcatori del torneo
               <Icon name="arrowRight" className="podium-hint-icon" />
             </span>
           </div>

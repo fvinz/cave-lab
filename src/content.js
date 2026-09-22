@@ -161,7 +161,7 @@ export const CAVE_LEAGUE = {
   /* Link al sito dedicato (l'app montata su /league/) */
   siteUrl: "/league/",
   siteCta: "Entra nella Cave League",
-  siteNote: "Classifica, calendario, squadre, marcatori e statistiche: tutto l'universo del torneo vive nel sito dedicato.",
+  siteNote: "Il podio finale e i marcatori del torneo, in un'unica pagina dedicata.",
 
   /* Foto della finalissima (dal Drive dell'associazione, cartella
      CaveLeague 2K26 › DAY 10 › Finalissima). Sono in public/league-foto/. */
