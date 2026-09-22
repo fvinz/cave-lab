@@ -11,6 +11,7 @@
     "DZfFks9ssDF": { "event": "skipped", "gallery": "added", "note": "Serata DJ set collaterale al torneo, gia' coperta dall'evento Cave League 2026, in galleria" },
     "DZcU00GsBKc": { "event": "skipped", "gallery": "added", "note": "Meme/intervista Cave League, gia' in galleria" },
     "DdUKLtYsHcL": { "event": "added", "gallery": "pending", "note": "Lancio community Pe Fratte, riflesso nelle uscite in EVENTI ma NON ancora scaricato in galleria" },
-    "DdhBXGHDFrz": { "event": "added", "gallery": "pending", "note": "Recap prima uscita Pe Fratte (Monte Scalambra), in EVENTI ma NON ancora scaricato in galleria" }
+    "DdhBXGHDFrz": { "event": "added", "gallery": "pending", "note": "Recap prima uscita Pe Fratte (Monte Scalambra), in EVENTI ma NON ancora scaricato in galleria" },
+    "DdRw1desnlM": { "event": "skipped", "gallery": "pending", "note": "Reel 'e' nata la Community Trekking' (~1 sett fa) - teaser, nessuna data propria, gia' coperto dalle uscite Pe Fratte in EVENTI; NON restituito dall'azione Zapier new_media (trovato solo controllando il profilo via browser) - vedi nota affidabilita'" }
   }
 }
