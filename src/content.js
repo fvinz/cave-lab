@@ -18,6 +18,9 @@ export const SOCIAL = {
    e il link al post. Per aggiungere un post: salva l'anteprima in
    public/instagram/<codice>.jpg e aggiungi { img, url, caption } qui. */
 export const INSTAGRAM_POSTS = [
+  { img: "/instagram/DdhBXGHDFrz.jpg", url: "https://www.instagram.com/p/DdhBXGHDFrz/", caption: "Pe Fratte è partito — prima uscita sul Monte Scalambra" },
+  { img: "/instagram/DdUKLtYsHcL.jpg", url: "https://www.instagram.com/p/DdUKLtYsHcL/", caption: "Nasce Pe Fratte, la community trekking di Cave Lab" },
+  { img: "/instagram/DdRw1desnlM.jpg", url: "https://www.instagram.com/reel/DdRw1desnlM/", caption: "È nata la Community Trekking di Cave Lab" },
   { img: "/instagram/DbTKDdysHtX.jpg", url: "https://www.instagram.com/reel/DbTKDdysHtX/", caption: "Cinema sotto le stelle — serata con Mediterraneo di Salvatores" },
   { img: "/instagram/DZPr16lsm_I.jpg", url: "https://www.instagram.com/reel/DZPr16lsm_I/", caption: "Le interviste Cave League, versione meme" },
   { img: "/instagram/DasYAvRsac8.jpg", url: "https://www.instagram.com/p/DasYAvRsac8/", caption: "Cinema sotto le stelle: quattro martedì, quattro film" },
