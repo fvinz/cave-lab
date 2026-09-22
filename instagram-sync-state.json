@@ -1,16 +1,16 @@
 {
-  "_readme": "Stato dello scraper automatico Instagram -> EVENTI (src/content.js). Ogni post Instagram gia' esaminato (che sia diventato un evento o sia stato scartato) viene registrato qui per shortcode, cosi' il task schedulato non lo ripropone ogni volta. Aggiornato dal task schedulato 'cave-lab-instagram-eventi'.",
+  "_readme": "Stato dello scraper automatico Instagram -> sito Cave Lab. Ogni post esaminato viene registrato per shortcode con due esiti indipendenti: 'event' (aggiunto/valutato per EVENTI in src/content.js) e 'gallery' (aggiunto/valutato per INSTAGRAM_POSTS, con immagine scaricata in public/instagram/). Aggiornato dal task schedulato 'cave-lab-instagram-eventi'.",
   "seen": {
-    "DbTKDdysHtX": { "status": "event", "note": "Cinema sotto le stelle - Mediterraneo (28/07), gia' in EVENTI" },
-    "DZPr16lsm_I": { "status": "skipped", "note": "Meme/intervista Cave League, non e' un annuncio di evento" },
-    "DasYAvRsac8": { "status": "event", "note": "Annuncio rassegna Cinema sotto le stelle, coperto dalle 4 date in EVENTI" },
-    "DZp_P1usxZd": { "status": "skipped", "note": "Post di ringraziamento, non un evento" },
-    "DZkMk9HMpwb": { "status": "event", "note": "Super Bowl Night / finale Cave League, gia' in EVENTI" },
-    "DZh3-sRMFDS": { "status": "skipped", "note": "Meme/intervista Cave League" },
-    "DZho0TcMUPC": { "status": "skipped", "note": "Serata DJ set collaterale al torneo, gia' coperta dall'evento Cave League 2026" },
-    "DZfFks9ssDF": { "status": "skipped", "note": "Serata DJ set collaterale al torneo, gia' coperta dall'evento Cave League 2026" },
-    "DZcU00GsBKc": { "status": "skipped", "note": "Meme/intervista Cave League" },
-    "DdUKLtYsHcL": { "status": "event", "note": "Lancio community Pe Fratte, riflesso nelle uscite in EVENTI" },
-    "DdhBXGHDFrz": { "status": "event", "note": "Recap prima uscita Pe Fratte (Monte Scalambra), gia' in EVENTI" }
+    "DbTKDdysHtX": { "event": "added", "gallery": "added", "note": "Cinema sotto le stelle - Mediterraneo (28/07), in EVENTI e in galleria" },
+    "DZPr16lsm_I": { "event": "skipped", "gallery": "added", "note": "Meme/intervista Cave League, non un evento ma gia' in galleria" },
+    "DasYAvRsac8": { "event": "added", "gallery": "added", "note": "Annuncio rassegna Cinema sotto le stelle, coperto dalle 4 date in EVENTI, in galleria" },
+    "DZp_P1usxZd": { "event": "skipped", "gallery": "added", "note": "Post di ringraziamento, non un evento ma gia' in galleria" },
+    "DZkMk9HMpwb": { "event": "added", "gallery": "added", "note": "Super Bowl Night / finale Cave League, in EVENTI e in galleria" },
+    "DZh3-sRMFDS": { "event": "skipped", "gallery": "added", "note": "Meme/intervista Cave League, gia' in galleria" },
+    "DZho0TcMUPC": { "event": "skipped", "gallery": "added", "note": "Serata DJ set collaterale al torneo, gia' coperta dall'evento Cave League 2026, in galleria" },
+    "DZfFks9ssDF": { "event": "skipped", "gallery": "added", "note": "Serata DJ set collaterale al torneo, gia' coperta dall'evento Cave League 2026, in galleria" },
+    "DZcU00GsBKc": { "event": "skipped", "gallery": "added", "note": "Meme/intervista Cave League, gia' in galleria" },
+    "DdUKLtYsHcL": { "event": "added", "gallery": "pending", "note": "Lancio community Pe Fratte, riflesso nelle uscite in EVENTI ma NON ancora scaricato in galleria" },
+    "DdhBXGHDFrz": { "event": "added", "gallery": "pending", "note": "Recap prima uscita Pe Fratte (Monte Scalambra), in EVENTI ma NON ancora scaricato in galleria" }
   }
 }
