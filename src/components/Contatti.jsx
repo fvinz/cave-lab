@@ -65,7 +65,7 @@ export default function Contatti() {
           </span>
           <span className="canale-body">
             <span className="canale-label">Entra nella community WhatsApp</span>
-            <span className="canale-hint">Date, aggiornamenti e gruppi tematici come Pe Fratte, il gruppo trekking.</span>
+            <span className="canale-hint">Date, aggiornamenti e gruppi tematici come Pe' Fratte, il gruppo trekking.</span>
           </span>
           <Icon name="arrowRight" className="canale-arrow" />
         </a>

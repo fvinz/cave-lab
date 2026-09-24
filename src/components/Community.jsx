@@ -1,4 +1,5 @@
 import Icon from "./Icon.jsx";
+import GruppoPeFratte from "./GruppoPeFratte.jsx";
 import useReveal from "../hooks/useReveal.js";
 import { COMMUNITY, EVENTI } from "../content.js";
 import { isInArrivo } from "../date.js";
@@ -41,6 +42,10 @@ export default function Community() {
           {COMMUNITY.gruppi.map((g) => {
             const uscite = EVENTI.filter((e) => e.gruppo === g.symbol)
               .sort((a, b) => a.iso.localeCompare(b.iso));
+            /* Un gruppo con un'identità propria usa la sua tessera */
+            if (g.stile === "pe-fratte") {
+              return <GruppoPeFratte key={g.symbol} gruppo={g} uscite={uscite} />;
+            }
             return (
               <article key={g.symbol} className="element-card community-gruppo" style={{ "--tile-color": g.color }}>
                 <span className="element-number">Gruppo · {g.tema}</span>
@@ -67,6 +72,12 @@ export default function Community() {
                       })}
                     </ul>
                   </>
+                )}
+                {g.pagina && (
+                  <a href={g.pagina} className="community-pagina">
+                    {g.paginaCta}
+                    <Icon name="arrowRight" />
+                  </a>
                 )}
               </article>
             );

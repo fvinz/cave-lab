@@ -19,6 +19,10 @@ function leagueSpaFallback() {
         if (url === '/privacy' || url === '/privacy/') {
           req.url = '/privacy/index.html'
         }
+        // Pagina Pe' Fratte (seconda entry della build: pe-fratte/index.html)
+        if (url === '/pe-fratte') {
+          req.url = '/pe-fratte/'
+        }
         next()
       })
     },
@@ -28,6 +32,16 @@ function leagueSpaFallback() {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), leagueSpaFallback()],
+  build: {
+    /* Due pagine nella stessa build: la home Cave Lab e /pe-fratte/,
+       ognuna con il proprio CSS (i due design system non si mescolano). */
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        peFratte: 'pe-fratte/index.html',
+      },
+    },
+  },
   server: {
     /* Rispetta la porta assegnata dall'ambiente (il dev server di un
        altro progetto occupa spesso la 5173). */

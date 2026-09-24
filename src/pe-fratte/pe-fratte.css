@@ -1,0 +1,673 @@
+/* =============================================================
+   PE' FRATTE — pagina /pe-fratte/
+   Design system Pe' Fratte in versione "bosco": la pagina vive sul
+   verde del marchio (fondi bosco), con carta per le schede e oro
+   come accento raro. Piatto e "stampato a mano": ombre a timbro
+   senza blur, raggi piccoli, niente lucidi né gradienti.
+   Paesaggi, pini e foglie animati allo scroll: Natura.jsx.
+   Questo CSS è caricato solo da pe-fratte/index.html e non condivide
+   nulla con styles.css della home.
+   ============================================================= */
+
+/* ---------- Token (da tokens/ del design system) ---------- */
+:root {
+  --pf-bosco-900: #16271D;
+  --pf-bosco-800: #1C3325;
+  --pf-bosco-700: #24402F;
+  --pf-bosco-600: #33573F;
+  --pf-bosco-500: #4A7157;
+  --pf-bosco-300: #9DB5A2;
+  --pf-bosco-100: #DCE6DC;
+  --pf-oro-700: #A87318;
+  --pf-oro-600: #C98C24;
+  --pf-oro-500: #E8A93C;
+  --pf-oro-200: #F6DDA9;
+  --pf-bronzo-700: #7E5528;
+  --pf-bronzo-500: #A8763E;
+  --pf-sabbia-400: #D8B27F;
+  --pf-sabbia-200: #EBD9BC;
+  --pf-carta-50: #FAF6EE;
+  --pf-carta-100: #F4EEE2;
+  --pf-carta-200: #E9E0CF;
+  --pf-carta-300: #D9CDB8;
+  --pf-pietra-400: #A99E8B;
+  --pf-pietra-600: #6E6656;
+  --pf-pietra-800: #3B372F;
+  --pf-rosso-600: #B4492F;
+
+  /* Fondi delle sezioni (coincidono con VERDI in PeFratte.jsx) */
+  --verde-notte: var(--pf-bosco-900);
+  --verde-muschio: var(--pf-bosco-800);
+  --verde-bosco: var(--pf-bosco-700);
+
+  /* Testo su verde */
+  --su-verde-1: var(--pf-carta-50);
+  --su-verde-2: var(--pf-carta-200);
+  --su-verde-3: var(--pf-bosco-300);
+  --su-verde-meta: var(--pf-sabbia-400);
+
+  /* Superfici carta (schede) */
+  --bg-surface: var(--pf-carta-50);
+  --bg-page-carta: var(--pf-carta-100);
+  --fg-1: var(--pf-bosco-900);
+  --fg-2: var(--pf-pietra-800);
+  --fg-3: var(--pf-pietra-600);
+  --fg-brand: var(--pf-bosco-700);
+  --fg-tagline: var(--pf-bronzo-700);
+  --border-1: var(--pf-carta-300);
+  --border-strong: var(--pf-bosco-900);
+
+  --font-display: "Big Shoulders Display", "Oswald", Impact, sans-serif;
+  --font-body: "Figtree", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "Courier New", monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --border-w: 1.5px;
+  --border-w-strong: 2px;
+  --container-max: 1200px;
+
+  /* Timbri: su verde l'ombra è oro (in evidenza) o bosco notte */
+  --shadow-stamp: 4px 4px 0 var(--pf-bosco-900);
+  --shadow-stamp-oro: 5px 5px 0 var(--pf-oro-500);
+  --shadow-stamp-oro-lift: 7px 7px 0 var(--pf-oro-500);
+  --shadow-soft: 0 1px 2px rgba(22, 39, 29, .2), 0 10px 28px rgba(0, 0, 0, .3);
+  --focus-ring: 0 0 0 3px rgba(232, 169, 60, .6);
+
+  --ease-trail: cubic-bezier(.3, .7, .2, 1);
+  --ease-out: cubic-bezier(.2, .8, .2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; background: var(--verde-notte); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+}
+body {
+  margin: 0;
+  background: var(--verde-bosco);
+  color: var(--su-verde-2);
+  font: 400 16px/1.55 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; }
+button { font: inherit; }
+:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); }
+
+.pf-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+@media (min-width: 768px) { .pf-container { padding: 0 var(--space-6); } }
+
+.pf-visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+.pf-skip-link {
+  position: absolute; left: var(--space-4); top: -60px; z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--pf-oro-500); color: var(--pf-bosco-900);
+  font-weight: 700; text-decoration: none; border-radius: var(--radius-sm);
+}
+.pf-skip-link:focus { top: var(--space-2); }
+
+.pf-icon { width: 1.1em; height: 1.1em; flex: none; }
+
+/* ---------- Tipografia ---------- */
+.pf-meta {
+  font: 700 12px/1.3 var(--font-mono);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--su-verde-meta);
+}
+.pf-h2 {
+  margin-top: var(--space-2);
+  font: 900 clamp(40px, 7vw, 64px)/.92 var(--font-display);
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  color: var(--su-verde-1);
+}
+.pf-lead { font-size: clamp(18px, 2.2vw, 20px); line-height: 1.5; color: var(--su-verde-2); max-width: 34em; }
+.pf-note { font-size: 14px; color: var(--su-verde-3); }
+
+/* ---------- Bottoni ---------- */
+.pf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0 var(--space-5);
+  border: var(--border-w-strong) solid var(--pf-bosco-900);
+  border-radius: var(--radius-sm);
+  font: 800 18px/1 var(--font-display);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.pf-btn .pf-icon { width: 20px; height: 20px; }
+/* Oro "timbrato": al press l'ombra sparisce e il bottone si imprime */
+.pf-btn-accent {
+  background: var(--pf-oro-500);
+  color: var(--pf-bosco-900);
+  box-shadow: 3px 3px 0 var(--pf-bosco-900);
+}
+.pf-btn-accent:hover { background: var(--pf-oro-600); }
+.pf-btn-accent:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--pf-bosco-900); }
+/* Primario: bosco, per le schede su carta */
+.pf-btn-primary {
+  background: var(--pf-bosco-700);
+  border-color: var(--pf-bosco-700);
+  color: var(--pf-carta-50);
+}
+.pf-btn-primary:hover { background: var(--pf-bosco-900); border-color: var(--pf-bosco-900); }
+.pf-btn-primary:active { transform: translateY(1px); }
+/* Secondario: contorno carta, su fondo verde */
+.pf-btn-secondary {
+  background: transparent;
+  border-color: var(--pf-carta-100);
+  color: var(--pf-carta-50);
+}
+.pf-btn-secondary:hover { background: rgba(244, 238, 226, .12); }
+.pf-btn-secondary:active { transform: translateY(1px); }
+
+.pf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: 600;
+  color: var(--fg-brand);
+  text-underline-offset: 3px;
+}
+.pf-link .pf-icon { transition: transform var(--dur-fast) var(--ease-out); }
+.pf-link:hover .pf-icon { transform: translateX(3px); }
+
+/* ---------- Header ---------- */
+.pf-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--verde-notte);
+  border-bottom: var(--border-w) solid var(--pf-bosco-700);
+}
+.pf-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+}
+.pf-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  font-size: 15px;
+  color: var(--su-verde-2);
+  text-decoration: none;
+}
+.pf-back strong { color: var(--su-verde-1); }
+.pf-back:hover strong { text-decoration: underline; text-underline-offset: 3px; }
+.pf-header-brand { display: inline-flex; align-items: center; min-height: 44px; }
+/* Marchio nudo come maschera: eredita il colore oro */
+.pf-marchio {
+  display: block;
+  width: 118px;
+  height: 30px;
+  background: var(--pf-oro-500);
+  -webkit-mask: url("/pe-fratte/marchio-nudo.svg") center / contain no-repeat;
+  mask: url("/pe-fratte/marchio-nudo.svg") center / contain no-repeat;
+}
+
+/* ---------- Natura: livelli animati (Natura.jsx) ---------- */
+.pf-hero, .pf-section, .pf-cta { position: relative; overflow: hidden; }
+.pf-paesaggio {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 0;
+  height: clamp(260px, 42vw, 560px);
+  pointer-events: none;
+}
+/* Il tramonto è lo specchio dell'alba: stesso crinale visto dall'altra parte */
+.pf-paesaggio-tramonto { transform: scaleX(-1); }
+.pf-livello {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+/* Il colle in primo piano non si muove: sborda un filo sotto per non
+   lasciare fessure con la sezione che segue */
+.pf-livello:last-child { bottom: -2px; }
+.pf-fila-pini {
+  position: relative;
+  height: clamp(70px, 9vw, 130px);
+  margin-bottom: -1px;
+  overflow: hidden;
+}
+.pf-fila-pini svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pf-foglia {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+  will-change: transform;
+}
+.pf-foglia svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: pf-oscilla 5.5s ease-in-out infinite alternate;
+  transform-origin: 50% 10%;
+}
+.pf-foglia:nth-of-type(2n) svg { animation-duration: 7s; animation-delay: -2s; }
+/* Su schermi stretti le colonne si impilano: via le foglie tra i testi */
+@media (max-width: 959px) { .pf-foglia-desktop { display: none; } }
+@keyframes pf-oscilla {
+  from { transform: rotate(-9deg); }
+  to { transform: rotate(9deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-foglia svg { animation: none; }
+}
+
+/* ---------- Hero: cielo bosco, paesaggio sotto ---------- */
+.pf-hero {
+  background: var(--verde-bosco);
+  padding: var(--space-7) 0 clamp(220px, 34vw, 460px);
+}
+.pf-hero-grid { display: grid; gap: var(--space-7); align-items: center; }
+@media (min-width: 960px) {
+  .pf-hero { padding-top: var(--space-8); }
+  .pf-hero-grid { grid-template-columns: 1.35fr 1fr; gap: var(--space-8); }
+}
+.pf-hero-copy { display: grid; gap: var(--space-5); justify-items: start; }
+.pf-hero-logo { width: 100%; max-width: 620px; margin-left: -1.5%; }
+.pf-hero-logo img { width: 100%; }
+.pf-hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* Scheda "prossima uscita": carta con timbro oro */
+.pf-prossima {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  padding: var(--space-5);
+  background: var(--bg-surface);
+  color: var(--fg-2);
+  border: var(--border-w-strong) solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-stamp-oro);
+}
+.pf-prossima-label {
+  padding: var(--space-1) var(--space-2);
+  background: var(--pf-bosco-700);
+  color: var(--pf-carta-50);
+  font: 700 11px/1.2 var(--font-mono);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  border-radius: var(--radius-xs);
+}
+.pf-prossima-data {
+  font: 700 13px/1.2 var(--font-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-tagline);
+}
+.pf-prossima-titolo {
+  font: 900 clamp(36px, 5vw, 48px)/.92 var(--font-display);
+  text-transform: uppercase;
+  color: var(--fg-brand);
+}
+.pf-prossima-vuota { color: var(--fg-2); }
+
+/* ---------- Dati sentiero ---------- */
+.pf-zona {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 15px;
+  color: var(--fg-2);
+}
+.pf-zona .pf-icon { color: var(--fg-3); }
+.pf-dati {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  font: 700 13px/1 var(--font-mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--fg-1);
+}
+.pf-dato dd { display: inline-flex; align-items: center; gap: 6px; }
+.pf-dato .pf-icon { width: 16px; height: 16px; color: var(--fg-3); }
+
+/* Difficoltà: etichetta piena, piccola, squadrata */
+.pf-diff {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: var(--radius-xs);
+  font: 800 15px/1 var(--font-display);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+/* Partecipazione (es. "Gratuita"): contorno, per non competere con la difficoltà */
+.pf-card-badge { display: inline-flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
+.pf-quota {
+  display: inline-block;
+  padding: 4px 7px;
+  border: var(--border-w-strong) solid var(--pf-bosco-700);
+  border-radius: var(--radius-xs);
+  font: 800 15px/1 var(--font-display);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--pf-bosco-700);
+}
+.pf-prossima-quota { font-size: 14px; color: var(--fg-2); }
+.pf-prossima-quota strong { color: var(--fg-brand); }
+.pf-diff-facile { background: var(--pf-bosco-500); color: var(--pf-carta-50); }
+.pf-diff-intermedia { background: var(--pf-oro-500); color: var(--pf-bosco-900); }
+.pf-diff-impegnativa { background: var(--pf-rosso-600); color: var(--pf-carta-50); }
+
+/* ---------- Sezioni ---------- */
+.pf-section { padding: var(--space-8) 0; background: var(--verde-notte); }
+@media (min-width: 960px) { .pf-section { padding: var(--space-9) 0; } }
+.pf-section-bosco { background: var(--verde-bosco); }
+.pf-section-muschio { background: var(--verde-muschio); }
+.pf-vuoto { margin-top: var(--space-5); max-width: 36em; }
+
+/* ---------- Card uscita (carta su verde) ---------- */
+.pf-card-grid {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+@media (min-width: 860px) {
+  .pf-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}
+.pf-card {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--bg-surface);
+  color: var(--fg-2);
+  border: var(--border-w-strong) solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: 4px 4px 0 var(--pf-bosco-600);
+  scroll-margin-top: 88px;
+}
+/* La prossima uscita è "timbrata" in oro */
+.pf-card.is-evidenza {
+  box-shadow: var(--shadow-stamp-oro);
+  transition: transform var(--dur-base) var(--ease-trail), box-shadow var(--dur-base) var(--ease-trail);
+}
+.pf-card.is-evidenza:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-stamp-oro-lift); }
+.pf-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.pf-card-data {
+  font: 700 12px/1.2 var(--font-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fg-tagline);
+}
+.pf-card-titolo {
+  font: 900 clamp(34px, 5vw, 44px)/.95 var(--font-display);
+  text-transform: uppercase;
+  color: var(--fg-brand);
+}
+.pf-card .pf-dati {
+  padding-top: var(--space-3);
+  border-top: var(--border-w) dashed var(--border-1);
+}
+.pf-card-dettagli { display: grid; gap: var(--space-4); margin-top: var(--space-2); }
+.pf-orari { display: grid; gap: var(--space-2); font-size: 15px; }
+.pf-orari li { display: grid; grid-template-columns: 5.5em 1fr; gap: var(--space-3); align-items: baseline; }
+.pf-orario { font: 700 15px/1.2 var(--font-mono); color: var(--fg-1); }
+.pf-orari a {
+  display: inline;
+  font-weight: 600;
+  color: var(--fg-brand);
+  text-underline-offset: 3px;
+}
+.pf-orari a .pf-icon { width: 13px; height: 13px; margin-left: 3px; vertical-align: -1px; }
+.pf-programma { font-size: 15px; }
+.pf-portare {
+  padding: var(--space-4);
+  background: var(--bg-page-carta);
+  border-radius: var(--radius-sm);
+}
+.pf-portare-titolo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+  font: 700 12px/1.2 var(--font-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fg-1);
+}
+.pf-portare ul { display: grid; gap: var(--space-1); font-size: 15px; }
+.pf-portare li { position: relative; padding-left: 18px; }
+.pf-portare li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: .6em;
+  width: 7px;
+  height: 7px;
+  background: var(--pf-bosco-500);
+  border-radius: 1px;
+}
+.pf-card-attesa {
+  padding: var(--space-4);
+  background: var(--bg-page-carta);
+  border: var(--border-w) dashed var(--border-1);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  color: var(--fg-3);
+}
+.pf-card-azioni { margin-top: var(--space-2); }
+
+/* ---------- Come funziona ---------- */
+.pf-regole {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+@media (min-width: 860px) { .pf-regole { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.pf-regola {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+  padding-top: var(--space-4);
+  border-top: var(--border-w-strong) solid var(--pf-bosco-500);
+}
+.pf-regola-num { font: 700 13px/1 var(--font-mono); letter-spacing: .14em; color: var(--su-verde-meta); }
+.pf-regola-titolo {
+  font: 800 30px/1 var(--font-display);
+  text-transform: uppercase;
+  color: var(--su-verde-1);
+}
+.pf-ritrovo {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  margin-top: var(--space-7);
+  padding: var(--space-4) var(--space-5);
+  background: var(--verde-notte);
+  border-radius: var(--radius-sm);
+}
+.pf-ritrovo .pf-icon { width: 20px; height: 20px; margin-top: 2px; color: var(--pf-oro-500); }
+.pf-ritrovo a { font-weight: 600; color: var(--pf-oro-200); text-underline-offset: 3px; }
+
+/* ---------- Galleria: foto e video delle uscite ---------- */
+.pf-galleria-gruppo { margin-top: var(--space-6); }
+.pf-galleria-uscita {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--border-w) dashed var(--pf-bosco-600);
+}
+.pf-galleria-nome {
+  font: 800 28px/1 var(--font-display);
+  text-transform: uppercase;
+  color: var(--su-verde-1);
+}
+.pf-galleria-data {
+  font: 700 12px/1.2 var(--font-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--su-verde-meta);
+}
+/* Mosaico a colonne: ogni scatto tiene le sue proporzioni */
+.pf-galleria {
+  columns: 2;
+  column-gap: var(--space-3);
+}
+@media (min-width: 860px) { .pf-galleria { columns: 3; column-gap: var(--space-4); } }
+.pf-media {
+  break-inside: avoid;
+  margin: 0 0 var(--space-3);
+  overflow: hidden;
+  background: var(--pf-bosco-900);
+  border: var(--border-w-strong) solid var(--pf-carta-100);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-stamp);
+}
+@media (min-width: 860px) { .pf-media { margin-bottom: var(--space-4); } }
+.pf-media img, .pf-media video { display: block; width: 100%; height: auto; }
+/* Clip in evidenza a tutta larghezza (es. il drone) */
+.pf-media-largo {
+  margin-bottom: var(--space-4);
+  border-color: var(--pf-oro-500);
+  box-shadow: var(--shadow-stamp-oro);
+}
+@media (min-width: 860px) { .pf-media-largo { margin-bottom: var(--space-5); } }
+.pf-media-largo video { aspect-ratio: 848 / 478; object-fit: cover; }
+
+/* ---------- Archivio ---------- */
+.pf-archivio { display: grid; margin-top: var(--space-6); }
+.pf-archivio li {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4) 0;
+  border-top: var(--border-w) solid var(--pf-bosco-600);
+}
+.pf-archivio li:last-child { border-bottom: var(--border-w) solid var(--pf-bosco-600); }
+@media (min-width: 760px) {
+  .pf-archivio li { grid-template-columns: 13em 1fr auto; align-items: center; gap: var(--space-5); }
+}
+.pf-archivio-data {
+  font: 700 12px/1.2 var(--font-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--su-verde-meta);
+}
+.pf-archivio-nome {
+  font: 800 28px/1 var(--font-display);
+  text-transform: uppercase;
+  color: var(--su-verde-1);
+}
+.pf-archivio .pf-dati { font-size: 12px; color: var(--su-verde-2); }
+.pf-archivio .pf-dato .pf-icon { color: var(--su-verde-3); }
+
+/* ---------- CTA finale: paesaggio al tramonto ---------- */
+.pf-cta {
+  padding: var(--space-8) 0 clamp(200px, 30vw, 420px);
+  background: var(--verde-bosco);
+}
+.pf-cta-inner { display: grid; gap: var(--space-4); justify-items: center; text-align: center; }
+.pf-cta .pf-h2 { font-size: clamp(56px, 11vw, 112px); margin: 0; }
+.pf-cta p { max-width: 30em; font-size: 18px; }
+
+/* ---------- Footer: prosegue il colle del paesaggio ---------- */
+.pf-footer {
+  padding: var(--space-6) 0 var(--space-6);
+  background: var(--verde-notte);
+  color: var(--su-verde-3);
+  font-size: 15px;
+}
+.pf-footer-inner { display: grid; gap: var(--space-4); justify-items: start; }
+.pf-footer-logo { width: 220px; margin-bottom: var(--space-2); }
+.pf-footer a { color: var(--pf-carta-100); text-underline-offset: 3px; }
+.pf-footer-legal { font-size: 13px; }
+.pf-footer-legal button {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--pf-carta-100);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* ---------- Banner cookie (componente condiviso con la home) ---------- */
+.cookie-banner {
+  position: fixed;
+  left: var(--space-4);
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--space-4);
+  background: var(--bg-surface);
+  color: var(--fg-2);
+  border: var(--border-w-strong) solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  font-size: 14px;
+}
+.cookie-banner a { color: var(--fg-brand); font-weight: 600; }
+.cookie-actions { display: flex; gap: var(--space-2); }
+.cookie-btn {
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: var(--border-w-strong) solid var(--pf-bosco-700);
+  border-radius: var(--radius-sm);
+  color: var(--fg-brand);
+  font: 800 16px/1 var(--font-display);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.cookie-btn:hover { background: var(--pf-bosco-700); color: var(--pf-carta-50); }
