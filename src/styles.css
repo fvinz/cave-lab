@@ -787,6 +787,29 @@ section[id] { scroll-margin-top: 96px; }
 .community-uscite li.is-conclusa .community-uscita-data,
 .community-uscite li.is-conclusa .community-uscita-meta { color: var(--color-muted); }
 .community-uscite li.is-conclusa .community-uscita-meta { font-weight: 500; }
+/* Link alla pagina dedicata del gruppo (es. /pe-fratte/) */
+.community-pagina {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--space-2xs);
+  margin-top: var(--space-md);
+  min-height: 44px;
+  padding: 0.35rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--tile-color) 55%, var(--line));
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--tile-color);
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.community-pagina .icon { width: 18px; height: 18px; transition: transform var(--dur-fast) var(--ease-out); }
+.community-pagina:hover, .community-pagina:focus-visible {
+  border-color: var(--tile-color);
+  background: color-mix(in srgb, var(--tile-color) 12%, transparent);
+}
+.community-pagina:hover .icon { transform: translateX(3px); }
+
 .community-uscita-stato {
   display: inline-block;
   margin-right: var(--space-2xs);
@@ -805,6 +828,161 @@ section[id] { scroll-margin-top: 96px; }
   box-shadow: none;
 }
 .community-ignoto .element-symbol { color: var(--color-muted); text-shadow: none; }
+
+/* --------------------------------------------------------------------------
+   Tessera Pe' Fratte (Community): unico punto della home che usa il design
+   system Pe' Fratte, nella versione "bosco" della pagina /pe-fratte/ —
+   fondo verde, logo oro, timbro oro senza blur. Il paesaggio e le foglie
+   (Natura.jsx) si muovono con lo scroll; con prefers-reduced-motion stanno
+   fermi. Font caricati in index.html (Big Shoulders Display, Figtree,
+   Space Mono).
+   -------------------------------------------------------------------------- */
+.pf-tessera {
+  --pf-bosco-900: #16271D;
+  --pf-bosco-700: #24402F;
+  --pf-bosco-600: #33573F;
+  --pf-bosco-300: #9DB5A2;
+  --pf-oro-500: #E8A93C;
+  --pf-oro-600: #C98C24;
+  --pf-sabbia-400: #D8B27F;
+  --pf-carta-50: #FAF6EE;
+  --pf-carta-100: #F4EEE2;
+  --pf-carta-200: #E9E0CF;
+
+  position: relative;
+  /* sopra la polvere di cristallo e la vignetta fisse (body::before/after,
+     z-index 1): è un'altra "materia", il bosco, non la grotta */
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 560px;
+  background: var(--pf-bosco-700);
+  color: var(--pf-carta-200);
+  border: 2px solid var(--pf-bosco-900);
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 var(--pf-oro-500);
+  font-family: "Figtree", system-ui, sans-serif;
+  transition: transform 200ms cubic-bezier(.3, .7, .2, 1), box-shadow 200ms cubic-bezier(.3, .7, .2, 1);
+}
+.pf-tessera:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--pf-oro-500); }
+.pf-tessera-corpo {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  /* spazio in fondo per il paesaggio */
+  padding: var(--space-md) var(--space-md) 180px;
+}
+.pf-tessera-meta {
+  font: 700 11px/1.3 "Space Mono", ui-monospace, monospace;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--pf-sabbia-400);
+}
+.pf-tessera-logo { margin: 0; }
+.pf-tessera-logo img { display: block; width: 100%; max-width: 300px; height: auto; }
+.pf-tessera-desc { font-size: 0.95rem; line-height: 1.5; color: var(--pf-carta-200); }
+.pf-tessera-uscite { display: grid; margin-top: var(--space-2xs); }
+.pf-tessera-uscite li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-2xs) 0;
+  border-top: 1.5px dashed var(--pf-bosco-600);
+}
+.pf-tessera-data {
+  font: 700 11px/1.2 "Space Mono", ui-monospace, monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--pf-sabbia-400);
+  white-space: nowrap;
+}
+.pf-tessera-nome {
+  font: 800 1.25rem/1 "Big Shoulders Display", Impact, sans-serif;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  text-align: right;
+  color: var(--pf-carta-50);
+}
+.pf-tessera-uscite li.is-fatta .pf-tessera-data,
+.pf-tessera-uscite li.is-fatta .pf-tessera-nome { color: var(--pf-bosco-300); }
+.pf-tessera-fatta {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 3px 5px;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+  font: 700 10px/1 "Space Mono", ui-monospace, monospace;
+  letter-spacing: .12em;
+  vertical-align: 0.2em;
+}
+/* CTA oro "timbrata": al press si imprime */
+.pf-tessera-cta {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  min-height: 46px;
+  margin-top: var(--space-xs);
+  padding: 0 18px;
+  background: var(--pf-oro-500);
+  color: var(--pf-bosco-900);
+  border: 2px solid var(--pf-bosco-900);
+  border-radius: 4px;
+  box-shadow: 3px 3px 0 var(--pf-bosco-900);
+  font: 800 1.1rem/1 "Big Shoulders Display", Impact, sans-serif;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  transition: background 120ms ease-out, transform 120ms ease-out, box-shadow 120ms ease-out;
+}
+.pf-tessera-cta svg { width: 18px; height: 18px; transition: transform 120ms ease-out; }
+.pf-tessera-cta:hover, .pf-tessera-cta:focus-visible { background: var(--pf-oro-600); }
+.pf-tessera-cta:hover svg { transform: translateX(3px); }
+.pf-tessera-cta:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--pf-bosco-900); }
+.pf-tessera-cta:focus-visible { outline: none; box-shadow: 3px 3px 0 var(--pf-bosco-900), 0 0 0 5px rgba(232, 169, 60, .5); }
+
+/* Natura dentro la tessera (stessi componenti della pagina /pe-fratte/) */
+.pf-tessera .pf-paesaggio {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 0;
+  height: 210px;
+  pointer-events: none;
+}
+.pf-tessera .pf-livello {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+.pf-tessera .pf-livello:last-child { bottom: -2px; }
+.pf-tessera .pf-foglia {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+  will-change: transform;
+}
+.pf-tessera .pf-foglia svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: pf-tessera-oscilla 6s ease-in-out infinite alternate;
+  transform-origin: 50% 10%;
+}
+@keyframes pf-tessera-oscilla {
+  from { transform: rotate(-9deg); }
+  to { transform: rotate(9deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-tessera, .pf-tessera-cta { transition: none; }
+  .pf-tessera .pf-foglia svg { animation: none; }
+}
 
 /* Ingresso community in Contatti: a tutta larghezza sopra i canali 1:1 */
 .canale-community { margin-top: var(--space-xl); height: auto; border-width: 2px; }
@@ -1441,7 +1619,11 @@ section[id] { scroll-margin-top: 96px; }
   .section-grid-reverse .section-copy { order: 1; }
 
   :root { --space-2xl: 4rem; --space-xl: 2.75rem; }
+}
 
+/* Menu a panino: con sette voci (c'è anche Pe' Fratte) la nav in riga
+   ha bisogno di ~1180px, sotto andrebbe a capo su due righe. */
+@media (max-width: 1199px) {
   .nav-toggle { display: flex; }
 
   /* Velo che isola il menu dal contenuto sottostante */
@@ -1494,7 +1676,9 @@ section[id] { scroll-margin-top: 96px; }
   .nav-list { flex-direction: column; align-items: stretch; gap: var(--space-2xs); }
   .nav-link { padding-block: var(--space-2xs); }
   .nav-cta { text-align: center; justify-content: center; }
+}
 
+@media (max-width: 1023px) {
   .hero-formula span:not(.formula-plus):not(.formula-eq) { padding: 0.3rem 0.6rem; font-size: 0.85rem; }
   /* Sotto i 1024px il testo occupa quasi tutta la larghezza (non solo la
      colonna sinistra come su desktop): il velo diagonale non basta più,

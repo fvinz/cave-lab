@@ -18,8 +18,8 @@ export const SOCIAL = {
    e il link al post. Per aggiungere un post: salva l'anteprima in
    public/instagram/<codice>.jpg e aggiungi { img, url, caption } qui. */
 export const INSTAGRAM_POSTS = [
-  { img: "/instagram/DdhBXGHDFrz.jpg", url: "https://www.instagram.com/p/DdhBXGHDFrz/", caption: "Pe Fratte è partito — prima uscita sul Monte Scalambra" },
-  { img: "/instagram/DdUKLtYsHcL.jpg", url: "https://www.instagram.com/p/DdUKLtYsHcL/", caption: "Nasce Pe Fratte, la community trekking di Cave Lab" },
+  { img: "/instagram/DdhBXGHDFrz.jpg", url: "https://www.instagram.com/p/DdhBXGHDFrz/", caption: "Pe' Fratte è partito — prima uscita sul Monte Scalambra" },
+  { img: "/instagram/DdUKLtYsHcL.jpg", url: "https://www.instagram.com/p/DdUKLtYsHcL/", caption: "Nasce Pe' Fratte, la community trekking di Cave Lab" },
   { img: "/instagram/DdRw1desnlM.jpg", url: "https://www.instagram.com/reel/DdRw1desnlM/", caption: "È nata la Community Trekking di Cave Lab" },
   { img: "/instagram/DbTKDdysHtX.jpg", url: "https://www.instagram.com/reel/DbTKDdysHtX/", caption: "Cinema sotto le stelle — serata con Mediterraneo di Salvatores" },
   { img: "/instagram/DZPr16lsm_I.jpg", url: "https://www.instagram.com/reel/DZPr16lsm_I/", caption: "Le interviste Cave League, versione meme" },
@@ -37,6 +37,7 @@ export const NAV_LINKS = [
   { href: "#attivita", label: "Attività" },
   { href: "#eventi", label: "Eventi" },
   { href: "#cave-league", label: "Cave League" },
+  { href: "/pe-fratte/", label: "Pe' Fratte" },
   { href: "#territorio", label: "Territorio" },
   { href: "#galleria", label: "Galleria" },
 ];
@@ -86,10 +87,16 @@ export const COMMUNITY = {
   gruppi: [
     {
       symbol: "Pf",
-      name: "Pe Fratte",
+      name: "Pe' Fratte",
       tema: "Trekking",
       color: "#3ECF9A",
       desc: "Sentieri, natura e camminate all'aperto. Uno spazio di tutti: fai domande, condividi foto e proponi nuovi percorsi per le prossime uscite.",
+      /* Pagina dedicata del gruppo (facoltativa) */
+      pagina: "/pe-fratte/",
+      /* Tessera con l'identità visiva di Pe' Fratte invece di quella
+         della tavola periodica (vedi GruppoPeFratte.jsx) */
+      stile: "pe-fratte",
+      paginaCta: "Scopri Pe' Fratte",
     },
   ],
   /* Gruppi annunciati ma non ancora attivi: segnaposto onesto,
@@ -97,15 +104,108 @@ export const COMMUNITY = {
   prossimamente: "Nuovi gruppi tematici per altre attività sono in arrivo.",
 };
 
+/* Pagina /pe-fratte/: la comunità trekking di Cave Lab, con la sua
+   identità visiva (design system Pe' Fratte). Le uscite NON stanno
+   qui: sono le voci di EVENTI con gruppo "Pf". */
+export const PE_FRATTE = {
+  tagline: "Un'idea Cave Lab",
+  titolo: "Se cammina",
+  intro: "Pe' Fratte è la comunità trekking di Cave Lab: camminate di gruppo, senza fretta, sui monti del Lazio e dintorni.",
+  /* Ritrovo comune per chi parte da Cave (l'orario cambia a ogni uscita) */
+  ritrovo: {
+    luogo: "Parcheggio delle scuole medie, Cave",
+    maps: "https://maps.app.goo.gl/WqX4xPUDS5wZcbtE8",
+  },
+  /* Scala usata negli annunci del gruppo. `tono` sceglie il colore. */
+  difficolta: {
+    facile: { label: "Facile", nota: "Adatta a tutti", tono: "facile" },
+    intermedia: { label: "Intermedia", nota: "Serve un minimo di allenamento", tono: "intermedia" },
+    impegnativa: { label: "Impegnativa", nota: "Per chi cammina spesso", tono: "impegnativa" },
+  },
+  regole: [
+    { titolo: "Si entra dal gruppo", testo: "Ogni uscita viene annunciata nel gruppo WhatsApp Pe' Fratte, con ritrovo, orari e posizione della partenza. Per esserci basta scriverlo lì." },
+    { titolo: "Due punti d'incontro", testo: "Per ogni uscita c'è un ritrovo a Cave, per chi parte con il gruppo, e l'inizio del sentiero, per chi arriva direttamente: scegli quello che ti è più comodo." },
+    { titolo: "Ognuno è responsabile", testo: "Ciascun partecipante è responsabile della propria sicurezza, della valutazione del proprio stato fisico e del proprio equipaggiamento." },
+  ],
+  /* Galleria: foto e video delle uscite, raggruppati per uscita (`uscita`
+     è l'`iso` della voce in EVENTI). File in public/pe-fratte/galleria/:
+     - foto: `src` è il .jpg, accanto serve il .webp con lo stesso nome;
+       `w`/`h` sono le dimensioni reali (evitano salti di layout)
+     - video: brevi, senza audio (partono da soli in loop quando sono
+       visibili), con `poster`; `largo: true` lo mette a tutta larghezza
+     Solo materiale vero delle uscite. Con la lista vuota la sezione non compare. */
+  galleria: [
+    { uscita: "2026-09-19", tipo: "video", largo: true, src: "/pe-fratte/galleria/scalambra-drone.mp4", poster: "/pe-fratte/galleria/scalambra-drone-poster.jpg", w: 848, h: 478, alt: "Il gruppo in vetta al Monte Scalambra ripreso dal drone, con la valle sotto" },
+    { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-gruppo-panchina.jpg", w: 1200, h: 904, alt: "Foto di gruppo sulla panchina gigante in cima al Monte Scalambra" },
+    { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-bosco-gruppo.jpg", w: 900, h: 1200, alt: "Il gruppo cammina nel bosco di faggi, visto di spalle" },
+    { uscita: "2026-09-19", tipo: "video", src: "/pe-fratte/galleria/scalambra-bosco-salita.mp4", poster: "/pe-fratte/galleria/scalambra-bosco-salita-poster.jpg", w: 464, h: 832, alt: "Salita nel bosco lungo il sentiero" },
+    { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-sentiero-valle.jpg", w: 904, h: 1200, alt: "Tre escursionisti sul sentiero, con la valle alle spalle" },
+    { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-crinale.jpg", w: 904, h: 1200, alt: "Il gruppo risale il crinale verso la cima" },
+    { uscita: "2026-09-19", tipo: "video", src: "/pe-fratte/galleria/scalambra-mucche.mp4", poster: "/pe-fratte/galleria/scalambra-mucche-poster.jpg", w: 540, h: 960, alt: "Mucche al pascolo lungo la strada verso la cima" },
+    { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-rocce.jpg", w: 904, h: 1200, alt: "Escursionisti tra le rocce sopra il paese" },
+    { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-salita-cane.jpg", w: 904, h: 1200, alt: "Salita sulla scalinata verso la vetta, con un cane in primo piano" },
+    { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-scalinata-vetta.jpg", w: 904, h: 1200, alt: "Gli ultimi gradini verso la statua in cima" },
+    { uscita: "2026-09-19", tipo: "video", src: "/pe-fratte/galleria/scalambra-vetta-gruppo.mp4", poster: "/pe-fratte/galleria/scalambra-vetta-gruppo-poster.jpg", w: 960, h: 540, alt: "Il gruppo saluta dalla vetta" },
+    { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-sasso-1420.jpg", w: 904, h: 1200, alt: "Il sasso dipinto con la scritta Monte Scalambra 1420 metri" },
+    { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-panorama.jpg", w: 1200, h: 904, alt: "Panorama dalla cima sulla valle e sui monti" },
+  ],
+};
+
 /* Quaderno degli esperimenti: eventi e progetti.
    `iso` è la data (di fine, per eventi su più giorni) in formato
    AAAA-MM-GG: dopo quel giorno l'evento passa da solo tra i conclusi.
    `gruppo` (facoltativo) è il simbolo di un gruppo in COMMUNITY. */
 export const EVENTI = [
-  { iso: "2026-09-19", date: "Sabato 19 settembre", gruppo: "Pf", title: "Pe Fratte — Monte Scalambra", desc: "La prima uscita della community trekking. Ritrovo, orari e dettagli del percorso arrivano nel gruppo Pe Fratte." },
-  { iso: "2026-09-26", date: "Sabato 26 settembre", gruppo: "Pf", title: "Pe Fratte — Monte Autore", desc: "Seconda uscita di Pe Fratte. Tutte le informazioni pratiche vengono condivise nel gruppo." },
+  /* Le uscite di Pe' Fratte (gruppo "Pf") hanno in più la scheda
+     `percorso`, letta dalla pagina /pe-fratte/. Campi tutti facoltativi:
+     quelli assenti non vengono mostrati (mai inventare dati di un
+     sentiero). `difficolta` è una chiave di PE_FRATTE.difficolta.
+     `partecipazione` (es. "Gratuita" o una quota) vale per la singola
+     uscita: le condizioni possono cambiare da un'uscita all'altra. */
+  {
+    iso: "2026-09-19", date: "Sabato 19 settembre", gruppo: "Pf",
+    title: "Pe' Fratte — Monte Scalambra",
+    desc: "La prima uscita della community trekking: 6,3 km e 270 m di dislivello da Serrone, adatta a tutti.",
+    percorso: {
+      zona: "Serrone",
+      difficolta: "facile",
+      partecipazione: "Gratuita",
+      km: "6,3",
+      dislivello: "270",
+      durata: "2–3 h",
+      ritrovoOra: "08:30",
+      partenzaOra: "09:30",
+      partenzaMaps: "https://maps.app.goo.gl/AcmZktbCA8rkhuaH9",
+      programma: "Saliamo insieme verso la cima, pranzo al sacco panoramico tutti insieme e poi rientro con calma.",
+      portare: ["Scarpe da trekking o trail", "Pranzo al sacco", "Giacca antipioggia", "Scorta d'acqua"],
+    },
+  },
+  {
+    iso: "2026-09-26", date: "Sabato 26 settembre", gruppo: "Pf",
+    title: "Pe' Fratte — Monte Gennaro",
+    desc: "Seconda uscita: 9,4 km e 410 m di dislivello da Palombara. Ritrovo a Cave alle 08:15, partecipazione gratuita.",
+    percorso: {
+      zona: "Palombara Sabina",
+      difficolta: "intermedia",
+      partecipazione: "Gratuita",
+      km: "9,4",
+      dislivello: "410",
+      durata: "3–4 h",
+      ritrovoOra: "08:15",
+      partenzaOra: "09:30",
+      partenzaMaps: "https://maps.app.goo.gl/yvbj2twsXchqBSdbA",
+      programma: "Saliamo insieme verso la cima, pranzo al sacco panoramico tutti insieme e poi rientro con calma. Per chi vuole, al ritorno ricarica di zuccheri da “Le Dolci Tentazioni” a Palombara.",
+      portare: ["Scarpe da trekking o trail", "Pranzo al sacco", "Scorta d'acqua"],
+    },
+  },
   { iso: "2026-10-10", date: "Sabato 10 ottobre", title: "Evento segreto", desc: "Per ora è top secret: stiamo preparando qualcosa di speciale. Tutti i dettagli arrivano prima nella community." },
-  { iso: "2026-10-03", date: "Sabato 3 ottobre", gruppo: "Pf", title: "Pe Fratte — Monte Catillo", desc: "Terza uscita del calendario trekking. Dettagli e aggiornamenti nel gruppo Pe Fratte." },
+  {
+    iso: "2026-10-03", date: "Sabato 3 ottobre", gruppo: "Pf",
+    title: "Pe' Fratte — Monte Cavo",
+    desc: "Terza uscita del calendario trekking. Percorso, orari e ritrovo arrivano presto nel gruppo Pe' Fratte.",
+    /* Dettagli del percorso non ancora disponibili */
+    percorso: { partecipazione: "Gratuita" },
+  },
   { iso: "2026-08-18", date: "Martedì 18 agosto", title: "Cinema sotto le stelle — Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
   { iso: "2026-08-11", date: "Martedì 11 agosto", title: "Cinema sotto le stelle — Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
   { iso: "2026-07-28", date: "Martedì 28 luglio", title: "Cinema sotto le stelle — Mediterraneo", desc: "Il capolavoro Premio Oscar di Gabriele Salvatores, nel giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },

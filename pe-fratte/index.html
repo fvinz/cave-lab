@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <!-- Google tag (gtag.js): stesso setup della home, Consent Mode v2 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E0871PE6F8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied'
+      });
+      try {
+        if (localStorage.getItem('cavelab-cookie-consent') === 'granted') {
+          gtag('consent', 'update', { analytics_storage: 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+
+      gtag('config', 'G-E0871PE6F8');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pe' Fratte — la comunità trekking di Cave Lab</title>
+    <meta name="description" content="Pe' Fratte è la comunità trekking di Cave Lab: uscite di gruppo gratuite sui monti del Lazio, con ritrovo da Cave (RM). Prossime uscite, percorsi e come partecipare." />
+    <meta name="theme-color" content="#24402F" />
+    <link rel="icon" type="image/svg+xml" href="/pe-fratte/monogramma-verde.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" />
+    <meta property="og:title" content="Pe' Fratte — la comunità trekking di Cave Lab" />
+    <meta property="og:description" content="Camminate di gruppo, senza fretta, sui monti del Lazio e dintorni. Prossime uscite, percorsi e come partecipare." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:site_name" content="Cave Lab" />
+    <meta property="og:image" content="/pe-fratte/galleria/scalambra-gruppo-panchina.jpg" />
+    <meta property="og:image:alt" content="Il gruppo Pe' Fratte sulla panchina gigante in cima al Monte Scalambra" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/pe-fratte/main.jsx"></script>
+  </body>
+</html>
