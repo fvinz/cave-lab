@@ -84,7 +84,7 @@ function Header() {
         <a href="/" className="pf-back">
           <PfIcon name="arrowLeft" />
           <span>
-            Torna a <strong>Cave Lab</strong>
+            Torna a <img src="/logo.svg" alt="Cave Lab" className="pf-back-logo" />
           </span>
         </a>
         {/* Marchio nudo (currentColor) usato come maschera: si colora in oro */}
@@ -107,7 +107,7 @@ function Hero() {
       <Foglia x="92%" y="4%" size={26} tono="oro" velocita={1.2} giro={260} />
       <div className="pf-container pf-hero-grid">
         <div className="pf-hero-copy">
-          <h1 className="pf-hero-logo">
+          <h1 className="pf-hero-logo" data-reveal>
             <img
               src="/pe-fratte/logo-oro.svg"
               alt="Pe' Fratte — un'idea Cave Lab"
@@ -115,20 +115,20 @@ function Hero() {
               height="374"
             />
           </h1>
-          <p className="pf-meta">Comunità trekking · Cave (RM)</p>
-          <p className="pf-lead">{PE_FRATTE.intro}</p>
-          <div className="pf-hero-actions">
+          <p className="pf-meta" data-reveal>Comunità trekking · Cave (RM)</p>
+          <p className="pf-lead" data-reveal>{PE_FRATTE.intro}</p>
+          <div className="pf-hero-actions" data-reveal>
             <BottoneGruppo />
             <a href="#uscite" className="pf-btn pf-btn-secondary">
               Vedi le uscite
             </a>
           </div>
-          <p className="pf-note">
+          <p className="pf-note" data-reveal>
             Si apre la community WhatsApp di Cave Lab: dentro trovi il gruppo Pe' Fratte.
           </p>
         </div>
 
-        <aside className="pf-prossima" aria-label="Prossima uscita">
+        <aside className="pf-prossima" aria-label="Prossima uscita" data-reveal>
           <p className="pf-prossima-label">Prossima uscita</p>
           {prossima ? (
             <>
@@ -163,7 +163,7 @@ function UscitaCard({ uscita, inEvidenza }) {
   const p = uscita.percorso || {};
   const haDettagli = Boolean(p.km || p.ritrovoOra || p.programma);
   return (
-    <article className={"pf-card" + (inEvidenza ? " is-evidenza" : "")} id={"uscita-" + uscita.iso}>
+    <article className={"pf-card" + (inEvidenza ? " is-evidenza" : "")} id={"uscita-" + uscita.iso} data-reveal>
       <div className="pf-card-top">
         <span className="pf-card-data">{uscita.date}</span>
         <span className="pf-card-badge">
@@ -247,8 +247,8 @@ function Uscite() {
       <Foglia x="91%" y="6%" size={28} tono="oro" velocita={1.3} giro={200} />
       <Foglia x="2%" y="52%" size={24} tono="bosco" velocita={1} giro={-240} />
       <div className="pf-container">
-        <p className="pf-meta">Calendario</p>
-        <h2 className="pf-h2" id="uscite-titolo">Prossime uscite</h2>
+        <p className="pf-meta" data-reveal>Calendario</p>
+        <h2 className="pf-h2" id="uscite-titolo" data-reveal>Prossime uscite</h2>
         {prossime.length > 0 ? (
           <div className="pf-card-grid">
             {prossime.map((u, i) => (
@@ -271,11 +271,11 @@ function ComeFunziona() {
       <Foglia x="80%" y="4%" size={32} tono="sabbia" velocita={1.2} giro={-200} />
       <Foglia x="40%" y="70%" size={20} tono="oro" velocita={0.8} giro={300} />
       <div className="pf-container">
-        <p className="pf-meta pf-meta-sabbia">Come funziona</p>
-        <h2 className="pf-h2" id="come-titolo">Zaino in spalla</h2>
+        <p className="pf-meta pf-meta-sabbia" data-reveal>Come funziona</p>
+        <h2 className="pf-h2" id="come-titolo" data-reveal>Zaino in spalla</h2>
         <ol className="pf-regole">
           {PE_FRATTE.regole.map((r, i) => (
-            <li key={r.titolo} className="pf-regola">
+            <li key={r.titolo} className="pf-regola" data-reveal>
               <span className="pf-regola-num" aria-hidden="true">
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -358,8 +358,8 @@ function Galleria() {
       <Foglia x="92%" y="3%" size={26} tono="oro" velocita={1.1} giro={-200} />
       <Foglia x="3%" y="40%" size={20} tono="salvia" velocita={0.9} giro={220} soloDesktop />
       <div className="pf-container">
-        <p className="pf-meta">Dal sentiero</p>
-        <h2 className="pf-h2" id="galleria-titolo">Le nostre uscite</h2>
+        <p className="pf-meta" data-reveal>Dal sentiero</p>
+        <h2 className="pf-h2" id="galleria-titolo" data-reveal>Le nostre uscite</h2>
 
         {gruppi.map((g) => (
           <div key={g.iso} className="pf-galleria-gruppo">
@@ -370,13 +370,13 @@ function Galleria() {
               </p>
             )}
             {g.larghi.map((m) => (
-              <figure key={m.src} className="pf-media pf-media-largo">
+              <figure key={m.src} className="pf-media pf-media-largo" data-reveal>
                 {m.tipo === "video" ? <VideoClip v={m} /> : <FotoMedia f={m} />}
               </figure>
             ))}
             <div className="pf-galleria">
               {g.altri.map((m) => (
-                <figure key={m.src} className={"pf-media" + (m.tipo === "video" ? " pf-media-video" : "")}>
+                <figure key={m.src} className={"pf-media" + (m.tipo === "video" ? " pf-media-video" : "")} data-reveal>
                   {m.tipo === "video" ? <VideoClip v={m} /> : <FotoMedia f={m} />}
                 </figure>
               ))}
@@ -403,11 +403,11 @@ function Archivio() {
     <section className="pf-section pf-section-muschio" aria-labelledby="fatte-titolo">
       <Foglia x="86%" y="20%" size={26} tono="salvia" velocita={1.1} giro={180} />
       <div className="pf-container">
-        <p className="pf-meta">Archivio</p>
-        <h2 className="pf-h2" id="fatte-titolo">Uscite fatte</h2>
+        <p className="pf-meta" data-reveal>Archivio</p>
+        <h2 className="pf-h2" id="fatte-titolo" data-reveal>Uscite fatte</h2>
         <ul className="pf-archivio">
           {fatte.map((u) => (
-            <li key={u.iso}>
+            <li key={u.iso} data-reveal>
               <span className="pf-archivio-data">{u.date}</span>
               <span className="pf-archivio-nome">{meta(u)}</span>
               {u.percorso && <DatiSentiero p={u.percorso} />}
@@ -441,7 +441,9 @@ function Footer() {
         <img src="/pe-fratte/logo-oro.svg" alt="Pe' Fratte — un'idea Cave Lab" className="pf-footer-logo" width="1110" height="374" loading="lazy" />
         <p>
           Pe' Fratte è la comunità trekking di{" "}
-          <a href="/">Cave Lab APS</a>, associazione di promozione del territorio di Cave (RM).
+          <a href="/" className="pf-footer-brand-link" aria-label="Cave Lab">
+            <img src="/logo.svg" alt="" className="pf-footer-logo-inline" />
+          </a>
         </p>
         <p className="pf-footer-legal">
           © {new Date().getFullYear()} Cave Lab · <a href="/privacy">Privacy</a> ·{" "}

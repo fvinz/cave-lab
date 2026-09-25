@@ -231,8 +231,8 @@ button { font: inherit; }
   color: var(--su-verde-2);
   text-decoration: none;
 }
-.pf-back strong { color: var(--su-verde-1); }
-.pf-back:hover strong { text-decoration: underline; text-underline-offset: 3px; }
+.pf-back span { display: inline-flex; align-items: center; gap: 6px; }
+.pf-back-logo { height: 22px; width: auto; vertical-align: middle; }
 .pf-header-brand { display: inline-flex; align-items: center; min-height: 44px; }
 /* Marchio nudo come maschera: eredita il colore oro */
 .pf-marchio {
@@ -623,6 +623,8 @@ button { font: inherit; }
 .pf-footer-inner { display: grid; gap: var(--space-4); justify-items: start; }
 .pf-footer-logo { width: 220px; margin-bottom: var(--space-2); }
 .pf-footer a { color: var(--pf-carta-100); text-underline-offset: 3px; }
+.pf-footer-brand-link { display: inline-flex; align-items: center; }
+.pf-footer-logo-inline { height: 26px; width: auto; vertical-align: middle; }
 .pf-footer-legal { font-size: 13px; }
 .pf-footer-legal button {
   padding: 0;

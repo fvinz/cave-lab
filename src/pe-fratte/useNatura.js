@@ -83,6 +83,20 @@ export default function useNatura() {
             }
           );
         });
+
+        /* Contenuti [data-reveal]: entrano dal basso, a gruppi, quando
+           raggiungono il punto di lettura. Restano visibili una volta apparsi. */
+        const rivelabili = root.querySelectorAll("[data-reveal]");
+        if (rivelabili.length) {
+          gsap.set(rivelabili, { autoAlpha: 0, y: 60, scale: 0.96 });
+          ScrollTrigger.batch(rivelabili, {
+            start: "top 85%",
+            onEnter: (batch) =>
+              gsap.to(batch, { autoAlpha: 1, y: 0, scale: 1, duration: 0.9, ease: "power3.out", stagger: 0.15, overwrite: true }),
+            onEnterBack: (batch) =>
+              gsap.to(batch, { autoAlpha: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out", stagger: 0.1, overwrite: true }),
+          });
+        }
       });
     },
     { scope }
