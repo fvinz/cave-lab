@@ -135,6 +135,19 @@ export const PE_FRATTE = {
        visibili), con `poster`; `largo: true` lo mette a tutta larghezza
      Solo materiale vero delle uscite. Con la lista vuota la sezione non compare. */
   galleria: [
+    { uscita: "2026-09-26", tipo: "foto", largo: true, src: "/pe-fratte/galleria/gennaro-gruppo-bosco.jpg", w: 1200, h: 904, alt: "Foto di gruppo seduti su un tronco nella faggeta del Monte Gennaro" },
+    { uscita: "2026-09-26", tipo: "foto", src: "/pe-fratte/galleria/gennaro-vetta-gruppo.jpg", w: 904, h: 1200, alt: "Il gruppo sul basamento di pietra in vetta al Monte Gennaro" },
+    { uscita: "2026-09-26", tipo: "video", src: "/pe-fratte/galleria/gennaro-bosco-fila.mp4", poster: "/pe-fratte/galleria/gennaro-bosco-fila-poster.jpg", w: 540, h: 960, alt: "Il gruppo in fila tra i faggi lungo il sentiero" },
+    { uscita: "2026-09-26", tipo: "foto", src: "/pe-fratte/galleria/gennaro-tronchi.jpg", w: 1200, h: 904, alt: "Escursionisti in piedi sui tronchi caduti nel bosco" },
+    { uscita: "2026-09-26", tipo: "foto", src: "/pe-fratte/galleria/gennaro-croce-bandiera.jpg", w: 904, h: 1200, alt: "La croce di vetta con la bandiera italiana e i monti sullo sfondo" },
+    { uscita: "2026-09-26", tipo: "video", src: "/pe-fratte/galleria/gennaro-cavallo-carezze.mp4", poster: "/pe-fratte/galleria/gennaro-cavallo-carezze-poster.jpg", w: 960, h: 720, alt: "Una ragazza accarezza un cavallo al pascolo sotto gli alberi" },
+    { uscita: "2026-09-26", tipo: "foto", src: "/pe-fratte/galleria/gennaro-selfie-gruppo.jpg", w: 900, h: 1200, alt: "Selfie di gruppo sorridente lungo la salita" },
+    { uscita: "2026-09-26", tipo: "foto", src: "/pe-fratte/galleria/gennaro-cavallo.jpg", w: 1200, h: 900, alt: "Un escursionista accanto a un cavallo al pascolo" },
+    { uscita: "2026-09-26", tipo: "video", src: "/pe-fratte/galleria/gennaro-pianoro.mp4", poster: "/pe-fratte/galleria/gennaro-pianoro-poster.jpg", w: 540, h: 960, alt: "Il gruppo attraversa il pianoro erboso sotto il cielo blu" },
+    { uscita: "2026-09-26", tipo: "foto", src: "/pe-fratte/galleria/gennaro-vacche-pianoro.jpg", w: 1200, h: 904, alt: "Vacche maremmane al pascolo nel pianoro" },
+    { uscita: "2026-09-26", tipo: "foto", src: "/pe-fratte/galleria/gennaro-pausa-panorama.jpg", w: 1200, h: 675, alt: "Pausa sulle rocce con la vista sulla valle e sui monti" },
+    { uscita: "2026-09-26", tipo: "foto", src: "/pe-fratte/galleria/gennaro-bosco-cammino.jpg", w: 1200, h: 900, alt: "Il gruppo cammina nella faggeta con gli zaini in spalla" },
+    { uscita: "2026-09-26", tipo: "video", src: "/pe-fratte/galleria/gennaro-vetta-saluti.mp4", poster: "/pe-fratte/galleria/gennaro-vetta-saluti-poster.jpg", w: 848, h: 480, alt: "Il gruppo saluta dalla vetta del Monte Gennaro" },
     { uscita: "2026-09-19", tipo: "video", largo: true, src: "/pe-fratte/galleria/scalambra-drone.mp4", poster: "/pe-fratte/galleria/scalambra-drone-poster.jpg", w: 848, h: 478, alt: "Il gruppo in vetta al Monte Scalambra ripreso dal drone, con la valle sotto" },
     { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-gruppo-panchina.jpg", w: 1200, h: 904, alt: "Foto di gruppo sulla panchina gigante in cima al Monte Scalambra" },
     { uscita: "2026-09-19", tipo: "foto", src: "/pe-fratte/galleria/scalambra-bosco-gruppo.jpg", w: 900, h: 1200, alt: "Il gruppo cammina nel bosco di faggi, visto di spalle" },
