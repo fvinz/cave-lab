@@ -18,6 +18,8 @@ export const SOCIAL = {
    e il link al post. Per aggiungere un post: salva l'anteprima in
    public/instagram/<codice>.jpg e aggiungi { img, url, caption } qui. */
 export const INSTAGRAM_POSTS = [
+  { img: "/instagram/DdzNcOREjqX.jpg", url: "https://www.instagram.com/p/DdzNcOREjqX/", caption: "Monte Gennaro fatto — e Pe' Fratte presenta il suo logo" },
+  { img: "/instagram/DdwzqXQM4Rf.jpg", url: "https://www.instagram.com/reel/DdwzqXQM4Rf/", caption: "In Vino Veritas: segnate ottobre" },
   { img: "/instagram/DdhBXGHDFrz.jpg", url: "https://www.instagram.com/p/DdhBXGHDFrz/", caption: "Pe' Fratte è partito — prima uscita sul Monte Scalambra" },
   { img: "/instagram/DdUKLtYsHcL.jpg", url: "https://www.instagram.com/p/DdUKLtYsHcL/", caption: "Nasce Pe' Fratte, la community trekking di Cave Lab" },
   { img: "/instagram/DdRw1desnlM.jpg", url: "https://www.instagram.com/reel/DdRw1desnlM/", caption: "È nata la Community Trekking di Cave Lab" },

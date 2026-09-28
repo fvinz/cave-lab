@@ -10,8 +10,10 @@
     "DZho0TcMUPC": { "event": "skipped", "gallery": "added", "note": "Serata DJ set collaterale al torneo, gia' coperta dall'evento Cave League 2026, in galleria" },
     "DZfFks9ssDF": { "event": "skipped", "gallery": "added", "note": "Serata DJ set collaterale al torneo, gia' coperta dall'evento Cave League 2026, in galleria" },
     "DZcU00GsBKc": { "event": "skipped", "gallery": "added", "note": "Meme/intervista Cave League, gia' in galleria" },
-    "DdUKLtYsHcL": { "event": "added", "gallery": "pending", "note": "Lancio community Pe Fratte, riflesso nelle uscite in EVENTI ma NON ancora scaricato in galleria" },
-    "DdhBXGHDFrz": { "event": "added", "gallery": "pending", "note": "Recap prima uscita Pe Fratte (Monte Scalambra), in EVENTI ma NON ancora scaricato in galleria" },
-    "DdRw1desnlM": { "event": "skipped", "gallery": "pending", "note": "Reel 'e' nata la Community Trekking' (~1 sett fa) - teaser, nessuna data propria, gia' coperto dalle uscite Pe Fratte in EVENTI; NON restituito dall'azione Zapier new_media (trovato solo controllando il profilo via browser) - vedi nota affidabilita'" }
+    "DdUKLtYsHcL": { "event": "added", "gallery": "added", "note": "Lancio community Pe Fratte, riflesso nelle uscite in EVENTI; gia' in galleria (aggiunto manualmente)" },
+    "DdhBXGHDFrz": { "event": "added", "gallery": "added", "note": "Recap prima uscita Pe Fratte (Monte Scalambra), in EVENTI; gia' in galleria (aggiunto manualmente)" },
+    "DdRw1desnlM": { "event": "skipped", "gallery": "added", "note": "Reel 'e' nata la Community Trekking' (~1 sett fa) - teaser, nessuna data propria, gia' coperto dalle uscite Pe Fratte in EVENTI; NON restituito dall'azione Zapier new_media (trovato solo controllando il profilo via browser) - vedi nota affidabilita'; gia' in galleria (aggiunto manualmente)" },
+    "DdzNcOREjqX": { "event": "added", "gallery": "added", "note": "Recap Monte Gennaro (26/09) + annuncio Monte Cavo (3/10): entrambe le uscite gia' presenti in EVENTI, nessuna nuova voce; aggiunto in galleria" },
+    "DdwzqXQM4Rf": { "event": "skipped", "gallery": "added", "note": "Reel teaser 'In Vino Veritas' con solo 'ottobre 2026', nessun giorno/orario/luogo: non aggiunto a EVENTI (da verificare manualmente); aggiunto in galleria" }
   }
 }
