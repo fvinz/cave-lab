@@ -44,6 +44,16 @@ export const NAV_LINKS = [
   { href: "#galleria", label: "Galleria" },
 ];
 
+/* Hero "Prossimi esperimenti": mostra gli EVENTI con `evidenza` ancora
+   in arrivo (al massimo due, il più vicino per primo; quello con
+   `grande: true` prende la colonna larga). Quando non ce ne sono più,
+   torna da solo la hero classica qui sotto. */
+export const HERO_EVENTI = {
+  kicker: "Elemento 00 · Reazioni in arrivo",
+  titolo: "Prossimi esperimenti",
+  max: 2,
+};
+
 export const HERO = {
   tag: "Cave (RM)",
   tagline: "associazione giovani",
@@ -213,13 +223,30 @@ export const EVENTI = [
       portare: ["Scarpe da trekking o trail", "Pranzo al sacco", "Scorta d'acqua"],
     },
   },
-  { iso: "2026-10-10", date: "Sabato 10 ottobre", title: "Evento segreto", desc: "Per ora è top secret: stiamo preparando qualcosa di speciale. Tutti i dettagli arrivano prima nella community." },
+  {
+    iso: "2026-10-10", date: "Sabato 10 ottobre",
+    title: "In Vino Veritas",
+    desc: "Una degustazione alla scoperta delle cantine vitivinicole del territorio, con cibo e intrattenimento. Piazza Giuseppe Garibaldi, dalle 18.30.",
+    /* In primo piano nella hero finché l'evento è in arrivo (vedi HERO_EVENTI) */
+    evidenza: {
+      stile: "in-vino-veritas",
+      grande: true,
+      ora: "dalle 18.30",
+      luogo: "Piazza Giuseppe Garibaldi",
+      lead: "Una degustazione alla scoperta delle cantine vitivinicole del territorio, con cibo e intrattenimento.",
+      titoloImg: "/eventi/in-vino-veritas/titolo",
+      video: "/eventi/in-vino-veritas/brindisi.mp4",
+      poster: "/eventi/in-vino-veritas/brindisi-poster",
+      videoAlt: "Due ragazze raggiungono un tavolo apparecchiato nella piazza di Cave e brindano con il vino rosso",
+    },
+  },
   {
     iso: "2026-10-03", date: "Sabato 3 ottobre", gruppo: "Pf",
     title: "Pe' Fratte — Monte Cavo",
     desc: "Terza uscita del calendario trekking. Percorso, orari e ritrovo arrivano presto nel gruppo Pe' Fratte.",
     /* Dettagli del percorso non ancora disponibili */
     percorso: { partecipazione: "Gratuita" },
+    evidenza: { stile: "pe-fratte", numeroUscita: 3 },
   },
   { iso: "2026-08-18", date: "Martedì 18 agosto", title: "Cinema sotto le stelle — Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
   { iso: "2026-08-11", date: "Martedì 11 agosto", title: "Cinema sotto le stelle — Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
