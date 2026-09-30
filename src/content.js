@@ -217,9 +217,20 @@ export const EVENTI = [
   {
     iso: "2026-10-03", date: "Sabato 3 ottobre", gruppo: "Pf",
     title: "Pe' Fratte — Monte Cavo",
-    desc: "Terza uscita del calendario trekking. Percorso, orari e ritrovo arrivano presto nel gruppo Pe' Fratte.",
-    /* Dettagli del percorso non ancora disponibili */
-    percorso: { partecipazione: "Gratuita" },
+    desc: "Terza uscita: 9,5 km e 310 m di dislivello a Rocca di Papa, con pranzo al sacco vista sui laghi di Albano e Nemi. Ritrovo a Cave alle 08:15, partecipazione gratuita.",
+    percorso: {
+      zona: "Rocca di Papa",
+      difficolta: "intermedia",
+      partecipazione: "Gratuita",
+      km: "9,5",
+      dislivello: "310",
+      durata: "3–3:30 h",
+      ritrovoOra: "08:15",
+      partenzaOra: "09:30",
+      partenzaMaps: "https://maps.app.goo.gl/66ecrLDauJQbF4KP7",
+      programma: "Saliamo insieme verso la cima, pranzo al sacco con vista panoramica sui laghi di Albano e Nemi e poi rientro con calma. Lungo il percorso ci fermiamo a vedere le installazioni del “Museo Diffuso del Bosco”, visitabile gratuitamente fino al 25 ottobre.",
+      portare: ["Scarpe da trekking o trail", "Pranzo al sacco", "Scorta d'acqua"],
+    },
   },
   { iso: "2026-08-18", date: "Martedì 18 agosto", title: "Cinema sotto le stelle — Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
   { iso: "2026-08-11", date: "Martedì 11 agosto", title: "Cinema sotto le stelle — Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
