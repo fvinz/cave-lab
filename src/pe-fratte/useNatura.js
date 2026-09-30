@@ -20,9 +20,12 @@ export default function useNatura() {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const root = scope.current;
 
-        /* La hero è già in cima al caricamento: si anima da lì. Le altre
-           sezioni si animano da quando entrano dal basso. */
-        const inizio = (sezione) => (sezione.classList.contains("pf-hero") ? "top top" : "top bottom");
+        /* La hero (e le scene marcate [data-in-cima], come la carta Pe' Fratte
+           nella hero della home) è già in vista al caricamento: si anima da lì,
+           altrimenti i crinali partirebbero già affondati. Le altre sezioni si
+           animano da quando entrano dal basso. */
+        const inizio = (sezione) =>
+          sezione.classList.contains("pf-hero") || sezione.hasAttribute("data-in-cima") ? "top top" : "top bottom";
 
         /* Parallasse: ogni livello scorre di n px mentre la sua sezione
            attraversa lo schermo */
