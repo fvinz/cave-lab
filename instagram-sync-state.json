@@ -14,6 +14,7 @@
     "DdhBXGHDFrz": { "event": "added", "gallery": "added", "note": "Recap prima uscita Pe Fratte (Monte Scalambra), in EVENTI; gia' in galleria (aggiunto manualmente)" },
     "DdRw1desnlM": { "event": "skipped", "gallery": "added", "note": "Reel 'e' nata la Community Trekking' (~1 sett fa) - teaser, nessuna data propria, gia' coperto dalle uscite Pe Fratte in EVENTI; NON restituito dall'azione Zapier new_media (trovato solo controllando il profilo via browser) - vedi nota affidabilita'; gia' in galleria (aggiunto manualmente)" },
     "DdzNcOREjqX": { "event": "added", "gallery": "added", "note": "Recap Monte Gennaro (26/09) + annuncio Monte Cavo (3/10): entrambe le uscite gia' presenti in EVENTI, nessuna nuova voce; aggiunto in galleria" },
-    "DdwzqXQM4Rf": { "event": "skipped", "gallery": "added", "note": "Reel teaser 'In Vino Veritas' con solo 'ottobre 2026', nessun giorno/orario/luogo: non aggiunto a EVENTI (da verificare manualmente); aggiunto in galleria" }
+    "DdwzqXQM4Rf": { "event": "skipped", "gallery": "added", "note": "Reel teaser 'In Vino Veritas' con solo 'ottobre 2026', nessun giorno/orario/luogo: non aggiunto a EVENTI (da verificare manualmente); aggiunto in galleria" },
+    "Dd4XJeljYG_": { "event": "added", "gallery": "added", "note": "Reel In Vino Veritas con data (sab 10/10, 18.30, Piazza Garibaldi): evento gia' presente in EVENTI (aggiunto manualmente, in evidenza nella hero), nessuna nuova voce; aggiunto in galleria" }
   }
 }
