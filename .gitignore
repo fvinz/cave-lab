@@ -27,3 +27,6 @@ caveleague/
 *.sln
 *.sw?
 .vercel
+
+# Cache locale del tool Impeccable: cambia a ogni uso, non va versionata
+.impeccable/hook.cache.json
