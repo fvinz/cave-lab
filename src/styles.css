@@ -1026,8 +1026,8 @@ section[id] { scroll-margin-top: 96px; }
    system Pe' Fratte, nella versione "bosco" della pagina /pe-fratte/ —
    fondo verde, logo oro, timbro oro senza blur. Il paesaggio e le foglie
    (Natura.jsx) si muovono con lo scroll; con prefers-reduced-motion stanno
-   fermi. Font caricati in index.html (Big Shoulders Display, Figtree,
-   Space Mono).
+   fermi. Font caricati in index.html (Big Shoulders Display e
+   Space Mono; il testo corrente usa Inter).
    -------------------------------------------------------------------------- */
 .pf-tessera {
   --pf-bosco-900: #16271D;
@@ -1054,7 +1054,9 @@ section[id] { scroll-margin-top: 96px; }
   border: 2px solid var(--pf-bosco-900);
   border-radius: 8px;
   box-shadow: 5px 5px 0 var(--pf-oro-500);
-  font-family: "Figtree", system-ui, sans-serif;
+  /* testo corrente in Inter come il resto della home: della tessera
+     restano Big Shoulders e Space Mono, Figtree vive solo su /pe-fratte/ */
+  font-family: var(--font-body);
   transition: transform 200ms cubic-bezier(.3, .7, .2, 1), box-shadow 200ms cubic-bezier(.3, .7, .2, 1);
 }
 .pf-tessera:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--pf-oro-500); }
