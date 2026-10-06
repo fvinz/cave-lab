@@ -134,9 +134,6 @@ function Hero() {
               Vedi le uscite
             </a>
           </div>
-          <p className="pf-note" data-reveal>
-            Si apre la community WhatsApp di Cave Lab: dentro trovi il gruppo Pe' Fratte.
-          </p>
         </div>
 
         <aside className="pf-prossima" aria-label={prossima || !ultima ? "Prossima uscita" : "Ultima uscita"} data-reveal>
@@ -484,6 +481,8 @@ function CtaFinale() {
         <h2 className="pf-h2" id="cta-titolo">{PE_FRATTE.titolo}</h2>
         <p>Entra nella community, scegli l'uscita nel gruppo Pe' Fratte e scrivi "ci sto". Al resto pensiamo insieme.</p>
         <BottoneGruppo />
+        {/* la spiegazione sta qui e non nella hero, che resta più asciutta */}
+        <p className="pf-note">Si apre la community WhatsApp di Cave Lab: dentro trovi il gruppo Pe' Fratte.</p>
       </div>
     </section>
   );

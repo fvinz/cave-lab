@@ -624,6 +624,7 @@ button { font: inherit; }
 .pf-cta-inner { display: grid; gap: var(--space-4); justify-items: center; text-align: center; }
 .pf-cta .pf-h2 { font-size: clamp(56px, 11vw, 112px); margin: 0; }
 .pf-cta p { max-width: 30em; font-size: 18px; }
+.pf-cta .pf-note { font-size: 14px; }
 
 /* ---------- Footer: prosegue il colle del paesaggio ---------- */
 .pf-footer {
