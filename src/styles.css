@@ -1660,13 +1660,31 @@ section[id] { scroll-margin-top: 96px; }
 .contatti-luogo {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: var(--space-2xs);
   margin-top: var(--space-lg);
   color: var(--color-muted);
   font-size: 0.95rem;
 }
 .contatti-luogo svg { width: 20px; height: 20px; color: var(--color-violet-light); }
+
+/* Contatti divisi: invito a sinistra, canali impilati a destra */
+.contatti-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+.contatti-azioni .canale-community { margin-top: 0; }
+.contatti-azioni .contatti-canali { grid-template-columns: minmax(0, 1fr); margin-top: var(--space-sm); }
+.contatti-azioni .canale { padding: var(--space-md); }
+@media (max-width: 900px) {
+  .contatti-split { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); }
+}
+/* Telefoni: l'indirizzo email deve stare su una riga */
+@media (max-width: 480px) {
+  .contatti-azioni .canale { padding: var(--space-sm); gap: var(--space-xs); }
+  .contatti-azioni .canale-icon { width: 44px; height: 44px; }
+}
 
 
 
@@ -1882,6 +1900,11 @@ section[id] { scroll-margin-top: 96px; }
   }
 
   .chi-siamo-inner { grid-template-columns: 1fr; gap: var(--space-lg); }
+  /* Impilati a tutta larghezza i quattro valori occupavano uno schermo
+     intero di telefono: qui diventano etichette in riga */
+  .valori-list { display: flex; flex-wrap: wrap; gap: var(--space-2xs); }
+  .valore { padding: var(--space-2xs) var(--space-sm); font-size: 1rem; gap: var(--space-2xs); }
+  .valore-mark { width: 28px; height: 28px; border-radius: 8px; }
   .league-stats { grid-template-columns: 1fr 1fr; gap: var(--space-2xs); }
   .league-podium { padding: var(--space-md) var(--space-sm); }
   .podium-place { padding: var(--space-xs) var(--space-sm); gap: var(--space-2xs); }

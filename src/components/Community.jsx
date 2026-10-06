@@ -10,11 +10,11 @@ export default function Community() {
   return (
     <section className="section section-continua section-community" id="community" ref={scope}>
       <div className="container">
-        <p className="kicker kicker-center" data-reveal>Elemento 03 · Reazione a catena</p>
-        <h2 className="section-title section-title-center" data-reveal>
+        <p className="kicker" data-reveal>Elemento 03 · Reazione a catena</p>
+        <h2 className="section-title" data-reveal>
           La community di Cave Lab
         </h2>
-        <p className="section-text section-text-center" data-reveal>
+        <p className="section-text" data-reveal>
           Ne fanno già parte <strong>{COMMUNITY.membri} persone</strong>.
           Su WhatsApp abbiamo un nucleo e tanti gruppi funzionali: entri nella community,
           ricevi date e aggiornamenti, e scegli i gruppi delle attività che ti interessano.

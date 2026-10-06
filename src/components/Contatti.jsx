@@ -41,62 +41,67 @@ export default function Contatti() {
 
   return (
     <section className="section section-continua section-contatti" id="contatti" ref={scope}>
-      <div className="container">
-        <p className="kicker kicker-center" data-reveal>Elemento 08 · Reazione finale</p>
-        <h2 className="section-title section-title-center" data-reveal>
-          Unisciti all'esperimento
-        </h2>
-        <p className="section-text section-text-center" data-reveal>
-          Non serve nessun requisito e non c'è nessun modulo da compilare: scrivici
-          e ti raccontiamo come funziona, quando ci vediamo e come dare una mano.
-          Ogni buona reazione parte da due elementi che si incontrano.
-        </p>
+      <div className="container contatti-split">
+        {/* Divisa: a sinistra l'invito, a destra i canali, così la chiusura
+            non ripete l'impaginazione centrata delle sezioni precedenti */}
+        <div className="contatti-intro">
+          <p className="kicker" data-reveal>Elemento 08 · Reazione finale</p>
+          <h2 className="section-title" data-reveal>
+            Unisciti all'esperimento
+          </h2>
+          <p className="section-text" data-reveal>
+            Non serve nessun requisito e non c'è nessun modulo da compilare: scrivici
+            e ti raccontiamo come funziona, quando ci vediamo e come dare una mano.
+            Ogni buona reazione parte da due elementi che si incontrano.
+          </p>
+          <p className="contatti-luogo" data-reveal>
+            <Icon name="pin" />
+            <span>Ci trovi a {SOCIAL.luogo}: il laboratorio è tutto il paese.</span>
+          </p>
+        </div>
 
-        <a
-          href={COMMUNITY.inviteUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="canale canale-community"
-          style={{ "--canale-color": "var(--color-green)" }}
-          data-reveal
-        >
-          <span className="canale-icon" aria-hidden="true">
-            <Icon name="whatsapp" />
-          </span>
-          <span className="canale-body">
-            <span className="canale-label">Entra nella community</span>
-            <span className="canale-hint">Date, aggiornamenti e gruppi tematici come Pe' Fratte, il gruppo trekking.</span>
-          </span>
-          <Icon name="arrowRight" className="canale-arrow" />
-        </a>
+        <div className="contatti-azioni">
+          <a
+            href={COMMUNITY.inviteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="canale canale-community"
+            style={{ "--canale-color": "var(--color-green)" }}
+            data-reveal
+          >
+            <span className="canale-icon" aria-hidden="true">
+              <Icon name="whatsapp" />
+            </span>
+            <span className="canale-body">
+              <span className="canale-label">Entra nella community</span>
+              <span className="canale-hint">Date, aggiornamenti e gruppi tematici come Pe' Fratte, il gruppo trekking.</span>
+            </span>
+            <Icon name="arrowRight" className="canale-arrow" />
+          </a>
 
-        <ul className="contatti-canali" data-reveal-stagger>
-          {CANALI.map((c) => (
-            <li key={c.icon}>
-              <a
-                href={c.href}
-                className={"canale" + (c.primary ? " canale-primary" : "")}
-                style={{ "--canale-color": c.color }}
-                {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                <span className="canale-icon" aria-hidden="true">
-                  <Icon name={c.icon} />
-                </span>
-                <span className="canale-body">
-                  <span className="canale-label">{c.label}</span>
-                  <span className="canale-value">{c.value}</span>
-                  <span className="canale-hint">{c.hint}</span>
-                </span>
-                <Icon name="arrowRight" className="canale-arrow" />
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <p className="contatti-luogo" data-reveal>
-          <Icon name="pin" />
-          <span>Ci trovi a {SOCIAL.luogo}: il laboratorio è tutto il paese.</span>
-        </p>
+          <ul className="contatti-canali" data-reveal-stagger>
+            {CANALI.map((c) => (
+              <li key={c.icon}>
+                <a
+                  href={c.href}
+                  className={"canale" + (c.primary ? " canale-primary" : "")}
+                  style={{ "--canale-color": c.color }}
+                  {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  <span className="canale-icon" aria-hidden="true">
+                    <Icon name={c.icon} />
+                  </span>
+                  <span className="canale-body">
+                    <span className="canale-label">{c.label}</span>
+                    <span className="canale-value">{c.value}</span>
+                    <span className="canale-hint">{c.hint}</span>
+                  </span>
+                  <Icon name="arrowRight" className="canale-arrow" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
