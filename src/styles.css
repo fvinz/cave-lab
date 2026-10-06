@@ -426,44 +426,6 @@ body::after {
 .formula-result { background: var(--color-yellow) !important; color: #17131F; }
 .formula-plus, .formula-eq { color: var(--color-muted); font-weight: 700; }
 
-.scroll-cue {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  margin-top: var(--space-lg);
-  margin-inline: auto;
-}
-.scroll-cue-tube {
-  width: 22px;
-  height: 38px;
-  border: 1.5px solid var(--line-strong);
-  border-radius: 12px;
-  position: relative;
-}
-.scroll-cue-tube::after {
-  content: "";
-  position: absolute;
-  left: 4px; right: 4px; bottom: 5px;
-  height: 12px;
-  background: var(--color-violet);
-  border-radius: 8px;
-  animation: bubble-rise 1.8s var(--ease-out) infinite;
-}
-@keyframes bubble-rise {
-  0% { transform: translateY(0); opacity: 1; }
-  70% { opacity: 1; }
-  100% { transform: translateY(-16px); opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-cue-tube::after { animation: none; }
-}
-
 /* --------------------------------------------------------------------------
    Hero "Prossimi esperimenti": gli eventi in primo piano (EVENTI con
    `evidenza`). Ogni evento parla con la propria identità, come la tessera
@@ -489,7 +451,6 @@ body::after {
   align-items: stretch;
 }
 .hero-eventi-griglia.is-solo { grid-template-columns: minmax(0, 1fr); }
-.hero-eventi .scroll-cue { margin-top: var(--space-lg); }
 
 /* Carta In Vino Veritas */
 .carta-ivv {

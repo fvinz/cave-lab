@@ -73,7 +73,6 @@ function useApertura() {
           sale(q(".carta-pf .pf-tessera-meta, .carta-pf-data, .carta-pf .pf-tessera-desc, .carta-pf-chip, .carta-pf-azioni > *"), 14, { duration: 0.55, stagger: 0.06 }, 1.1);
         }
 
-        tl.fromTo(q(".hero-eventi > .scroll-cue"), { opacity: 0 }, { opacity: 1, duration: 0.6 }, "-=0.3");
       });
     },
     { scope }
@@ -113,10 +112,6 @@ function HeroEventi({ eventi }) {
           )}
         </div>
       </div>
-
-      <a href="#manifesto" className="scroll-cue" aria-label="Scorri: chi è Cave Lab">
-        <span className="scroll-cue-tube" aria-hidden="true"></span>
-      </a>
     </section>
   );
 }

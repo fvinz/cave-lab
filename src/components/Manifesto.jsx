@@ -90,12 +90,6 @@ export default function Manifesto({ asHero = false }) {
           <span className="formula-result">{HERO.formulaResult}</span>
         </div>
       </div>
-
-      {asHero && (
-        <a href="#chi-siamo" className="scroll-cue" aria-label="Scorri per saperne di più">
-          <span className="scroll-cue-tube" aria-hidden="true"></span>
-        </a>
-      )}
     </section>
   );
 }
