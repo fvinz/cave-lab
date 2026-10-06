@@ -17,7 +17,8 @@ export const SOCIAL = {
 /* Galleria Instagram: ogni voce ha l'anteprima locale (public/instagram/)
    e il link al post. Per aggiungere un post: salva l'anteprima in
    public/instagram/<codice>.jpg e aggiungi { img, url, caption } qui.
-   Didascalie senza trattino lungo (—): usare due punti o virgola. */
+   Didascalie senza trattino lungo (—): usare due punti o virgola.
+   Il più recente in cima: il sito ne mostra solo i primi 9. */
 export const INSTAGRAM_POSTS = [
   { img: "/instagram/Dd4XJeljYG_.jpg", url: "https://www.instagram.com/reel/Dd4XJeljYG_/", caption: "In Vino Veritas: sabato 10 ottobre in Piazza Garibaldi" },
   { img: "/instagram/DdzNcOREjqX.jpg", url: "https://www.instagram.com/p/DdzNcOREjqX/", caption: "Monte Gennaro fatto, e Pe' Fratte presenta il suo logo" },

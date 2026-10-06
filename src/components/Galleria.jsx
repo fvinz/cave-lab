@@ -3,7 +3,10 @@ import useReveal from "../hooks/useReveal.js";
 import { GALLERIA_FALLBACK, INSTAGRAM_POSTS, SOCIAL } from "../content.js";
 
 /* Galleria fotografica: anteprime locali dei post, tessere pulite
-   integrate nel tema. Ogni tessera apre il post su Instagram. */
+   integrate nel tema. Ogni tessera apre il post su Instagram.
+   Solo i 9 più recenti: la griglia è una 3×3 e la galleria non deve
+   prendere più spazio della Cave League. */
+const POST_MOSTRATI = INSTAGRAM_POSTS.slice(0, 9);
 export default function Galleria() {
   const scope = useReveal();
 
@@ -16,9 +19,9 @@ export default function Galleria() {
           Gli ultimi scatti dal laboratorio: tocca una foto per aprire il post su Instagram.
         </p>
 
-        {INSTAGRAM_POSTS.length > 0 ? (
+        {POST_MOSTRATI.length > 0 ? (
           <div className="insta-gallery" data-reveal-stagger>
-            {INSTAGRAM_POSTS.map((post) => (
+            {POST_MOSTRATI.map((post) => (
               <a
                 key={post.url}
                 href={post.url}
