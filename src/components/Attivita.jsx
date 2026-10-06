@@ -65,12 +65,15 @@ function useReazione(scope) {
             return;
           }
 
-          slots.forEach((slot, i) => {
+          /* Su telefono le tessere occupano tutta la larghezza: arrivano
+             solo dal basso, perché uno spostamento laterale o una rotazione
+             le farebbe sporgere dallo schermo (scroll orizzontale). */
+          slots.forEach((slot) => {
             gsap.fromTo(
               slot,
-              { y: 70, x: SPARSO[i].x / 3, rotate: SPARSO[i].rotate / 2, opacity: 0.15 },
+              { y: 70, opacity: 0.15 },
               {
-                x: 0, y: 0, rotate: 0, opacity: 1, ease: "power2.out",
+                y: 0, opacity: 1, ease: "power2.out",
                 scrollTrigger: { trigger: slot, start: "top 98%", end: "top 70%", scrub: 0.5 },
               }
             );

@@ -668,7 +668,12 @@ body::after {
 /* L'header sticky non deve mangiare il padding d'ingresso delle sezioni */
 section[id] { scroll-margin-top: 96px; }
 .section-chi-siamo { background: rgba(20, 15, 34, 0.42); border-block: 1px solid var(--line); }
-.section-attivita { background: var(--color-bg-alt); }
+.section-attivita {
+  background: var(--color-bg-alt);
+  /* le tessere "sparse" della reazione (Attivita.jsx) possono sporgere
+     di lato: si tagliano qui, senza rendere la sezione scorrevole */
+  overflow-x: clip;
+}
 .section-territorio { background: var(--color-violet-tint); border-block: 1px solid var(--line); }
 .section-galleria { background: transparent; }
 .section-community { background: transparent; }
