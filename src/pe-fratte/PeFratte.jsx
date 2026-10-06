@@ -71,7 +71,9 @@ function DatiSentiero({ p }) {
   );
 }
 
-function BottoneGruppo({ variant = "accent", children = "Entra nel gruppo" }) {
+/* Stessa etichetta della home: porta alla community WhatsApp di Cave Lab,
+   dentro la quale c'è il gruppo Pe' Fratte */
+function BottoneGruppo({ variant = "accent", children = "Entra nella community" }) {
   return (
     <a
       href={COMMUNITY.inviteUrl}
@@ -480,7 +482,7 @@ function CtaFinale() {
       <Foglia x="82%" y="16%" size={24} tono="sabbia" velocita={1} giro={240} />
       <div className="pf-container pf-cta-inner">
         <h2 className="pf-h2" id="cta-titolo">{PE_FRATTE.titolo}</h2>
-        <p>Entra nel gruppo, scegli l'uscita e scrivi "ci sto". Al resto pensiamo insieme.</p>
+        <p>Entra nella community, scegli l'uscita nel gruppo Pe' Fratte e scrivi "ci sto". Al resto pensiamo insieme.</p>
         <BottoneGruppo />
       </div>
     </section>
