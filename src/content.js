@@ -150,6 +150,20 @@ export const PE_FRATTE = {
        visibili), con `poster`; `largo: true` lo mette a tutta larghezza
      Solo materiale vero delle uscite. Con la lista vuota la sezione non compare. */
   galleria: [
+    { uscita: "2026-10-03", tipo: "video", largo: true, src: "/pe-fratte/galleria/cavo-drone.mp4", poster: "/pe-fratte/galleria/cavo-drone-poster.jpg", w: 848, h: 478, alt: "Il drone si alza dal gruppo con lo striscione Pe' Fratte, sorvola la cima del Monte Cavo e scopre i laghi sotto" },
+    { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-vetta-striscione.jpg", w: 1200, h: 904, alt: "Foto di gruppo in cima al Monte Cavo con lo striscione Pe' Fratte e la pianura sullo sfondo" },
+    { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-lago.jpg", w: 1200, h: 900, alt: "Il lago vulcanico visto dall'alto tra i boschi dei Castelli Romani" },
+    { uscita: "2026-10-03", tipo: "video", src: "/pe-fratte/galleria/cavo-bosco-cane.mp4", poster: "/pe-fratte/galleria/cavo-bosco-cane-poster.jpg", w: 540, h: 960, alt: "Il gruppo sale in fila nel bosco, con un cane tra gli escursionisti" },
+    { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-scultura-gruppo.jpg", w: 900, h: 1200, alt: "Un gruppo di escursionisti davanti a una grande scultura di legno lungo il sentiero" },
+    { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-testa-pietra.jpg", w: 1200, h: 900, alt: "Escursionisti attorno a un grande masso scolpito a forma di testa nel bosco" },
+    { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-bosco-fila.jpg", w: 904, h: 1200, alt: "Il gruppo con gli zaini in spalla, visto di spalle, sul sentiero nel bosco" },
+    { uscita: "2026-10-03", tipo: "video", src: "/pe-fratte/galleria/cavo-belvedere-lago.mp4", poster: "/pe-fratte/galleria/cavo-belvedere-lago-poster.jpg", w: 540, h: 960, alt: "Escursionisti al belvedere con il lago sotto la collina" },
+    { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-volto-legno.jpg", w: 900, h: 1200, alt: "Il volto della scultura di legno, fatta di rami intrecciati, tra gli alberi" },
+    { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-selfie-vetta.jpg", w: 1200, h: 900, alt: "Selfie di gruppo sorridente in cima, con tutti gli altri alle spalle" },
+    { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-lupo.jpg", w: 900, h: 1200, alt: "La sagoma di un lupo in metallo lungo il sentiero nel bosco" },
+    { uscita: "2026-10-03", tipo: "video", src: "/pe-fratte/galleria/cavo-riscaldamento.mp4", poster: "/pe-fratte/galleria/cavo-riscaldamento-poster.jpg", w: 960, h: 720, alt: "Il gruppo fa riscaldamento nel piazzale prima della partenza" },
+    { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-cane-lupo.jpg", w: 1200, h: 900, alt: "Un escursionista seduto accanto a un cane lupo, vicino a una piccola cappella azzurra" },
+    { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-belvedere.jpg", w: 1200, h: 904, alt: "Il gruppo affacciato alla ringhiera del belvedere, con i laghi all'orizzonte" },
     { uscita: "2026-09-26", tipo: "foto", largo: true, src: "/pe-fratte/galleria/gennaro-gruppo-bosco.jpg", w: 1200, h: 904, alt: "Foto di gruppo seduti su un tronco nella faggeta del Monte Gennaro" },
     { uscita: "2026-09-26", tipo: "foto", src: "/pe-fratte/galleria/gennaro-vetta-gruppo.jpg", w: 904, h: 1200, alt: "Il gruppo sul basamento di pietra in vetta al Monte Gennaro" },
     { uscita: "2026-09-26", tipo: "video", src: "/pe-fratte/galleria/gennaro-bosco-fila.mp4", poster: "/pe-fratte/galleria/gennaro-bosco-fila-poster.jpg", w: 540, h: 960, alt: "Il gruppo in fila tra i faggi lungo il sentiero" },
