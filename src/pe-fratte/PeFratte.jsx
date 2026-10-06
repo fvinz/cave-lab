@@ -374,24 +374,24 @@ function Galleria() {
         <p className="pf-meta" data-reveal>Dal sentiero</p>
         <h2 className="pf-h2" id="galleria-titolo" data-reveal>Le nostre uscite</h2>
 
-        {gruppi.map((g) => (
-          <GruppoGalleria key={g.iso} g={g} />
+        {gruppi.map((g, i) => (
+          <GruppoGalleria key={g.iso} g={g} recente={i === 0} />
         ))}
       </div>
     </section>
   );
 }
 
-/* Per ogni uscita: il pezzo grande e i primi scatti; il resto si apre
-   a richiesta, così la galleria non si mangia la pagina. Gli scatti
-   chiusi non vengono nemmeno caricati. */
-const SCATTI_VISIBILI = 6;
-
-function GruppoGalleria({ g }) {
+/* Per ogni uscita: il pezzo grande e i primi scatti (due file per la
+   più recente, una per le altre); il resto si apre a richiesta, così la
+   galleria non si mangia la pagina. Gli scatti chiusi non vengono
+   nemmeno caricati. */
+function GruppoGalleria({ g, recente }) {
   const [aperta, setAperta] = useState(false);
   const idGriglia = useId();
-  const nascosti = g.altri.length - SCATTI_VISIBILI;
-  const scatti = aperta ? g.altri : g.altri.slice(0, SCATTI_VISIBILI);
+  const visibili = recente ? 6 : 3;
+  const nascosti = g.altri.length - visibili;
+  const scatti = aperta ? g.altri : g.altri.slice(0, visibili);
 
   /* aprendo o chiudendo la pagina cambia altezza: i trigger dello
      scroll vanno ricalcolati (non serve al primo render) */
@@ -420,7 +420,7 @@ function GruppoGalleria({ g }) {
             key={m.src}
             className={"pf-media" + (m.tipo === "video" ? " pf-media-video" : "")}
             /* solo i primi entrano con l'animazione; gli altri compaiono subito */
-            data-reveal={i < SCATTI_VISIBILI ? "" : undefined}
+            data-reveal={i < visibili ? "" : undefined}
           >
             {m.tipo === "video" ? <VideoClip v={m} /> : <FotoMedia f={m} />}
           </figure>

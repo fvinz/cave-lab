@@ -589,6 +589,11 @@ button { font: inherit; }
 @media (min-width: 860px) { .pf-media-largo { margin-bottom: var(--space-5); } }
 .pf-media-largo video { aspect-ratio: 848 / 478; object-fit: cover; }
 .pf-galleria-altre { margin-top: var(--space-2); }
+/* Su schermi larghi anche la foto grande è un 16:9 come i video del
+   drone: a tutta larghezza un 4:3 superava gli 800px di altezza */
+@media (min-width: 860px) {
+  .pf-media-largo img { aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 62%; }
+}
 
 /* ---------- Archivio ---------- */
 .pf-archivio { display: grid; margin-top: var(--space-6); }
