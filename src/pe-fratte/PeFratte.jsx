@@ -109,7 +109,8 @@ function Hero() {
   return (
     <section className="pf-hero" id="top">
       <Paesaggio variante="alba" />
-      {/* Foglie nei vuoti tra le colonne, lontano dai testi */}
+      {/* Foglie nei vuoti tra le colonne, lontano dai testi. Le foglie
+          stanno solo qui e nella chiusura: in ogni sezione sarebbero troppe. */}
       <Foglia x="54%" y="6%" size={30} tono="sabbia" velocita={1.4} giro={220} soloDesktop />
       <Foglia x="57%" y="30%" size={20} tono="salvia" velocita={0.9} giro={-160} soloDesktop />
       <Foglia x="92%" y="4%" size={26} tono="oro" velocita={1.2} giro={260} />
@@ -269,8 +270,6 @@ function Uscite() {
   if (prossime.length === 0) return null;
   return (
     <section className="pf-section" id="uscite" aria-labelledby="uscite-titolo">
-      <Foglia x="91%" y="6%" size={28} tono="oro" velocita={1.3} giro={200} />
-      <Foglia x="2%" y="52%" size={24} tono="bosco" velocita={1} giro={-240} />
       <div className="pf-container">
         <p className="pf-meta" data-reveal>Calendario</p>
         <h2 className="pf-h2" id="uscite-titolo" data-reveal>Prossime uscite</h2>
@@ -287,8 +286,6 @@ function Uscite() {
 function ComeFunziona() {
   return (
     <section className="pf-section pf-section-bosco" aria-labelledby="come-titolo">
-      <Foglia x="80%" y="4%" size={32} tono="sabbia" velocita={1.2} giro={-200} />
-      <Foglia x="40%" y="70%" size={20} tono="oro" velocita={0.8} giro={300} />
       <div className="pf-container">
         <p className="pf-meta pf-meta-sabbia" data-reveal>Come funziona</p>
         <h2 className="pf-h2" id="come-titolo" data-reveal>Zaino in spalla</h2>
@@ -374,8 +371,6 @@ function Galleria() {
 
   return (
     <section className="pf-section pf-section-muschio" id="galleria" aria-labelledby="galleria-titolo">
-      <Foglia x="92%" y="3%" size={26} tono="oro" velocita={1.1} giro={-200} />
-      <Foglia x="3%" y="40%" size={20} tono="salvia" velocita={0.9} giro={220} soloDesktop />
       <div className="pf-container">
         <p className="pf-meta" data-reveal>Dal sentiero</p>
         <h2 className="pf-h2" id="galleria-titolo" data-reveal>Le nostre uscite</h2>
@@ -460,7 +455,6 @@ function Archivio() {
   if (fatte.length === 0) return null;
   return (
     <section className="pf-section pf-section-muschio" aria-labelledby="fatte-titolo">
-      <Foglia x="86%" y="20%" size={26} tono="salvia" velocita={1.1} giro={180} />
       <div className="pf-container">
         <p className="pf-meta" data-reveal>Archivio</p>
         <h2 className="pf-h2" id="fatte-titolo" data-reveal>Uscite fatte</h2>
