@@ -84,7 +84,7 @@ function Header() {
         <a href="/" className="pf-back">
           <PfIcon name="arrowLeft" />
           <span>
-            Torna a <img src="/logo.svg" alt="Cave Lab" className="pf-back-logo" />
+            Torna a <span className="pf-cavelab pf-back-logo" role="img" aria-label="Cave Lab"></span>
           </span>
         </a>
         {/* Marchio nudo (currentColor) usato come maschera: si colora in oro */}
@@ -442,7 +442,7 @@ function Footer() {
         <p>
           Pe' Fratte è la comunità trekking di{" "}
           <a href="/" className="pf-footer-brand-link" aria-label="Cave Lab">
-            <img src="/logo.svg" alt="" className="pf-footer-logo-inline" />
+            <span className="pf-cavelab pf-footer-logo-inline" aria-hidden="true"></span>
           </a>
         </p>
         <p className="pf-footer-legal">

@@ -232,7 +232,17 @@ button { font: inherit; }
   text-decoration: none;
 }
 .pf-back span { display: inline-flex; align-items: center; gap: 6px; }
-.pf-back-logo { height: 22px; width: auto; vertical-align: middle; }
+/* Logo Cave Lab come maschera: dentro un <img> il suo currentColor
+   diventava nero, quasi invisibile sul verde. Così prende il colore carta. */
+.pf-cavelab {
+  display: inline-block;
+  aspect-ratio: 427 / 248;
+  background: var(--pf-carta-100);
+  -webkit-mask: url("/logo.svg") center / contain no-repeat;
+  mask: url("/logo.svg") center / contain no-repeat;
+  vertical-align: middle;
+}
+.pf-back-logo { height: 22px; }
 .pf-header-brand { display: inline-flex; align-items: center; min-height: 44px; }
 /* Marchio nudo come maschera: eredita il colore oro */
 .pf-marchio {
@@ -624,7 +634,7 @@ button { font: inherit; }
 .pf-footer-logo { width: 220px; margin-bottom: var(--space-2); }
 .pf-footer a { color: var(--pf-carta-100); text-underline-offset: 3px; }
 .pf-footer-brand-link { display: inline-flex; align-items: center; }
-.pf-footer-logo-inline { height: 26px; width: auto; vertical-align: middle; }
+.pf-footer-logo-inline { height: 26px; }
 .pf-footer-legal { font-size: 13px; }
 .pf-footer-legal button {
   padding: 0;
