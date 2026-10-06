@@ -410,7 +410,8 @@ button { font: inherit; }
 @media (min-width: 960px) { .pf-section { padding: var(--space-9) 0; } }
 .pf-section-bosco { background: var(--verde-bosco); }
 .pf-section-muschio { background: var(--verde-muschio); }
-.pf-vuoto { margin-top: var(--space-5); max-width: 36em; }
+/* Ancore raggiunte dai link della hero: non finire sotto l'header fisso */
+#galleria, .pf-galleria-gruppo, #fatte-titolo { scroll-margin-top: 88px; }
 
 /* ---------- Card uscita (carta su verde) ---------- */
 .pf-card-grid {

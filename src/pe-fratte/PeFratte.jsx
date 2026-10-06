@@ -17,7 +17,14 @@ const fatte = USCITE.filter((u) => !isInArrivo(u.iso)).sort((a, b) => b.iso.loca
 const VERDI = { notte: "#16271D", muschio: "#1C3325", bosco: "#24402F" };
 const haMuschio = PE_FRATTE.galleria.length > 0 || fatte.length > 0;
 
-/* "Pe' Fratte — Monte Gennaro" → "Monte Gennaro" */
+/* Senza uscite in calendario la pagina non si apre su sezioni vuote:
+   la hero racconta l'ultima uscita fatta e "Prossime uscite" sparisce.
+   Le ancore seguono quello che c'è davvero. */
+const ultima = fatte[0];
+const conFoto = new Set(PE_FRATTE.galleria.map((m) => m.uscita));
+const ANCORA_USCITE = prossime.length > 0 ? "#uscite" : "#galleria";
+
+/* "Pe' Fratte: Monte Gennaro" → "Monte Gennaro" */
 const meta = (u) => u.title.split(": ").pop();
 
 function DifficoltaBadge({ chiave }) {
@@ -119,7 +126,7 @@ function Hero() {
           <p className="pf-lead" data-reveal>{PE_FRATTE.intro}</p>
           <div className="pf-hero-actions" data-reveal>
             <BottoneGruppo />
-            <a href="#uscite" className="pf-btn pf-btn-secondary">
+            <a href={ANCORA_USCITE} className="pf-btn pf-btn-secondary">
               Vedi le uscite
             </a>
           </div>
@@ -128,8 +135,8 @@ function Hero() {
           </p>
         </div>
 
-        <aside className="pf-prossima" aria-label="Prossima uscita" data-reveal>
-          <p className="pf-prossima-label">Prossima uscita</p>
+        <aside className="pf-prossima" aria-label={prossima || !ultima ? "Prossima uscita" : "Ultima uscita"} data-reveal>
+          <p className="pf-prossima-label">{prossima || !ultima ? "Prossima uscita" : "Ultima uscita"}</p>
           {prossima ? (
             <>
               <p className="pf-prossima-data">{prossima.date}</p>
@@ -148,6 +155,22 @@ function Hero() {
               )}
               <a href={"#uscita-" + prossima.iso} className="pf-link">
                 Tutti i dettagli <PfIcon name="arrowRight" />
+              </a>
+            </>
+          ) : ultima ? (
+            <>
+              <p className="pf-prossima-data">{ultima.date}</p>
+              <p className="pf-prossima-titolo">{meta(ultima)}</p>
+              {ultima.percorso?.zona && (
+                <p className="pf-zona">
+                  <PfIcon name="mapPin" />
+                  {ultima.percorso.zona}
+                </p>
+              )}
+              {ultima.percorso && <DatiSentiero p={ultima.percorso} />}
+              <p className="pf-prossima-vuota">Le prossime date arrivano prima nel gruppo.</p>
+              <a href={conFoto.has(ultima.iso) ? "#foto-" + ultima.iso : "#fatte-titolo"} className="pf-link">
+                {conFoto.has(ultima.iso) ? "Guarda le foto" : "Tutte le uscite fatte"} <PfIcon name="arrowRight" />
               </a>
             </>
           ) : (
@@ -242,6 +265,7 @@ function UscitaCard({ uscita, inEvidenza }) {
 }
 
 function Uscite() {
+  if (prossime.length === 0) return null;
   return (
     <section className="pf-section" id="uscite" aria-labelledby="uscite-titolo">
       <Foglia x="91%" y="6%" size={28} tono="oro" velocita={1.3} giro={200} />
@@ -249,17 +273,11 @@ function Uscite() {
       <div className="pf-container">
         <p className="pf-meta" data-reveal>Calendario</p>
         <h2 className="pf-h2" id="uscite-titolo" data-reveal>Prossime uscite</h2>
-        {prossime.length > 0 ? (
-          <div className="pf-card-grid">
-            {prossime.map((u, i) => (
-              <UscitaCard key={u.iso} uscita={u} inEvidenza={i === 0} />
-            ))}
-          </div>
-        ) : (
-          <p className="pf-vuoto">
-            Stiamo scegliendo il prossimo sentiero. Le date arrivano prima nel gruppo Pe' Fratte.
-          </p>
-        )}
+        <div className="pf-card-grid">
+          {prossime.map((u, i) => (
+            <UscitaCard key={u.iso} uscita={u} inEvidenza={i === 0} />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -354,7 +372,7 @@ function Galleria() {
     }));
 
   return (
-    <section className="pf-section pf-section-muschio" aria-labelledby="galleria-titolo">
+    <section className="pf-section pf-section-muschio" id="galleria" aria-labelledby="galleria-titolo">
       <Foglia x="92%" y="3%" size={26} tono="oro" velocita={1.1} giro={-200} />
       <Foglia x="3%" y="40%" size={20} tono="salvia" velocita={0.9} giro={220} soloDesktop />
       <div className="pf-container">
@@ -362,7 +380,7 @@ function Galleria() {
         <h2 className="pf-h2" id="galleria-titolo" data-reveal>Le nostre uscite</h2>
 
         {gruppi.map((g) => (
-          <div key={g.iso} className="pf-galleria-gruppo">
+          <div key={g.iso} className="pf-galleria-gruppo" id={"foto-" + g.iso}>
             {g.uscita && (
               <p className="pf-galleria-uscita">
                 <span className="pf-galleria-nome">{meta(g.uscita)}</span>
@@ -460,7 +478,7 @@ export default function PeFratte() {
   const scope = useNatura();
   return (
     <div ref={scope}>
-      <a className="pf-skip-link" href="#uscite">
+      <a className="pf-skip-link" href={ANCORA_USCITE}>
         Vai alle uscite
       </a>
       <Header />
