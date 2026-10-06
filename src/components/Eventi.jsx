@@ -1,16 +1,13 @@
 import useReveal from "../hooks/useReveal.js";
 import { COMMUNITY, EVENTI } from "../content.js";
 import { isInArrivo } from "../date.js";
-import { eventiInEvidenza } from "../evidenza.js";
 
 const GRUPPI = Object.fromEntries(COMMUNITY.gruppi.map((g) => [g.symbol, g]));
 
 export default function Eventi() {
   const scope = useReveal();
 
-  /* Quelli già in primo piano nella hero non si ripetono qui */
-  const inHero = eventiInEvidenza();
-  const inArrivo = EVENTI.filter((e) => isInArrivo(e.iso) && !inHero.includes(e)).sort((a, b) => a.iso.localeCompare(b.iso));
+  const inArrivo = EVENTI.filter((e) => isInArrivo(e.iso)).sort((a, b) => a.iso.localeCompare(b.iso));
   const conclusi = EVENTI.filter((e) => !isInArrivo(e.iso)).sort((a, b) => b.iso.localeCompare(a.iso));
 
   return (
@@ -52,9 +49,7 @@ export default function Eventi() {
           </ol>
         ) : (
           <p className="lab-vuoto" data-reveal>
-            {inHero.length > 0
-              ? "Il prossimo esperimento è quello in apertura. Le altre date arrivano per prime nella community."
-              : "Nuovi esperimenti in preparazione: le date arrivano per prime nella community."}
+            Nuovi esperimenti in preparazione: le date arrivano per prime nella community.
           </p>
         )}
 

@@ -3,9 +3,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Icon from "./Icon.jsx";
 import Manifesto from "./Manifesto.jsx";
-import { COMMUNITY, HERO_EVENTI, SOCIAL } from "../content.js";
-import { etichettaMancanti } from "../date.js";
-import { eventiInEvidenza } from "../evidenza.js";
+import { COMMUNITY, EVENTI, HERO_EVENTI, SOCIAL } from "../content.js";
+import { etichettaMancanti, isInArrivo } from "../date.js";
 import { Foglia, Paesaggio } from "../pe-fratte/Natura.jsx";
 import useNatura from "../pe-fratte/useNatura.js";
 
@@ -13,7 +12,12 @@ import useNatura from "../pe-fratte/useNatura.js";
    EVENTI) ancora in arrivo, la hero li presenta e il manifesto scende
    subito sotto; altrimenti il manifesto torna a essere la hero. */
 export default function Hero() {
-  const inEvidenza = eventiInEvidenza();
+  const inEvidenza = EVENTI
+    .filter((e) => e.evidenza && isInArrivo(e.iso))
+    .sort((a, b) => a.iso.localeCompare(b.iso))
+    .slice(0, HERO_EVENTI.max)
+    /* l'evento principale (`grande`) apre la griglia e la lettura */
+    .sort((a, b) => Number(!!b.evidenza.grande) - Number(!!a.evidenza.grande));
 
   if (inEvidenza.length === 0) return <Manifesto asHero />;
 
