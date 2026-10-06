@@ -213,7 +213,7 @@ function CartaPeFratte({ evento }) {
         {gratuita && <p className="carta-pf-chip">Partecipazione {gratuita.toLowerCase()}</p>}
         <div className="carta-pf-azioni">
           <a href={COMMUNITY.inviteUrl} target="_blank" rel="noopener noreferrer" className="pf-tessera-cta">
-            Partecipa al gruppo
+            Entra nella community
           </a>
           <a href="/pe-fratte/" className="carta-pf-link">Scopri Pe' Fratte</a>
         </div>

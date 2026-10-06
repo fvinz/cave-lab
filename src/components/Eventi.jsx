@@ -39,7 +39,7 @@ export default function Eventi() {
                         style={{ "--tile-color": gruppo.color }}
                       >
                         <span className="lab-step-gruppo-symbol" aria-hidden="true">{gruppo.symbol}</span>
-                        Partecipa al gruppo {gruppo.name}
+                        Entra nella community
                       </a>
                     )}
                   </div>

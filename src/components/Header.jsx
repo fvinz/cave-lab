@@ -98,7 +98,7 @@ export default function Header() {
             ))}
             <li>
               <a href="#community" className="nav-link nav-cta" onClick={() => setOpen(false)}>
-                Unisciti a noi
+                Entra nella community
               </a>
             </li>
           </ul>

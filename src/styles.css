@@ -1876,7 +1876,7 @@ section[id] { scroll-margin-top: 96px; }
     box-shadow: 0 24px 50px rgba(0, 0, 0, 0.7);
     padding: var(--space-md);
     /* su schermi bassi (o in orizzontale) il menu deve scorrere,
-       altrimenti "Unisciti a noi" resta sotto il bordo */
+       altrimenti "Entra nella community" resta sotto il bordo */
     max-height: calc(100dvh - 96px - var(--space-md));
     overflow-y: auto;
     overscroll-behavior: contain;
