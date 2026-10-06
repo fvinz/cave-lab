@@ -65,16 +65,20 @@ export default function Manifesto({ asHero = false }) {
           <span className="hero-title-highlight">reazioni</span> di comunità.
         </Title>
         <p className="hero-lead" data-reveal>{HERO.lead}</p>
-        <div className="hero-actions" data-reveal>
-          <a href={COMMUNITY.inviteUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-            <Icon name="whatsapp" />
-            Entra nella community
-          </a>
-          <a href={SOCIAL.instagramUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-            <Icon name="instagram" />
-            Seguici su Instagram
-          </a>
-        </div>
+        {/* Sotto la hero degli eventi gli stessi due pulsanti sono già nella
+            carta dell'evento: qui resta solo la dichiarazione */}
+        {asHero && (
+          <div className="hero-actions" data-reveal>
+            <a href={COMMUNITY.inviteUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              <Icon name="whatsapp" />
+              Entra nella community
+            </a>
+            <a href={SOCIAL.instagramUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+              <Icon name="instagram" />
+              Seguici su Instagram
+            </a>
+          </div>
+        )}
 
         <p className="visually-hidden">
           La formula di Cave Lab: comunità più territorio più idee uguale Cave Lab.

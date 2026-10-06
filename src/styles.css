@@ -627,11 +627,20 @@ body::after {
 .carta-pf-link:hover { color: var(--pf-oro-500); }
 .carta-pf-link:focus-visible { outline: 2px solid var(--pf-oro-500); outline-offset: 3px; border-radius: 2px; }
 
-/* Manifesto sotto la hero degli eventi: stesso contenuto, meno altezza */
-.hero.manifesto { min-height: min(78vh, 720px); border-top: 1px solid var(--line); }
+/* Manifesto sotto la hero degli eventi: solo la dichiarazione (i
+   pulsanti sono già nella carta dell'evento), quindi meno altezza */
+.hero.manifesto { min-height: min(64vh, 600px); border-top: 1px solid var(--line); }
+.hero.manifesto .hero-lead { margin-bottom: var(--space-md); }
+
+/* Carta a tutta larghezza: l'arco resta un ritratto, non metà carta,
+   altrimenti diventa alto ~900px e lascia vuota la colonna del testo */
+@media (min-width: 641px) {
+  .hero-eventi-griglia.is-solo .carta-ivv { grid-template-columns: minmax(0, 340px) minmax(0, 1fr); column-gap: var(--space-xl); }
+}
 
 @media (max-width: 1023px) {
   .hero-eventi-griglia { grid-template-columns: minmax(0, 1fr); }
+  .carta-ivv { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); }
 }
 @media (max-width: 640px) {
   .hero-eventi { padding-top: var(--space-lg); }
