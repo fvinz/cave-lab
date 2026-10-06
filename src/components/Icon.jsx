@@ -101,6 +101,7 @@ const PATHS = {
   ),
   arrowRight: <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />,
   arrowUp: <path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />,
+  check: <path d="M4.5 12.5l5 5L19.5 7" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />,
   send: <path d="M4 12l16-8-6 16-3-7-7-1z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />,
 };
 
