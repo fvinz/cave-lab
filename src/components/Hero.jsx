@@ -194,7 +194,7 @@ function CartaInVinoVeritas({ evento }) {
 function CartaPeFratte({ evento }) {
   const scope = useNatura();
   const e = evento.evidenza;
-  const meta = evento.title.split("— ").pop();
+  const meta = evento.title.split(": ").pop();
   const gratuita = evento.percorso?.partecipazione;
 
   return (

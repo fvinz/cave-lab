@@ -13,7 +13,7 @@ export default function Attivita() {
         </h2>
         <p className="section-text section-text-center" data-reveal>
           Ogni progetto di Cave Lab nasce combinando un po' di questi elementi.
-          Il risultato non è mai lo stesso due volte — è la parte divertente.
+          Il risultato non è mai lo stesso due volte, ed è la parte divertente.
         </p>
 
         <div className="periodic-grid" data-reveal-stagger>

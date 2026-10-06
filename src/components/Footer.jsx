@@ -16,7 +16,7 @@ export default function Footer() {
             <img src="/logo.svg" alt="" width="80" height="47" />
           </span>
           <p className="footer-tagline">
-            Cave Lab APS — associazione di promozione del territorio di Cave (RM).
+            Cave Lab APS, associazione di promozione del territorio di Cave (RM).
           </p>
         </div>
 

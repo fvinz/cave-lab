@@ -95,7 +95,7 @@ export default function Contatti() {
 
         <p className="contatti-luogo" data-reveal>
           <Icon name="pin" />
-          <span>Ci trovi a {SOCIAL.luogo} — il laboratorio è tutto il paese.</span>
+          <span>Ci trovi a {SOCIAL.luogo}: il laboratorio è tutto il paese.</span>
         </p>
       </div>
     </section>

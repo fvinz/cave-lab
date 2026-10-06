@@ -16,22 +16,23 @@ export const SOCIAL = {
 
 /* Galleria Instagram: ogni voce ha l'anteprima locale (public/instagram/)
    e il link al post. Per aggiungere un post: salva l'anteprima in
-   public/instagram/<codice>.jpg e aggiungi { img, url, caption } qui. */
+   public/instagram/<codice>.jpg e aggiungi { img, url, caption } qui.
+   Didascalie senza trattino lungo (—): usare due punti o virgola. */
 export const INSTAGRAM_POSTS = [
   { img: "/instagram/Dd4XJeljYG_.jpg", url: "https://www.instagram.com/reel/Dd4XJeljYG_/", caption: "In Vino Veritas: sabato 10 ottobre in Piazza Garibaldi" },
-  { img: "/instagram/DdzNcOREjqX.jpg", url: "https://www.instagram.com/p/DdzNcOREjqX/", caption: "Monte Gennaro fatto — e Pe' Fratte presenta il suo logo" },
+  { img: "/instagram/DdzNcOREjqX.jpg", url: "https://www.instagram.com/p/DdzNcOREjqX/", caption: "Monte Gennaro fatto, e Pe' Fratte presenta il suo logo" },
   { img: "/instagram/DdwzqXQM4Rf.jpg", url: "https://www.instagram.com/reel/DdwzqXQM4Rf/", caption: "In Vino Veritas: segnate ottobre" },
-  { img: "/instagram/DdhBXGHDFrz.jpg", url: "https://www.instagram.com/p/DdhBXGHDFrz/", caption: "Pe' Fratte è partito — prima uscita sul Monte Scalambra" },
+  { img: "/instagram/DdhBXGHDFrz.jpg", url: "https://www.instagram.com/p/DdhBXGHDFrz/", caption: "Pe' Fratte è partito: prima uscita sul Monte Scalambra" },
   { img: "/instagram/DdUKLtYsHcL.jpg", url: "https://www.instagram.com/p/DdUKLtYsHcL/", caption: "Nasce Pe' Fratte, la community trekking di Cave Lab" },
   { img: "/instagram/DdRw1desnlM.jpg", url: "https://www.instagram.com/reel/DdRw1desnlM/", caption: "È nata la Community Trekking di Cave Lab" },
-  { img: "/instagram/DbTKDdysHtX.jpg", url: "https://www.instagram.com/reel/DbTKDdysHtX/", caption: "Cinema sotto le stelle — serata con Mediterraneo di Salvatores" },
+  { img: "/instagram/DbTKDdysHtX.jpg", url: "https://www.instagram.com/reel/DbTKDdysHtX/", caption: "Cinema sotto le stelle: serata con Mediterraneo di Salvatores" },
   { img: "/instagram/DZPr16lsm_I.jpg", url: "https://www.instagram.com/reel/DZPr16lsm_I/", caption: "Le interviste Cave League, versione meme" },
   { img: "/instagram/DasYAvRsac8.jpg", url: "https://www.instagram.com/p/DasYAvRsac8/", caption: "Cinema sotto le stelle: quattro martedì, quattro film" },
   { img: "/instagram/DZp_P1usxZd.jpg", url: "https://www.instagram.com/reel/DZp_P1usxZd/", caption: "Semplicemente, grazie" },
-  { img: "/instagram/DZkMk9HMpwb.jpg", url: "https://www.instagram.com/p/DZkMk9HMpwb/", caption: "Super Bowl Night — Final Day" },
+  { img: "/instagram/DZkMk9HMpwb.jpg", url: "https://www.instagram.com/p/DZkMk9HMpwb/", caption: "Super Bowl Night, Final Day" },
   { img: "/instagram/DZh3-sRMFDS.jpg", url: "https://www.instagram.com/reel/DZh3-sRMFDS/", caption: "Le interviste della Cave League" },
   { img: "/instagram/DZho0TcMUPC.jpg", url: "https://www.instagram.com/p/DZho0TcMUPC/", caption: "2026 is the new 2016" },
-  { img: "/instagram/DZfFks9ssDF.jpg", url: "https://www.instagram.com/p/DZfFks9ssDF/", caption: "Cave Lab es otra cosa — latin night" },
+  { img: "/instagram/DZfFks9ssDF.jpg", url: "https://www.instagram.com/p/DZfFks9ssDF/", caption: "Cave Lab es otra cosa: latin night" },
   { img: "/instagram/DZcU00GsBKc.jpg", url: "https://www.instagram.com/reel/DZcU00GsBKc/", caption: "Quiz e premi tra il pubblico" },
 ];
 
@@ -190,7 +191,7 @@ export const EVENTI = [
      uscita: le condizioni possono cambiare da un'uscita all'altra. */
   {
     iso: "2026-09-19", date: "Sabato 19 settembre", gruppo: "Pf",
-    title: "Pe' Fratte — Monte Scalambra",
+    title: "Pe' Fratte: Monte Scalambra",
     desc: "La prima uscita della community trekking: 6,3 km e 270 m di dislivello da Serrone, adatta a tutti.",
     percorso: {
       zona: "Serrone",
@@ -208,7 +209,7 @@ export const EVENTI = [
   },
   {
     iso: "2026-09-26", date: "Sabato 26 settembre", gruppo: "Pf",
-    title: "Pe' Fratte — Monte Gennaro",
+    title: "Pe' Fratte: Monte Gennaro",
     desc: "Seconda uscita: 9,4 km e 410 m di dislivello da Palombara. Ritrovo a Cave alle 08:15, partecipazione gratuita.",
     percorso: {
       zona: "Palombara Sabina",
@@ -243,7 +244,7 @@ export const EVENTI = [
   },
   {
     iso: "2026-10-03", date: "Sabato 3 ottobre", gruppo: "Pf",
-    title: "Pe' Fratte — Monte Cavo",
+    title: "Pe' Fratte: Monte Cavo",
     desc: "Terza uscita: 9,5 km e 310 m di dislivello a Rocca di Papa, con pranzo al sacco vista sui laghi di Albano e Nemi. Ritrovo a Cave alle 08:15, partecipazione gratuita.",
     percorso: {
       zona: "Rocca di Papa",
@@ -260,10 +261,10 @@ export const EVENTI = [
     },
     evidenza: { stile: "pe-fratte", numeroUscita: 3 },
   },
-  { iso: "2026-08-18", date: "Martedì 18 agosto", title: "Cinema sotto le stelle — Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
-  { iso: "2026-08-11", date: "Martedì 11 agosto", title: "Cinema sotto le stelle — Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
-  { iso: "2026-07-28", date: "Martedì 28 luglio", title: "Cinema sotto le stelle — Mediterraneo", desc: "Il capolavoro Premio Oscar di Gabriele Salvatores, nel giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
-  { iso: "2026-07-14", date: "Martedì 14 luglio", title: "Cinema sotto le stelle — L'incredibile storia dell'Isola delle Rose", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
+  { iso: "2026-08-18", date: "Martedì 18 agosto", title: "Cinema sotto le stelle: Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
+  { iso: "2026-08-11", date: "Martedì 11 agosto", title: "Cinema sotto le stelle: Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
+  { iso: "2026-07-28", date: "Martedì 28 luglio", title: "Cinema sotto le stelle: Mediterraneo", desc: "Il capolavoro Premio Oscar di Gabriele Salvatores, nel giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
+  { iso: "2026-07-14", date: "Martedì 14 luglio", title: "Cinema sotto le stelle: L'incredibile storia dell'Isola delle Rose", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
   { iso: "2026-06-14", date: "5–14 giugno", title: "Cave League 2026", desc: "Il torneo tra i rioni di Cave si è chiuso con la Super Bowl Night finale e le premiazioni all'Anfiteatro del Calcio." },
 ];
 

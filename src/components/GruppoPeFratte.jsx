@@ -22,7 +22,7 @@ export default function GruppoPeFratte({ gruppo, uscite }) {
       <div className="pf-tessera-corpo">
         <p className="pf-tessera-meta">Gruppo · {gruppo.tema}</p>
         <h3 className="pf-tessera-logo">
-          <img src="/pe-fratte/logo-oro.svg" alt={gruppo.name + " — un'idea Cave Lab"} width="1110" height="374" loading="lazy" />
+          <img src="/pe-fratte/logo-oro.svg" alt={gruppo.name + ", un'idea Cave Lab"} width="1110" height="374" loading="lazy" />
         </h3>
         <p className="pf-tessera-desc">{gruppo.desc}</p>
 
@@ -35,7 +35,7 @@ export default function GruppoPeFratte({ gruppo, uscite }) {
                   <span className="pf-tessera-data">{u.date}</span>
                   <span className="pf-tessera-nome">
                     {fatta && <span className="pf-tessera-fatta">Fatta</span>}
-                    {u.title.split("— ").pop()}
+                    {u.title.split(": ").pop()}
                   </span>
                 </li>
               );

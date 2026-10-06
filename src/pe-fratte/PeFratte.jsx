@@ -18,7 +18,7 @@ const VERDI = { notte: "#16271D", muschio: "#1C3325", bosco: "#24402F" };
 const haMuschio = PE_FRATTE.galleria.length > 0 || fatte.length > 0;
 
 /* "Pe' Fratte — Monte Gennaro" → "Monte Gennaro" */
-const meta = (u) => u.title.split("— ").pop();
+const meta = (u) => u.title.split(": ").pop();
 
 function DifficoltaBadge({ chiave }) {
   const d = PE_FRATTE.difficolta[chiave];
@@ -110,7 +110,7 @@ function Hero() {
           <h1 className="pf-hero-logo" data-reveal>
             <img
               src="/pe-fratte/logo-oro.svg"
-              alt="Pe' Fratte — un'idea Cave Lab"
+              alt="Pe' Fratte, un'idea Cave Lab"
               width="1110"
               height="374"
             />
@@ -438,7 +438,7 @@ function Footer() {
   return (
     <footer className="pf-footer">
       <div className="pf-container pf-footer-inner">
-        <img src="/pe-fratte/logo-oro.svg" alt="Pe' Fratte — un'idea Cave Lab" className="pf-footer-logo" width="1110" height="374" loading="lazy" />
+        <img src="/pe-fratte/logo-oro.svg" alt="Pe' Fratte, un'idea Cave Lab" className="pf-footer-logo" width="1110" height="374" loading="lazy" />
         <p>
           Pe' Fratte è la comunità trekking di{" "}
           <a href="/" className="pf-footer-brand-link" aria-label="Cave Lab">

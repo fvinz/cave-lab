@@ -24,7 +24,7 @@ export default function ChiSiamo() {
             <h2 className="section-title">Chi siamo</h2>
             <p className="section-text">
               Siamo un gruppo di giovani di Cave che ha deciso di smettere di aspettare che
-              "qualcuno faccia qualcosa" per il proprio paese — e ha aperto un laboratorio.
+              "qualcuno faccia qualcosa" per il proprio paese, e ha aperto un laboratorio.
             </p>
             <p className="section-text">  
               Ci mettiamo dentro idee, energie ed errori (ci stanno, fanno parte

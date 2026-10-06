@@ -25,7 +25,7 @@ export default function Galleria() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="insta-tile"
-                aria-label={`${post.caption} — apri il post su Instagram`}
+                aria-label={`${post.caption}, apri il post su Instagram`}
               >
                 <picture>
                   <source srcSet={post.img.replace(/\.jpg$/, ".webp")} type="image/webp" />

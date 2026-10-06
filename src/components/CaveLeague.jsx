@@ -73,7 +73,7 @@ export default function CaveLeague() {
             <span className="podium-scorer">
               <Icon name="ball" className="podium-scorer-icon" />
               <span>
-                <strong>Capocannoniere:</strong> {podium.topScorer.name} ({podium.topScorer.team}) —{" "}
+                <strong>Capocannoniere:</strong> {podium.topScorer.name} ({podium.topScorer.team}),{" "}
                 {podium.topScorer.goals} gol
               </span>
             </span>

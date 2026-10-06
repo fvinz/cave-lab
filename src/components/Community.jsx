@@ -65,7 +65,7 @@ export default function Community() {
                             <span className="community-uscita-data">{u.date}</span>
                             <span className="community-uscita-meta">
                               {conclusa && <span className="community-uscita-stato">Fatta</span>}
-                              {u.title.split("— ").pop()}
+                              {u.title.split(": ").pop()}
                             </span>
                           </li>
                         );
