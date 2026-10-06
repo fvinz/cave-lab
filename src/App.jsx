@@ -23,8 +23,8 @@ export default function App() {
         <Attivita />
         <Community />
         <Eventi />
-        <CaveLeague />
         <Territorio />
+        <CaveLeague />
         <Galleria />
         <Contatti />
       </main>

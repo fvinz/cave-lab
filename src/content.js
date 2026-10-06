@@ -40,9 +40,9 @@ export const NAV_LINKS = [
   { href: "#chi-siamo", label: "Chi siamo" },
   { href: "#attivita", label: "Attività" },
   { href: "#eventi", label: "Eventi" },
+  { href: "#territorio", label: "Territorio" },
   { href: "#cave-league", label: "Cave League" },
   { href: "/pe-fratte/", label: "Pe' Fratte" },
-  { href: "#territorio", label: "Territorio" },
   { href: "#galleria", label: "Galleria" },
 ];
 
@@ -269,7 +269,7 @@ export const EVENTI = [
 ];
 
 export const CAVE_LEAGUE = {
-  kicker: "Elemento 05 · L'esperimento più esplosivo",
+  kicker: "Elemento 06 · L'esperimento più esplosivo",
   edition: "Edizione 2026 · 5–14 giugno · Anfiteatro del Calcio",
   /* Riassunto dell'evento (dati reali dal torneo 2026) */
   /* I numeri vivono nelle statistiche qui sotto: il recap racconta,
