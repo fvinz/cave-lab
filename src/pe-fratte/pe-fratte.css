@@ -588,6 +588,7 @@ button { font: inherit; }
 }
 @media (min-width: 860px) { .pf-media-largo { margin-bottom: var(--space-5); } }
 .pf-media-largo video { aspect-ratio: 848 / 478; object-fit: cover; }
+.pf-galleria-altre { margin-top: var(--space-2); }
 
 /* ---------- Archivio ---------- */
 .pf-archivio { display: grid; margin-top: var(--space-6); }

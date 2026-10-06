@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Analytics } from "@vercel/analytics/react";
 import PfIcon from "./PfIcon.jsx";
 import { FilaDiPini, Foglia, Paesaggio } from "./Natura.jsx";
@@ -380,29 +381,69 @@ function Galleria() {
         <h2 className="pf-h2" id="galleria-titolo" data-reveal>Le nostre uscite</h2>
 
         {gruppi.map((g) => (
-          <div key={g.iso} className="pf-galleria-gruppo" id={"foto-" + g.iso}>
-            {g.uscita && (
-              <p className="pf-galleria-uscita">
-                <span className="pf-galleria-nome">{meta(g.uscita)}</span>
-                <span className="pf-galleria-data">{g.uscita.date}</span>
-              </p>
-            )}
-            {g.larghi.map((m) => (
-              <figure key={m.src} className="pf-media pf-media-largo" data-reveal>
-                {m.tipo === "video" ? <VideoClip v={m} /> : <FotoMedia f={m} />}
-              </figure>
-            ))}
-            <div className="pf-galleria">
-              {g.altri.map((m) => (
-                <figure key={m.src} className={"pf-media" + (m.tipo === "video" ? " pf-media-video" : "")} data-reveal>
-                  {m.tipo === "video" ? <VideoClip v={m} /> : <FotoMedia f={m} />}
-                </figure>
-              ))}
-            </div>
-          </div>
+          <GruppoGalleria key={g.iso} g={g} />
         ))}
       </div>
     </section>
+  );
+}
+
+/* Per ogni uscita: il pezzo grande e i primi scatti; il resto si apre
+   a richiesta, così la galleria non si mangia la pagina. Gli scatti
+   chiusi non vengono nemmeno caricati. */
+const SCATTI_VISIBILI = 6;
+
+function GruppoGalleria({ g }) {
+  const [aperta, setAperta] = useState(false);
+  const idGriglia = useId();
+  const nascosti = g.altri.length - SCATTI_VISIBILI;
+  const scatti = aperta ? g.altri : g.altri.slice(0, SCATTI_VISIBILI);
+
+  /* aprendo o chiudendo la pagina cambia altezza: i trigger dello
+     scroll vanno ricalcolati (non serve al primo render) */
+  const montato = useRef(false);
+  useEffect(() => {
+    if (montato.current) ScrollTrigger.refresh();
+    montato.current = true;
+  }, [aperta]);
+
+  return (
+    <div className="pf-galleria-gruppo" id={"foto-" + g.iso}>
+      {g.uscita && (
+        <p className="pf-galleria-uscita">
+          <span className="pf-galleria-nome">{meta(g.uscita)}</span>
+          <span className="pf-galleria-data">{g.uscita.date}</span>
+        </p>
+      )}
+      {g.larghi.map((m) => (
+        <figure key={m.src} className="pf-media pf-media-largo" data-reveal>
+          {m.tipo === "video" ? <VideoClip v={m} /> : <FotoMedia f={m} />}
+        </figure>
+      ))}
+      <div className="pf-galleria" id={idGriglia}>
+        {scatti.map((m, i) => (
+          <figure
+            key={m.src}
+            className={"pf-media" + (m.tipo === "video" ? " pf-media-video" : "")}
+            /* solo i primi entrano con l'animazione; gli altri compaiono subito */
+            data-reveal={i < SCATTI_VISIBILI ? "" : undefined}
+          >
+            {m.tipo === "video" ? <VideoClip v={m} /> : <FotoMedia f={m} />}
+          </figure>
+        ))}
+      </div>
+      {nascosti > 0 && (
+        <button
+          type="button"
+          className="pf-btn pf-btn-secondary pf-galleria-altre"
+          aria-expanded={aperta}
+          aria-controls={idGriglia}
+          onClick={() => setAperta(!aperta)}
+        >
+          {aperta ? "Mostra meno" : `Mostra tutte (${g.altri.length})`}
+        </button>
+      )}
+    </div>
   );
 }
 
