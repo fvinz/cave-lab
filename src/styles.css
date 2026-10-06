@@ -866,6 +866,25 @@ section[id] { scroll-margin-top: 96px; }
     transparent);
   opacity: 0.35;
 }
+/* La spina accesa: si traccia con lo scroll (--filo da 0 a 1, Eventi.jsx);
+   senza animazione resta tracciata per intero */
+.lab-timeline::after {
+  content: "";
+  position: absolute;
+  left: 27px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--color-violet-light);
+  transform: scaleY(var(--filo, 1));
+  transform-origin: top;
+}
+/* Numeri spenti finché la spina non li raggiunge */
+.lab-timeline.is-viva .lab-step:not(.is-acceso) .lab-step-index {
+  background: var(--color-surface);
+  color: var(--color-muted);
+}
+.lab-step-index { transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out); }
 .lab-step {
   position: relative;
   display: grid;
@@ -949,6 +968,8 @@ section[id] { scroll-margin-top: 96px; }
   font-size: 0.95rem;
 }
 .lab-archivio-date { color: var(--color-muted); font-size: 0.85rem; padding-top: 0.1em; }
+.lab-archivio-name { display: flex; align-items: flex-start; gap: var(--space-2xs); }
+.lab-spunta { width: 1.1em; height: 1.1em; flex: none; margin-top: 0.15em; color: var(--color-violet-light); }
 @media (max-width: 560px) {
   .lab-archivio-list li { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
