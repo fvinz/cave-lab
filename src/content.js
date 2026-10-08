@@ -20,6 +20,9 @@ export const SOCIAL = {
    Didascalie senza trattino lungo (—): usare due punti o virgola.
    Il più recente in cima: il sito ne mostra solo i primi 9. */
 export const INSTAGRAM_POSTS = [
+  { img: "/instagram/DeMwHSxDANx.jpg", url: "https://www.instagram.com/p/DeMwHSxDANx/", caption: "In Vino Veritas: programma, ticket e cucina della serata" },
+  { img: "/instagram/DeKYd40gJ0p.jpg", url: "https://www.instagram.com/reel/DeKYd40gJ0p/", caption: "Un calice per ogni angolo del paese vecchio" },
+  { img: "/instagram/DeFPNPFkWmg.jpg", url: "https://www.instagram.com/p/DeFPNPFkWmg/", caption: "Monte Cavo fatto: boschi, sculture e vista sui laghi" },
   { img: "/instagram/Dd4XJeljYG_.jpg", url: "https://www.instagram.com/reel/Dd4XJeljYG_/", caption: "In Vino Veritas: sabato 10 ottobre in Piazza Garibaldi" },
   { img: "/instagram/DdzNcOREjqX.jpg", url: "https://www.instagram.com/p/DdzNcOREjqX/", caption: "Monte Gennaro fatto, e Pe' Fratte presenta il suo logo" },
   { img: "/instagram/DdwzqXQM4Rf.jpg", url: "https://www.instagram.com/reel/DdwzqXQM4Rf/", caption: "In Vino Veritas: segnate ottobre" },
