@@ -55,23 +55,23 @@ test("POST valido: voto registrato e classifica parziale senza vincitrici", asyn
   assert.equal("vincitrici" in r.corpo.risultati, false);
 });
 
-test("GET dopo il voto: classifica e scelte", async () => {
+test("GET dopo il voto: solo le scelte, la classifica parziale non torna", async () => {
   const ctx = contesto();
   await vota(ctx, T1, ["a", "b", "c"]);
-  const r = await leggi(ctx, T1);
-  assert.equal(r.corpo.haVotato, true);
-  assert.deepEqual(r.corpo.scelte, ["a", "b", "c"]);
-  assert.equal(r.corpo.risultati.votanti, 1);
+  assert.deepEqual(await leggi(ctx, T1), {
+    status: 200,
+    corpo: { stato: "aperto", haVotato: true, scelte: ["a", "b", "c"] },
+  });
 });
 
-test("doppio voto: 409 con le scelte originali, conteggi invariati", async () => {
+test("doppio voto: 409 con le scelte originali, senza classifica, conteggi invariati", async () => {
   const ctx = contesto();
   await vota(ctx, T1, ["a", "b", "c"]);
-  const r = await vota(ctx, T1, ["c", "d", "e"]);
-  assert.equal(r.status, 409);
-  assert.equal(r.corpo.errore, "gia-votato");
-  assert.deepEqual(r.corpo.scelte, ["a", "b", "c"]);
-  assert.equal(r.corpo.risultati.votanti, 1);
+  assert.deepEqual(await vota(ctx, T1, ["c", "d", "e"]), {
+    status: 409,
+    corpo: { errore: "gia-votato", stato: "aperto", haVotato: true, scelte: ["a", "b", "c"] },
+  });
+  assert.equal((await ctx.archivio.conteggi()).votanti, 1);
 });
 
 test("prima dell'apertura: POST 403, GET senza classifica", async () => {
@@ -140,7 +140,7 @@ test("chi ha già votato da una rete al tetto riceve 409, non 429", async () => 
   await vota(ctx, T2, ["a", "b", "c"]);
   const r = await vota(ctx, T1, ["a", "b", "c"]);
   assert.equal(r.status, 409);
-  assert.ok(r.corpo.risultati);
+  assert.deepEqual(r.corpo.scelte, ["a", "b", "c"]);
 });
 
 // Review Focus 1

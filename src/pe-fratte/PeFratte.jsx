@@ -503,7 +503,7 @@ export default function PeFratte() {
       </a>
       <Header />
       <main>
-        <Hero votoAperto={sondaggio.votoAperto} />
+        <Hero votoAperto={sondaggio.votoAperto && !sondaggio.haVotato} />
         <Sondaggio config={SONDAGGIO} s={sondaggio} />
         <Uscite />
         <FilaDiPini fondo={VERDI.notte} colore={VERDI.bosco} />

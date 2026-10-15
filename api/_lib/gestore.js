@@ -2,8 +2,9 @@ import { classifica, sceltaValida, scadenzaRete, statoSondaggio, tokenValido, vi
 
 /* Una richiesta al sondaggio, senza HTTP né Redis: li mettono
    api/sondaggio.js (Vercel) e vite.config.js (sviluppo).
-   La classifica esce solo per chi ha votato mentre il voto è aperto, e per
-   tutti dopo la pubblicazione. Durante l'attesa non esce per nessuno. */
+   La classifica parziale esce solo nella risposta al voto appena accettato:
+   rileggendo lo stato (ricarica) chi ha votato vede solo le sue scelte.
+   Dopo la pubblicazione esce per tutti; durante l'attesa per nessuno. */
 export async function gestisci({ metodo, token, mete, rete, ora }, { config, archivio }) {
   if (!config.attivo) return { status: 404, corpo: { errore: "non-attivo" } };
   const stato = statoSondaggio(config, ora);
@@ -34,13 +35,13 @@ export async function gestisci({ metodo, token, mete, rete, ora }, { config, arc
   if (esito === "gia-votato") {
     return { status: 409, corpo: { errore: "gia-votato", ...(await corpoStato(config, archivio, stato, await scheda())) } };
   }
-  return { status: 200, corpo: await corpoStato(config, archivio, stato, nuova) };
+  return { status: 200, corpo: await corpoStato(config, archivio, stato, nuova, { appenaVotato: true }) };
 }
 
-async function corpoStato(config, archivio, stato, scheda) {
+async function corpoStato(config, archivio, stato, scheda, { appenaVotato = false } = {}) {
   const corpo = { stato, haVotato: Boolean(scheda) };
   if (scheda) corpo.scelte = scheda.mete;
-  if ((scheda && stato === "aperto") || stato === "chiuso") {
+  if ((appenaVotato && stato === "aperto") || stato === "chiuso") {
     const { votanti, voti } = await archivio.conteggi();
     const mete = classifica(config, voti);
     corpo.risultati = { votanti, mete, ...(stato === "chiuso" ? vincitrici(config, mete) : {}) };
