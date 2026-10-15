@@ -2,11 +2,17 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PfIcon from "./PfIcon.jsx";
 import { DatiSentiero, DifficoltaBadge } from "./Sentiero.jsx";
-import { giornoEOra, ordineMescolato } from "./sondaggio-utili.js";
+import CurveDiLivello from "./CurveDiLivello.jsx";
+import useAdesso from "./useAdesso.js";
+import { contoAllaRovescia, giornoEOra, ordineMescolato } from "./sondaggio-utili.js";
+import { COMMUNITY } from "../content.js";
 
 /* Sondaggio "Le mete di novembre". Non applica regole: mostra quello che
-   dice il server (useSondaggio) e gli manda le tre scelte. */
-export default function Sondaggio({ config, s }) {
+   dice il server (useSondaggio) e gli manda le tre scelte.
+   `inHero`: mentre si vota e fino all'annuncio è la hero della pagina;
+   dopo l'annuncio torna una sezione sotto la hero di sempre. */
+export default function Sondaggio({ config, s, inHero = false }) {
+  const ora = useAdesso();
   const titoloRisultati = useRef(null);
   const appenaVotato = useRef(false);
   const montato = useRef(false);
@@ -52,15 +58,25 @@ export default function Sondaggio({ config, s }) {
   }, [fase]);
 
   if (!s.visibile) return null;
-  const votoFinito = s.stato === "attesa" || s.stato === "chiuso";
 
   return (
-    <section className="pf-section pf-sondaggio" id="sondaggio" aria-labelledby="sondaggio-titolo">
-      <div className="pf-container">
-        <p className="pf-meta">Sondaggio</p>
-        <h2 className="pf-h2" id="sondaggio-titolo">
-          {votoFinito ? "Le mete di novembre" : "Dove andiamo a novembre?"}
-        </h2>
+    <section
+      className={"pf-sondaggio " + (inHero ? "pf-sondaggio-hero" : "pf-section")}
+      id="sondaggio"
+      aria-labelledby="sondaggio-titolo"
+    >
+      <CurveDiLivello />
+      <div className="pf-container pf-sondaggio-dentro">
+        {inHero ? (
+          <TestaHero config={config} s={s} ora={ora} />
+        ) : (
+          <>
+            <p className="pf-meta">Sondaggio</p>
+            <h2 className="pf-h2" id="sondaggio-titolo">
+              Le mete di novembre
+            </h2>
+          </>
+        )}
 
         {fase === "caricamento" && (
           <p className="pf-sondaggio-nota" role="status">
@@ -91,6 +107,37 @@ export default function Sondaggio({ config, s }) {
   );
 }
 
+/* Testa della hero: il titolo enorme e, accanto, la scadenza che conta
+   adesso (chiusura del voto, poi annuncio della classifica) */
+function TestaHero({ config, s, ora }) {
+  const attesa = s.stato === "attesa";
+  const verso = attesa ? config.pubblicazione : config.chiusura;
+  const manca = contoAllaRovescia(verso, ora);
+  return (
+    <header className="pf-sondaggio-testa">
+      <h1 className="pf-sondaggio-titolo" id="sondaggio-titolo">
+        {attesa ? "Le mete di" : "Dove andiamo"}
+        <span>{attesa ? "novembre" : "a novembre?"}</span>
+      </h1>
+      <div className="pf-sondaggio-quando">
+        <p className="pf-sondaggio-scadenza">
+          {attesa ? "La classifica si svela" : "Si vota fino a"} <strong>{giornoEOra(verso)}</strong>
+        </p>
+        {manca && (
+          <p className="pf-sondaggio-mancano">
+            <PfIcon name="clock" />
+            Mancano {manca.testo}
+          </p>
+        )}
+        <a href={COMMUNITY.inviteUrl} target="_blank" rel="noopener noreferrer" className="pf-sondaggio-community">
+          <PfIcon name="whatsapp" />
+          Entra nella community
+        </a>
+      </div>
+    </header>
+  );
+}
+
 function Scheda({ config, s, onInvio }) {
   const [scelte, setScelte] = useState([]);
   const mete = useMemo(() => ordineMescolato(config.mete, s.token), [config.mete, s.token]);
@@ -114,7 +161,7 @@ function Scheda({ config, s, onInvio }) {
     <form className="pf-sondaggio-form" onSubmit={invia}>
       <p className="pf-lead">
         Scegli le {config.voti} mete che vorresti fare: le {config.vincitrici} più votate diventano le uscite di
-        novembre. Si vota fino a {giornoEOra(config.chiusura)}.
+        novembre.
       </p>
       <fieldset className="pf-sondaggio-mete">
         <legend className="pf-visually-hidden">Scegli {config.voti} mete</legend>
@@ -125,6 +172,8 @@ function Scheda({ config, s, onInvio }) {
             const id = `${idBase}-${m.id}`;
             return (
               <li key={m.id} className={"pf-voce" + (scelta ? " is-scelta" : "") + (spenta ? " is-spenta" : "")}>
+                {/* la tavola del segnavia: carta con la punta a freccia */}
+                <span className="pf-voce-tavola" aria-hidden="true"></span>
                 <input
                   id={id}
                   type="checkbox"
@@ -211,13 +260,14 @@ function Riepilogo({ config, s, esitoRef }) {
     <div className="pf-risultati" ref={esitoRef} tabIndex={-1}>
       {s.avviso === "non-contato" && <NonContato />}
       <p className="pf-lead">
-        {s.stato === "attesa" ? "Il sondaggio è chiuso." : "Hai già votato, grazie!"} La classifica esce{" "}
-        {giornoEOra(config.pubblicazione)}.
+        {s.stato === "attesa" ? "Il voto è chiuso: grazie a chi ha partecipato." : "Hai già votato, grazie!"}
       </p>
       {s.haVotato && (
         <p className="pf-risultati-nota">Il tuo voto: {s.scelte.map((id) => nome.get(id) ?? id).join(", ")}.</p>
       )}
-      <p className="pf-note">Riapri la pagina dopo quell'ora per vederla.</p>
+      <p className="pf-note">
+        La classifica completa esce {giornoEOra(config.pubblicazione)}: torna qui a quell'ora per vederla.
+      </p>
     </div>
   );
 }

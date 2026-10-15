@@ -77,7 +77,7 @@ function Header() {
   );
 }
 
-function Hero({ votoAperto }) {
+function Hero() {
   const prossima = prossime[0];
   return (
     <section className="pf-hero" id="top">
@@ -100,22 +100,10 @@ function Hero({ votoAperto }) {
           <p className="pf-meta" data-reveal>Comunità trekking · Cave (RM)</p>
           <p className="pf-lead" data-reveal>{PE_FRATTE.intro}</p>
           <div className="pf-hero-actions" data-reveal>
-            {/* Nei giorni del voto l'oro va al sondaggio */}
-            {votoAperto ? (
-              <>
-                <a href="#sondaggio" className="pf-btn pf-btn-accent">
-                  Vota le mete di novembre
-                </a>
-                <BottoneGruppo variant="secondary" />
-              </>
-            ) : (
-              <>
-                <BottoneGruppo />
-                <a href={ANCORA_USCITE} className="pf-btn pf-btn-secondary">
-                  Vedi le uscite
-                </a>
-              </>
-            )}
+            <BottoneGruppo />
+            <a href={ANCORA_USCITE} className="pf-btn pf-btn-secondary">
+              Vedi le uscite
+            </a>
           </div>
         </div>
 
@@ -496,6 +484,7 @@ function Footer() {
 export default function PeFratte() {
   const scope = useNatura();
   const sondaggio = useSondaggio(SONDAGGIO);
+  const sondaggioInHero = sondaggio.visibile && (sondaggio.stato === "aperto" || sondaggio.stato === "attesa");
   return (
     <div ref={scope}>
       <a className="pf-skip-link" href={ANCORA_USCITE}>
@@ -503,8 +492,15 @@ export default function PeFratte() {
       </a>
       <Header />
       <main>
-        <Hero votoAperto={sondaggio.votoAperto && !sondaggio.haVotato} />
-        <Sondaggio config={SONDAGGIO} s={sondaggio} />
+        {/* Mentre si vota e fino all'annuncio il sondaggio è la hero */}
+        {sondaggioInHero ? (
+          <Sondaggio config={SONDAGGIO} s={sondaggio} inHero />
+        ) : (
+          <>
+            <Hero />
+            <Sondaggio config={SONDAGGIO} s={sondaggio} />
+          </>
+        )}
         <Uscite />
         <FilaDiPini fondo={VERDI.notte} colore={VERDI.bosco} />
         <ComeFunziona />

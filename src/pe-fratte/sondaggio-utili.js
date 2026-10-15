@@ -55,3 +55,28 @@ export function giornoEOra(iso) {
   const d = new Date(iso);
   return `${GIORNO.format(d)} alle ${ORA.format(d)}`;
 }
+
+/* Quanto manca a `verso` (chiusura o pubblicazione): due unità al massimo,
+   giorni e ore, poi ore e minuti, poi minuti. I secondi arrotondano al
+   minuto successivo; a scadenza raggiunta restituisce null. */
+const UNITA = {
+  giorni: ["giorno", "giorni"],
+  ore: ["ora", "ore"],
+  minuti: ["minuto", "minuti"],
+};
+const parte = (valore, chiave) => ({ valore, unita: UNITA[chiave][valore === 1 ? 0 : 1] });
+
+export function contoAllaRovescia(verso, ora) {
+  const ms = new Date(verso).getTime() - ora.getTime();
+  if (ms <= 0) return null;
+  const minuti = Math.ceil(ms / 60000);
+  const g = Math.floor(minuti / 1440);
+  const o = Math.floor((minuti % 1440) / 60);
+  const m = minuti % 60;
+  const parti = g > 0 ? [parte(g, "giorni"), parte(o, "ore")] : o > 0 ? [parte(o, "ore"), parte(m, "minuti")] : [parte(m, "minuti")];
+  const testo = parti
+    .filter((p, i) => i === 0 || p.valore > 0)
+    .map((p) => `${p.valore} ${p.unita}`)
+    .join(" e ");
+  return { parti, testo };
+}

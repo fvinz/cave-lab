@@ -176,7 +176,14 @@ Risponde `200` con:
 
 - La sezione `id="sondaggio"` sta subito dopo la hero, prima di "Prossime uscite", sul fondo notte.
 - Link diretto da condividere: `/pe-fratte#sondaggio`.
-- Anche la hero della home (Cave Lab) invita al voto: mentre si vota, apre con una carta "Dove andiamo a novembre?" nello stile Pe' Fratte che porta a `/pe-fratte/#sondaggio`. (Richiesta del 15 ottobre.)
+- **Hero (modifica del 15 ottobre).** Mentre si vota e fino all'annuncio (`aperto` e `attesa`) il sondaggio **è** la hero di `/pe-fratte`, in stile "carta dei sentieri":
+  - fondo verde notte con curve di livello (`CurveDiLivello.jsx`) che si scoprono una volta dalla vetta;
+  - titolo enorme ("Dove andiamo / a novembre?", in attesa "Le mete di / novembre");
+  - la scadenza che conta (chiusura del voto, poi annuncio) con conto alla rovescia;
+  - le mete come segnavia color carta con la punta a freccia, oro pieno quando scelte.
+
+  Dopo l'annuncio torna la hero di sempre e la classifica finale sta nella sezione subito sotto, con lo stesso fondo.
+- **Home di Cave Lab.** In `aperto` e `attesa` la hero apre con una carta manifesto oro: "NOVEMBRE" enorme, conto alla rovescia grande verso chiusura o annuncio, bottone "Vota le mete" / "Vai al sondaggio" verso `/pe-fratte/#sondaggio`. Non è una replica delle carte delle uscite.
 - Mentre il voto è aperto, secondo l'orologio locale e la configurazione:
   - il bottone oro della hero diventa "Vota le mete di novembre" e porta alla sezione;
   - "Entra nella community" passa a secondario;

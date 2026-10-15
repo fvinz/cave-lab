@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { CHIAVE_TOKEN, giornoEOra, leggiToken, ordineMescolato } from "./sondaggio-utili.js";
+import { CHIAVE_TOKEN, contoAllaRovescia, giornoEOra, leggiToken, ordineMescolato } from "./sondaggio-utili.js";
 
 const VALIDO = "3f2b8c1e-9d4a-4b7e-8f21-0c5d6e7a8b9c";
 const NUOVO = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
@@ -55,4 +55,41 @@ test("ordineMescolato: stesso seme stesso ordine, semi diversi ordini diversi", 
 test("giornoEOra: data e ora italiane", () => {
   assert.equal(giornoEOra("2026-10-22T23:59:00+02:00"), "giovedì 22 ottobre alle 23:59");
   assert.equal(giornoEOra("2026-10-19T08:00:00+02:00"), "lunedì 19 ottobre alle 08:00");
+});
+
+const V = new Date("2026-10-21T21:59:00Z"); // mercoledì 21 alle 23:59 ora italiana
+const prima = (ms) => new Date(V.getTime() - ms);
+const MIN = 60 * 1000;
+
+test("contoAllaRovescia: più di un giorno mostra giorni e ore", () => {
+  assert.deepEqual(contoAllaRovescia(V, prima((2 * 24 * 60 + 14 * 60 + 30) * MIN)), {
+    parti: [{ valore: 2, unita: "giorni" }, { valore: 14, unita: "ore" }],
+    testo: "2 giorni e 14 ore",
+  });
+});
+
+test("contoAllaRovescia: singolari e parte a zero omessa nel testo", () => {
+  assert.deepEqual(contoAllaRovescia(V, prima(24 * 60 * MIN)), {
+    parti: [{ valore: 1, unita: "giorno" }, { valore: 0, unita: "ore" }],
+    testo: "1 giorno",
+  });
+  assert.equal(contoAllaRovescia(V, prima(61 * MIN)).testo, "1 ora e 1 minuto");
+});
+
+test("contoAllaRovescia: l'ultimo giorno mostra ore e minuti, l'ultima ora solo minuti", () => {
+  assert.deepEqual(contoAllaRovescia(V, prima((5 * 60 + 7) * MIN)).parti, [
+    { valore: 5, unita: "ore" },
+    { valore: 7, unita: "minuti" },
+  ]);
+  assert.deepEqual(contoAllaRovescia(V, prima(42 * MIN)), { parti: [{ valore: 42, unita: "minuti" }], testo: "42 minuti" });
+});
+
+test("contoAllaRovescia: i secondi arrotondano al minuto successivo, mai a zero prima della scadenza", () => {
+  assert.equal(contoAllaRovescia(V, prima(20 * 1000)).testo, "1 minuto");
+});
+
+test("contoAllaRovescia: alla scadenza e dopo restituisce null", () => {
+  assert.equal(contoAllaRovescia(V, V), null);
+  assert.equal(contoAllaRovescia(V, new Date(V.getTime() + MIN)), null);
+  assert.equal(contoAllaRovescia("2026-10-21T23:59:00+02:00", prima(42 * MIN)).testo, "42 minuti");
 });

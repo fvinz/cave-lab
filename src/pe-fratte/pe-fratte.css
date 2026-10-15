@@ -622,10 +622,82 @@ button { font: inherit; }
 .pf-archivio .pf-dato .pf-icon { color: var(--su-verde-3); }
 
 /* ---------- Sondaggio (Sondaggio.jsx) ---------- */
-/* Niente livelli animati qui: senza il ritaglio delle altre sezioni la
-   barra di conferma può restare agganciata al fondo dello schermo
-   (con overflow: hidden la sezione diventa il contenitore dello sticky) */
-.pf-section.pf-sondaggio { overflow: visible; }
+/* "Carta dei sentieri": verde notte con le curve di livello. Niente
+   ritaglio sulla sezione (overflow: hidden la renderebbe il contenitore
+   dello sticky e la barra di conferma non resterebbe in fondo allo
+   schermo): ritaglia solo lo strato delle curve. */
+.pf-section.pf-sondaggio, .pf-sondaggio { position: relative; overflow: visible; background: var(--verde-notte); }
+.pf-sondaggio-dentro { position: relative; z-index: 1; }
+
+/* Le curve stanno nella parte alta (titolo e prime mete), alte al massimo
+   uno schermo e sfumate in basso: sulla lista lunga il disegno, in "slice",
+   si ingrandirebbe a dismisura e se ne vedrebbe solo un pezzo. */
+.pf-curve {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: min(100%, max(640px, 100vh));
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--pf-bosco-600);
+  -webkit-mask-image: linear-gradient(to bottom, #000 65%, transparent);
+  mask-image: linear-gradient(to bottom, #000 65%, transparent);
+}
+/* La carta si scopre dalla vetta (in alto a destra) verso il basso a sinistra */
+.pf-curve svg { width: 100%; height: 100%; display: block; animation: pf-svela 2.4s var(--ease-trail) both; }
+.pf-curva { stroke-width: 1.5; }
+.pf-curva-direttrice { stroke-width: 2.5; stroke: var(--pf-bosco-500); }
+.pf-curve-sentiero { stroke: var(--pf-carta-100); opacity: .45; }
+.pf-curve-vetta { fill: var(--pf-oro-500); }
+@keyframes pf-svela {
+  from { clip-path: circle(0% at 76% 31%); }
+  to { clip-path: circle(150% at 76% 31%); }
+}
+@media (prefers-reduced-motion: reduce) { .pf-curve svg { animation: none; } }
+
+/* Hero del sondaggio: il titolo è la pagina */
+.pf-sondaggio-hero { padding: var(--space-7) 0 var(--space-8); }
+@media (min-width: 960px) { .pf-sondaggio-hero { padding: var(--space-8) 0 var(--space-9); } }
+.pf-sondaggio-testa { display: grid; gap: var(--space-5); align-items: end; }
+@media (min-width: 960px) {
+  .pf-sondaggio-testa { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: var(--space-7); }
+}
+.pf-sondaggio-titolo {
+  font: 900 clamp(56px, 9vw, 96px)/.86 var(--font-display);
+  letter-spacing: .005em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--su-verde-1);
+}
+.pf-sondaggio-titolo span { display: block; color: var(--pf-oro-500); }
+.pf-sondaggio-quando { display: grid; gap: var(--space-3); justify-items: start; padding-bottom: .4em; }
+.pf-sondaggio-scadenza { font-size: clamp(17px, 1.8vw, 20px); line-height: 1.4; color: var(--su-verde-2); }
+.pf-sondaggio-scadenza strong { display: block; font-weight: 700; color: var(--su-verde-1); }
+.pf-sondaggio-mancano {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 10px;
+  border: var(--border-w-strong) solid var(--pf-oro-500);
+  border-radius: var(--radius-xs);
+  font: 700 13px/1 var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--pf-oro-500);
+}
+.pf-sondaggio-mancano .pf-icon { width: 15px; height: 15px; }
+.pf-sondaggio-community {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  color: var(--su-verde-1);
+  text-underline-offset: 4px;
+}
+.pf-sondaggio-community .pf-icon { width: 18px; height: 18px; }
+.pf-sondaggio-community:hover { color: var(--pf-oro-500); }
+.pf-sondaggio-hero .pf-sondaggio-form, .pf-sondaggio-hero .pf-risultati { margin-top: var(--space-7); }
+
 .pf-sondaggio-nota {
   display: grid;
   gap: var(--space-4);
@@ -637,35 +709,56 @@ button { font: inherit; }
 }
 .pf-sondaggio-form { margin-top: var(--space-5); }
 .pf-sondaggio-mete { margin: 0; padding: 0; border: 0; min-width: 0; }
-/* Tutte le righe della griglia alte quanto la più alta: le card sono
-   identiche e allineate, su una colonna come su due */
-.pf-sondaggio-mete ul { display: grid; grid-auto-rows: 1fr; gap: var(--space-4); margin-top: var(--space-5); }
-@media (min-width: 860px) {
-  .pf-sondaggio-mete ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
+/* Tutte le righe della griglia alte quanto la più alta: segnavia
+   identici e allineati, su una, due o tre colonne */
+.pf-sondaggio-mete ul { display: grid; grid-auto-rows: 1fr; gap: var(--space-5) var(--space-6); margin-top: var(--space-5); }
+@media (min-width: 860px) { .pf-sondaggio-mete ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1140px) { .pf-sondaggio-mete ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
-/* Meta da votare: carta su verde, con le stesse righe nello stesso posto
-   (nome su due righe, zona, dati, difficoltà e link in fondo). L'etichetta si allarga a tutta la card,
-   così si tocca ovunque; la casella vera resta per tastiera e lettori. */
+/* Meta da votare = segnavia: tavola color carta con la punta a freccia,
+   timbrata sotto. La forma la disegna .pf-voce-tavola (bordo e carta),
+   così l'ombra a timbro segue la freccia e il testo resta pulito.
+   L'etichetta si allarga a tutto il segnavia: si tocca ovunque. */
 .pf-voce {
+  --punta: 26px;
   position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  padding: var(--space-4) var(--space-4) var(--space-4) calc(var(--space-4) + 40px);
-  background: var(--bg-surface);
+  padding: var(--space-4) calc(var(--space-4) + var(--punta)) var(--space-4) calc(var(--space-4) + 40px);
   color: var(--fg-2);
-  border: var(--border-w-strong) solid var(--border-strong);
-  border-radius: var(--radius-md);
-  box-shadow: 4px 4px 0 var(--pf-bosco-600);
-  transition: box-shadow var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+  transition: opacity var(--dur-fast) var(--ease-out);
 }
-.pf-voce.is-scelta { box-shadow: var(--shadow-stamp-oro); }
+.pf-voce-tavola {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  filter: drop-shadow(5px 5px 0 var(--pf-bosco-600));
+  transition: transform var(--dur-base) var(--ease-trail);
+}
+.pf-voce-tavola::before,
+.pf-voce-tavola::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, calc(100% - var(--punta)) 0, 100% 50%, calc(100% - var(--punta)) 100%, 0 100%);
+}
+.pf-voce-tavola::before { background: var(--pf-bosco-900); }
+.pf-voce-tavola::after {
+  inset: var(--border-w-strong);
+  background: var(--bg-surface);
+  clip-path: polygon(0 0, calc(100% - var(--punta) + 1px) 0, 100% 50%, calc(100% - var(--punta) + 1px) 100%, 0 100%);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.pf-voce:hover .pf-voce-tavola { transform: translateX(3px); }
+.pf-voce.is-scelta .pf-voce-tavola::after { background: var(--pf-oro-500); }
 .pf-voce.is-spenta { opacity: .5; }
-.pf-voce:has(.pf-voce-check:focus-visible) { box-shadow: var(--focus-ring); }
+.pf-voce.is-spenta:hover .pf-voce-tavola { transform: none; }
+.pf-voce:has(.pf-voce-check:focus-visible) { outline: 3px solid var(--pf-oro-500); outline-offset: 5px; border-radius: var(--radius-sm); }
 .pf-voce-check { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .pf-voce-etichetta { display: block; cursor: pointer; }
-.pf-voce-etichetta::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.pf-voce-etichetta::after { content: ""; position: absolute; inset: 0; }
 .is-spenta .pf-voce-etichetta { cursor: not-allowed; }
 .pf-voce-segno {
   position: absolute;
@@ -676,12 +769,12 @@ button { font: inherit; }
   width: 28px;
   height: 28px;
   background: var(--pf-carta-50);
-  color: var(--pf-bosco-900);
+  color: var(--pf-oro-500);
   border: var(--border-w-strong) solid var(--pf-bosco-900);
   border-radius: var(--radius-xs);
 }
-.pf-voce-segno .pf-icon { width: 18px; height: 18px; opacity: 0; }
-.is-scelta .pf-voce-segno { background: var(--pf-oro-500); }
+.pf-voce-segno .pf-icon { width: 18px; height: 18px; opacity: 0; stroke-width: 3; }
+.is-scelta .pf-voce-segno { background: var(--pf-bosco-900); }
 .is-scelta .pf-voce-segno .pf-icon { opacity: 1; }
 /* Il nome occupa sempre due righe: le righe sotto restano allineate */
 .pf-voce-nome {
@@ -694,10 +787,12 @@ button { font: inherit; }
   text-transform: uppercase;
   color: var(--fg-brand);
 }
+.is-scelta .pf-voce-nome { color: var(--pf-bosco-900); }
 .pf-voce-dati { display: grid; gap: var(--space-3); }
-/* Zona e dati su una riga sola: nessuna card va a capo in modo diverso */
+/* Zona e dati su una riga sola: nessun segnavia va a capo diversamente */
 .pf-voce-zona { display: flex; min-width: 0; font-size: 14px; }
 .pf-voce-zona span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.is-scelta .pf-zona, .is-scelta .pf-zona .pf-icon, .is-scelta .pf-dato .pf-icon { color: var(--pf-bosco-900); }
 .pf-voce .pf-dati {
   flex-wrap: nowrap;
   gap: var(--space-3);
@@ -705,6 +800,9 @@ button { font: inherit; }
   font-size: 12px;
   border-top: var(--border-w) dashed var(--border-1);
 }
+.is-scelta .pf-dati { border-top-color: var(--pf-oro-700); }
+/* Sul segnavia oro la difficoltà "intermedia" (oro) sparirebbe: bordo scuro */
+.pf-voce .pf-diff { box-shadow: 0 0 0 var(--border-w) var(--pf-bosco-900); }
 .pf-voce-piede {
   display: flex;
   align-items: center;
@@ -712,8 +810,7 @@ button { font: inherit; }
   gap: var(--space-3);
   margin-top: auto;
 }
-/* In fondo alla card; sopra lo strato cliccabile, così apre il percorso
-   senza selezionare la meta */
+/* Sopra lo strato cliccabile: apre il percorso senza selezionare la meta */
 .pf-voce-link {
   position: relative;
   z-index: 1;
@@ -725,6 +822,7 @@ button { font: inherit; }
   text-transform: uppercase;
   color: var(--fg-brand);
 }
+.is-scelta .pf-voce-link { color: var(--pf-bosco-900); }
 .pf-voce-link .pf-icon { width: 14px; height: 14px; }
 
 /* Contatore e conferma: su telefono restano in fondo allo schermo

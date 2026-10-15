@@ -8,15 +8,19 @@ import { etichettaMancanti, isInArrivo } from "../date.js";
 import { Foglia, Paesaggio } from "../pe-fratte/Natura.jsx";
 import useNatura from "../pe-fratte/useNatura.js";
 import { SONDAGGIO } from "../pe-fratte/sondaggio.config.js";
-import { giornoEOra } from "../pe-fratte/sondaggio-utili.js";
+import { contoAllaRovescia, giornoEOra } from "../pe-fratte/sondaggio-utili.js";
+import CurveDiLivello from "../pe-fratte/CurveDiLivello.jsx";
+import useAdesso from "../pe-fratte/useAdesso.js";
 import { statoSondaggio } from "../../api/_lib/regole.js";
 
 /* Apertura del sito: se ci sono eventi in primo piano (`evidenza` in
    EVENTI) ancora in arrivo, la hero li presenta e il manifesto scende
    subito sotto; altrimenti il manifesto torna a essere la hero.
-   Mentre si vota il sondaggio di Pe' Fratte, la sua carta apre la hero. */
+   Mentre si vota il sondaggio di Pe' Fratte, e fino all'annuncio della
+   classifica, la sua carta apre la hero. */
 export default function Hero() {
-  const sondaggioAperto = SONDAGGIO.attivo && statoSondaggio(SONDAGGIO, new Date()) === "aperto";
+  const statoVoto = SONDAGGIO.attivo ? statoSondaggio(SONDAGGIO, new Date()) : "spento";
+  const sondaggioAperto = statoVoto === "aperto" || statoVoto === "attesa";
   const inEvidenza = EVENTI
     .filter((e) => e.evidenza && isInArrivo(e.iso))
     .sort((a, b) => a.iso.localeCompare(b.iso))
@@ -223,29 +227,47 @@ function CartaPeFratte({ evento }) {
   );
 }
 
-/* Carta del sondaggio di Pe' Fratte: stessa tessera "bosco" delle uscite,
-   porta dritta alla sezione del voto. Compare solo mentre si vota. */
+/* Carta del sondaggio di Pe' Fratte: un manifesto oro, volutamente diverso
+   dalle carte delle uscite. "Novembre" enorme, il conto alla rovescia alla
+   scadenza che conta adesso (chiusura del voto, poi annuncio) e le curve di
+   livello della hero di Pe' Fratte, appena accennate. */
 function CartaSondaggio() {
-  const scope = useNatura();
+  const ora = useAdesso();
+  const attesa = statoSondaggio(SONDAGGIO, ora) === "attesa";
+  const verso = attesa ? SONDAGGIO.pubblicazione : SONDAGGIO.chiusura;
+  const manca = contoAllaRovescia(verso, ora);
 
   return (
-    <article className="pf-tessera carta-pf carta-sondaggio" data-scena data-in-cima ref={scope}>
-      <Paesaggio variante="tramonto" />
-      <Foglia x="84%" y="8%" size={22} tono="oro" velocita={0.6} giro={200} />
-
-      <div className="pf-tessera-corpo">
-        <p className="pf-tessera-meta">Pe' Fratte · Sondaggio · {SONDAGGIO.mete.length} mete</p>
-        <h2 className="carta-pf-nome">Dove andiamo a novembre?</h2>
-        <p className="carta-pf-data">Si vota fino a {giornoEOra(SONDAGGIO.chiusura)}</p>
-        <p className="pf-tessera-desc">
-          Scegli le {SONDAGGIO.voti} mete che vorresti fare: le {SONDAGGIO.vincitrici} più votate diventano le
-          uscite di novembre. La classifica esce {giornoEOra(SONDAGGIO.pubblicazione)}.
-        </p>
-        <div className="carta-pf-azioni">
-          <a href="/pe-fratte/#sondaggio" className="pf-tessera-cta">
-            Vota le mete
+    <article className="carta-manifesto" aria-labelledby="carta-manifesto-titolo">
+      <CurveDiLivello className="carta-manifesto-curve" />
+      <div className="carta-manifesto-corpo">
+        <div className="carta-manifesto-testo">
+          <span className="carta-manifesto-marchio" role="img" aria-label="Pe' Fratte"></span>
+          <h2 className="carta-manifesto-titolo" id="carta-manifesto-titolo">Novembre</h2>
+          <p className="carta-manifesto-domanda">
+            {attesa
+              ? "Le mete sono scelte: manca solo l'annuncio."
+              : `Dove andiamo? Scegli ${SONDAGGIO.voti} mete su ${SONDAGGIO.mete.length}.`}
+          </p>
+        </div>
+        <div className="carta-manifesto-tempo">
+          <p className="carta-manifesto-scadenza">
+            {attesa ? "La classifica si svela" : "Si vota fino a"} <strong>{giornoEOra(verso)}</strong>
+          </p>
+          {manca && (
+            <p className="carta-manifesto-conto" aria-label={`Mancano ${manca.testo}`}>
+              {manca.parti.map((p) => (
+                <span key={p.unita} className="carta-manifesto-unita">
+                  <span className="carta-manifesto-numero">{String(p.valore).padStart(2, "0")}</span>
+                  <span className="carta-manifesto-etichetta">{p.unita}</span>
+                </span>
+              ))}
+            </p>
+          )}
+          <a href="/pe-fratte/#sondaggio" className="carta-manifesto-cta">
+            {attesa ? "Vai al sondaggio" : "Vota le mete"}
+            <Icon name="arrowRight" />
           </a>
-          <a href="/pe-fratte/" className="carta-pf-link">Scopri Pe' Fratte</a>
         </div>
       </div>
     </article>
