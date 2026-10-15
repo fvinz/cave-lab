@@ -658,6 +658,8 @@ body::after {
   border-radius: 8px;
   box-shadow: 6px 6px 0 var(--m-bosco-700);
   font-family: var(--font-body);
+  /* il layout interno segue la larghezza della carta, non dello schermo */
+  container-type: inline-size;
 }
 .carta-manifesto .pf-curve {
   position: absolute;
@@ -681,8 +683,8 @@ body::after {
 
 .carta-manifesto-corpo {
   display: grid;
-  gap: var(--space-lg);
-  padding: var(--space-lg);
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-md) var(--space-lg);
   height: 100%;
   align-content: space-between;
 }
@@ -746,12 +748,13 @@ body::after {
 .carta-manifesto-cta:hover { transform: translateY(-2px); box-shadow: 3px 5px 0 var(--m-oro-scuro); }
 .carta-manifesto-cta:hover .icon { transform: translateX(3px); }
 .carta-manifesto-cta:focus-visible { outline: 3px solid var(--m-bosco); outline-offset: 4px; }
-/* Da sola a tutta larghezza: testo a sinistra, tempo e bottone a destra */
-@media (min-width: 900px) {
-  .hero-eventi-griglia.is-solo .carta-manifesto-corpo {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+/* Carta larga: testo a sinistra, tempo e bottone a destra, niente vuoti */
+@container (min-width: 600px) {
+  .carta-manifesto-corpo {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
     align-items: end;
-    padding: var(--space-xl) var(--space-xl);
+    column-gap: var(--space-lg);
+    padding: var(--space-lg);
   }
 }
 

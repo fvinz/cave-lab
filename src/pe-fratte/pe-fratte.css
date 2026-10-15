@@ -721,12 +721,13 @@ button { font: inherit; }
    L'etichetta si allarga a tutto il segnavia: si tocca ovunque. */
 .pf-voce {
   --punta: 26px;
+  container-type: inline-size;
   position: relative;
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-4) calc(var(--space-4) + var(--punta)) var(--space-4) calc(var(--space-4) + 40px);
+  gap: var(--space-2);
+  padding: 14px calc(14px + var(--punta)) 14px calc(14px + 38px);
   color: var(--fg-2);
   transition: opacity var(--dur-fast) var(--ease-out);
 }
@@ -762,8 +763,8 @@ button { font: inherit; }
 .is-spenta .pf-voce-etichetta { cursor: not-allowed; }
 .pf-voce-segno {
   position: absolute;
-  left: var(--space-4);
-  top: var(--space-4);
+  left: 14px;
+  top: 14px;
   display: grid;
   place-items: center;
   width: 28px;
@@ -776,39 +777,50 @@ button { font: inherit; }
 .pf-voce-segno .pf-icon { width: 18px; height: 18px; opacity: 0; stroke-width: 3; }
 .is-scelta .pf-voce-segno { background: var(--pf-bosco-900); }
 .is-scelta .pf-voce-segno .pf-icon { opacity: 1; }
-/* Il nome occupa sempre due righe: le righe sotto restano allineate */
+/* Il nome va al massimo su due righe. Con più colonne tiene sempre lo
+   spazio di due righe, così zona e dati dei segnavia affiancati restano
+   allineati; su una colonna no, e non lascia buchi. */
 .pf-voce-nome {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  min-height: 2em;
   font: 900 clamp(21px, 5.6vw, 24px)/1 var(--font-display);
   text-transform: uppercase;
   color: var(--fg-brand);
 }
+@media (min-width: 860px) { .pf-voce-nome { min-height: 2em; } }
 .is-scelta .pf-voce-nome { color: var(--pf-bosco-900); }
-.pf-voce-dati { display: grid; gap: var(--space-3); }
 /* Zona e dati su una riga sola: nessun segnavia va a capo diversamente */
 .pf-voce-zona { display: flex; min-width: 0; font-size: 14px; }
 .pf-voce-zona span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .is-scelta .pf-zona, .is-scelta .pf-zona .pf-icon, .is-scelta .pf-dato .pf-icon { color: var(--pf-bosco-900); }
-.pf-voce .pf-dati {
-  flex-wrap: nowrap;
-  gap: var(--space-3);
-  padding-top: var(--space-3);
-  font-size: 12px;
-  border-top: var(--border-w) dashed var(--border-1);
-}
-.is-scelta .pf-dati { border-top-color: var(--pf-oro-700); }
+.pf-voce .pf-dati { flex-wrap: nowrap; gap: var(--space-3); font-size: 12px; }
 /* Sul segnavia oro la difficoltà "intermedia" (oro) sparirebbe: bordo scuro */
 .pf-voce .pf-diff { box-shadow: 0 0 0 var(--border-w) var(--pf-bosco-900); }
+/* In fondo, sotto la riga tratteggiata: difficoltà e dati, il link a destra.
+   Prende lo spazio che avanza, così il vuoto non resta sotto il nome. */
 .pf-voce-piede {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: var(--space-2) var(--space-4);
   margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: var(--border-w) dashed var(--border-1);
+}
+.is-scelta .pf-voce-piede { border-top-color: var(--pf-oro-700); }
+.pf-voce-misure { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+/* Su un segnavia stretto (telefono, o tre colonne) il fondo starebbe su
+   tre righe: due bastano. Prima i dati per intero, poi difficoltà a
+   sinistra e link a destra. Decide la larghezza del segnavia. */
+@container (max-width: 520px) {
+  .pf-voce-misure { display: contents; }
+  .pf-voce-piede { display: grid; grid-template-columns: auto 1fr; align-items: center; }
+  .pf-voce .pf-dati { grid-row: 1; grid-column: 1 / -1; }
+  .pf-voce .pf-diff { grid-row: 2; grid-column: 1; justify-self: start; }
+  .pf-voce-link { grid-row: 2; grid-column: 2; justify-self: end; }
 }
 /* Sopra lo strato cliccabile: apre il percorso senza selezionare la meta */
 .pf-voce-link {

@@ -181,7 +181,7 @@ function Scheda({ config, s, onInvio }) {
                   checked={scelta}
                   disabled={spenta || inCorso}
                   onChange={() => cambia(m.id)}
-                  aria-describedby={id + "-dati"}
+                  aria-describedby={`${id}-zona ${id}-misure`}
                 />
                 <label htmlFor={id} className="pf-voce-etichetta">
                   <span className="pf-voce-segno" aria-hidden="true">
@@ -189,17 +189,17 @@ function Scheda({ config, s, onInvio }) {
                   </span>
                   <span className="pf-voce-nome">{m.nome}</span>
                 </label>
-                <div id={id + "-dati"} className="pf-voce-dati">
-                  {m.zona && (
-                    <p className="pf-zona pf-voce-zona" title={m.zona}>
-                      <PfIcon name="mapPin" />
-                      <span>{m.zona}</span>
-                    </p>
-                  )}
-                  <DatiSentiero p={m} />
-                </div>
+                {m.zona && (
+                  <p id={id + "-zona"} className="pf-zona pf-voce-zona" title={m.zona}>
+                    <PfIcon name="mapPin" />
+                    <span>{m.zona}</span>
+                  </p>
+                )}
                 <div className="pf-voce-piede">
-                  <DifficoltaBadge chiave={m.difficolta} />
+                  <div id={id + "-misure"} className="pf-voce-misure">
+                    <DifficoltaBadge chiave={m.difficolta} />
+                    <DatiSentiero p={m} />
+                  </div>
                   {m.link && (
                     <a className="pf-voce-link" href={m.link} target="_blank" rel="noopener noreferrer">
                       Vedi su komoot
