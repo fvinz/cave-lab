@@ -26,9 +26,11 @@ export default function Sondaggio({ config, s }) {
     montato.current = true;
   }, [fase, s.visibile]);
 
-  /* dopo il voto il focus passa alla classifica */
+  /* dopo il voto il focus (e lo scroll) passa all'esito: la classifica, o
+     l'attesa se il voto è arrivato a sondaggio chiuso. La lista lunga
+     sparisce, e senza questo su telefono l'esito resterebbe fuori schermo. */
   useEffect(() => {
-    if (fase === "risultati" && appenaVotato.current) {
+    if ((fase === "risultati" || fase === "attesa") && appenaVotato.current) {
       appenaVotato.current = false;
       titoloRisultati.current?.focus();
     }
@@ -67,7 +69,7 @@ export default function Sondaggio({ config, s }) {
             }}
           />
         )}
-        {fase === "attesa" && <Attesa config={config} s={s} />}
+        {fase === "attesa" && <Attesa config={config} s={s} esitoRef={titoloRisultati} />}
         {fase === "risultati" && <Risultati config={config} s={s} titoloRef={titoloRisultati} />}
       </div>
     </section>
@@ -139,7 +141,20 @@ function Scheda({ config, s, onInvio }) {
         </ul>
       </fieldset>
 
+      {/* Gli errori stanno nella barra: su telefono resta in vista mentre si
+          scorre, quindi il messaggio compare accanto al bottone appena premuto */}
       <div className="pf-sondaggio-barra">
+        {s.invio === "errore" && (
+          <p className="pf-sondaggio-errore" role="alert">
+            Il voto non è arrivato. Le tue scelte sono ancora qui: riprova.
+          </p>
+        )}
+        {s.invio === "tetto" && (
+          <p className="pf-sondaggio-errore" role="alert">
+            Da questa rete sono già arrivati molti voti. Se sei sulla Wi-Fi di casa o di un locale, riprova con la rete
+            dati del telefono.
+          </p>
+        )}
         <p className="pf-sondaggio-conta" aria-live="polite">
           {scelte.length} di {config.voti}
         </p>
@@ -151,17 +166,6 @@ function Scheda({ config, s, onInvio }) {
               : `Scegline ancora ${config.voti - scelte.length}`}
         </button>
       </div>
-      {s.invio === "errore" && (
-        <p className="pf-sondaggio-errore" role="alert">
-          Il voto non è arrivato. Le tue scelte sono ancora qui: riprova.
-        </p>
-      )}
-      {s.invio === "tetto" && (
-        <p className="pf-sondaggio-errore" role="alert">
-          Da questa rete sono già arrivati molti voti. Se sei sulla Wi-Fi di casa o di un locale, riprova con la rete
-          dati del telefono.
-        </p>
-      )}
     </form>
   );
 }
@@ -175,10 +179,10 @@ function NonContato() {
 }
 
 /* Tra chiusura e pubblicazione: la classifica non esce dal server per nessuno */
-function Attesa({ config, s }) {
+function Attesa({ config, s, esitoRef }) {
   const nome = new Map(config.mete.map((m) => [m.id, m.nome]));
   return (
-    <div className="pf-risultati">
+    <div className="pf-risultati" ref={esitoRef} tabIndex={-1}>
       {s.avviso === "non-contato" && <NonContato />}
       <p className="pf-lead">
         Il sondaggio è chiuso. La classifica esce {giornoEOra(config.pubblicazione)}.

@@ -718,10 +718,10 @@ button { font: inherit; }
 }
 .pf-sondaggio-conta { font: 700 15px/1 var(--font-mono); letter-spacing: .06em; color: var(--su-verde-1); }
 .pf-sondaggio-barra .pf-btn:disabled { opacity: .55; cursor: not-allowed; box-shadow: none; }
-.pf-sondaggio-errore { margin-top: var(--space-3); font-weight: 600; color: var(--pf-oro-200); }
+.pf-sondaggio-errore { flex-basis: 100%; font-weight: 600; color: var(--pf-oro-200); }
 
 /* Classifica */
-.pf-risultati { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+.pf-risultati { display: grid; gap: var(--space-3); margin-top: var(--space-5); scroll-margin-top: 88px; }
 .pf-sondaggio-avviso {
   padding: var(--space-3) var(--space-4);
   border: var(--border-w-strong) solid var(--pf-oro-500);
