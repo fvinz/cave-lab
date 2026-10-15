@@ -670,8 +670,19 @@ body::after {
   color: var(--m-bosco);
   opacity: .16;
 }
-/* lo scoprirsi delle curve è nella sequenza d'apertura della hero (Hero.jsx) */
-.carta-manifesto .pf-curve svg { width: 100%; height: 100%; display: block; }
+/* Le curve si scoprono dalla vetta con la stessa animazione della hero di
+   /pe-fratte (2,4 s, curva "trail"), partendo quando la carta è entrata */
+.carta-manifesto .pf-curve svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  animation: carta-manifesto-svela 2.4s cubic-bezier(.3, .7, .2, 1) 1.2s both;
+}
+@keyframes carta-manifesto-svela {
+  from { clip-path: circle(0% at 76% 31%); }
+  to { clip-path: circle(150% at 76% 31%); }
+}
+@media (prefers-reduced-motion: reduce) { .carta-manifesto .pf-curve svg { animation: none; } }
 .carta-manifesto .pf-curva { stroke-width: 1.5; }
 .carta-manifesto .pf-curva-direttrice { stroke-width: 2.6; }
 .carta-manifesto .pf-curve-sentiero { stroke: var(--m-bosco); }
