@@ -7,12 +7,12 @@
    - km/dislivello/durata facoltativi: un dato non annunciato non si scrive
    - `attivo: false` spegne sezione e API */
 export const SONDAGGIO = {
-  id: "prova-20261015",
+  id: "novembre-2026",
   attivo: true,
   /* PROVVISORI: orari e mete veri arrivano prima del lancio (Task 8) */
-  apertura: "2026-10-15T14:39:00+02:00",
-  chiusura: "2026-10-15T15:09:00+02:00",
-  pubblicazione: "2026-10-15T15:19:00+02:00",
+  apertura: "2026-10-19T08:00:00+02:00",
+  chiusura: "2026-10-22T23:59:00+02:00",
+  pubblicazione: "2026-10-23T18:00:00+02:00",
   voti: 3,
   vincitrici: 3,
   tettoPerRete: 10,
