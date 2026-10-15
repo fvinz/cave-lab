@@ -44,7 +44,10 @@ export default function Sondaggio({ config, s }) {
   useEffect(() => {
     if ((fase === "risultati" || fase === "riepilogo") && appenaVotato.current) {
       appenaVotato.current = false;
-      titoloRisultati.current?.focus();
+      /* focus() da solo non tiene conto dell'header fisso: lo scroll lo fa
+         scrollIntoView, che rispetta scroll-margin-top */
+      titoloRisultati.current?.focus({ preventScroll: true });
+      titoloRisultati.current?.scrollIntoView({ behavior: "instant", block: "start" });
     }
   }, [fase]);
 
