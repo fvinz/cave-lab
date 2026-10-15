@@ -411,7 +411,7 @@ button { font: inherit; }
 .pf-section-bosco { background: var(--verde-bosco); }
 .pf-section-muschio { background: var(--verde-muschio); }
 /* Ancore raggiunte dai link della hero: non finire sotto l'header fisso */
-#galleria, .pf-galleria-gruppo, #fatte-titolo { scroll-margin-top: 88px; }
+#galleria, .pf-galleria-gruppo, #fatte-titolo, #sondaggio { scroll-margin-top: 88px; }
 
 /* ---------- Card uscita (carta su verde) ---------- */
 .pf-card-grid {
@@ -620,6 +620,297 @@ button { font: inherit; }
 }
 .pf-archivio .pf-dati { font-size: 12px; color: var(--su-verde-2); }
 .pf-archivio .pf-dato .pf-icon { color: var(--su-verde-3); }
+
+/* ---------- Sondaggio (Sondaggio.jsx) ---------- */
+/* "Carta dei sentieri": verde notte con le curve di livello. Niente
+   ritaglio sulla sezione (overflow: hidden la renderebbe il contenitore
+   dello sticky e la barra di conferma non resterebbe in fondo allo
+   schermo): ritaglia solo lo strato delle curve. */
+.pf-section.pf-sondaggio, .pf-sondaggio { position: relative; overflow: visible; background: var(--verde-notte); }
+.pf-sondaggio-dentro { position: relative; z-index: 1; }
+
+/* Le curve stanno nella parte alta (titolo e prime mete), alte al massimo
+   uno schermo e sfumate in basso: sulla lista lunga il disegno, in "slice",
+   si ingrandirebbe a dismisura e se ne vedrebbe solo un pezzo. */
+.pf-curve {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: min(100%, max(640px, 100vh));
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--pf-bosco-600);
+  -webkit-mask-image: linear-gradient(to bottom, #000 65%, transparent);
+  mask-image: linear-gradient(to bottom, #000 65%, transparent);
+}
+/* La carta si scopre dalla vetta (in alto a destra) verso il basso a sinistra */
+.pf-curve svg { width: 100%; height: 100%; display: block; animation: pf-svela 2.4s var(--ease-trail) both; }
+.pf-curva { stroke-width: 1.5; }
+.pf-curva-direttrice { stroke-width: 2.5; stroke: var(--pf-bosco-500); }
+.pf-curve-sentiero { stroke: var(--pf-carta-100); opacity: .45; }
+.pf-curve-vetta { fill: var(--pf-oro-500); }
+@keyframes pf-svela {
+  from { clip-path: circle(0% at 76% 31%); }
+  to { clip-path: circle(150% at 76% 31%); }
+}
+@media (prefers-reduced-motion: reduce) { .pf-curve svg { animation: none; } }
+
+/* Hero del sondaggio: il titolo è la pagina */
+.pf-sondaggio-hero { padding: var(--space-7) 0 var(--space-8); }
+@media (min-width: 960px) { .pf-sondaggio-hero { padding: var(--space-8) 0 var(--space-9); } }
+.pf-sondaggio-testa { display: grid; gap: var(--space-5); align-items: end; }
+@media (min-width: 960px) {
+  .pf-sondaggio-testa { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: var(--space-7); }
+}
+.pf-sondaggio-titolo {
+  font: 900 clamp(56px, 9vw, 96px)/.86 var(--font-display);
+  letter-spacing: .005em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--su-verde-1);
+}
+.pf-sondaggio-titolo span { display: block; color: var(--pf-oro-500); }
+.pf-sondaggio-quando { display: grid; gap: var(--space-3); justify-items: start; padding-bottom: .4em; }
+.pf-sondaggio-scadenza { font-size: clamp(17px, 1.8vw, 20px); line-height: 1.4; color: var(--su-verde-2); }
+.pf-sondaggio-scadenza strong { display: block; font-weight: 700; color: var(--su-verde-1); }
+.pf-sondaggio-mancano {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 10px;
+  border: var(--border-w-strong) solid var(--pf-oro-500);
+  border-radius: var(--radius-xs);
+  font: 700 13px/1 var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--pf-oro-500);
+}
+.pf-sondaggio-mancano .pf-icon { width: 15px; height: 15px; }
+.pf-sondaggio-community {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  color: var(--su-verde-1);
+  text-underline-offset: 4px;
+}
+.pf-sondaggio-community .pf-icon { width: 18px; height: 18px; }
+.pf-sondaggio-community:hover { color: var(--pf-oro-500); }
+.pf-sondaggio-hero .pf-sondaggio-form, .pf-sondaggio-hero .pf-risultati { margin-top: var(--space-7); }
+
+.pf-sondaggio-nota {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+  margin-top: var(--space-5);
+  font: 700 13px/1.4 var(--font-mono);
+  letter-spacing: .04em;
+  color: var(--su-verde-3);
+}
+.pf-sondaggio-form { margin-top: var(--space-5); }
+.pf-sondaggio-mete { margin: 0; padding: 0; border: 0; min-width: 0; }
+/* Tutte le righe della griglia alte quanto la più alta: segnavia
+   identici e allineati, su una, due o tre colonne */
+.pf-sondaggio-mete ul { display: grid; grid-auto-rows: 1fr; gap: var(--space-5) var(--space-6); margin-top: var(--space-5); }
+@media (min-width: 860px) { .pf-sondaggio-mete ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1140px) { .pf-sondaggio-mete ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Meta da votare = segnavia: tavola color carta con la punta a freccia,
+   timbrata sotto. La forma la disegna .pf-voce-tavola (bordo e carta),
+   così l'ombra a timbro segue la freccia e il testo resta pulito.
+   L'etichetta si allarga a tutto il segnavia: si tocca ovunque. */
+.pf-voce {
+  --punta: 26px;
+  container-type: inline-size;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: 14px calc(14px + var(--punta)) 14px calc(14px + 38px);
+  color: var(--fg-2);
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.pf-voce-tavola {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  filter: drop-shadow(5px 5px 0 var(--pf-bosco-600));
+  transition: transform var(--dur-base) var(--ease-trail);
+}
+.pf-voce-tavola::before,
+.pf-voce-tavola::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, calc(100% - var(--punta)) 0, 100% 50%, calc(100% - var(--punta)) 100%, 0 100%);
+}
+.pf-voce-tavola::before { background: var(--pf-bosco-900); }
+.pf-voce-tavola::after {
+  inset: var(--border-w-strong);
+  background: var(--bg-surface);
+  clip-path: polygon(0 0, calc(100% - var(--punta) + 1px) 0, 100% 50%, calc(100% - var(--punta) + 1px) 100%, 0 100%);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.pf-voce:hover .pf-voce-tavola { transform: translateX(3px); }
+.pf-voce.is-scelta .pf-voce-tavola::after { background: var(--pf-oro-500); }
+.pf-voce.is-spenta { opacity: .5; }
+.pf-voce.is-spenta:hover .pf-voce-tavola { transform: none; }
+.pf-voce:has(.pf-voce-check:focus-visible) { outline: 3px solid var(--pf-oro-500); outline-offset: 5px; border-radius: var(--radius-sm); }
+.pf-voce-check { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.pf-voce-etichetta { display: block; cursor: pointer; }
+.pf-voce-etichetta::after { content: ""; position: absolute; inset: 0; }
+.is-spenta .pf-voce-etichetta { cursor: not-allowed; }
+.pf-voce-segno {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  background: var(--pf-carta-50);
+  color: var(--pf-oro-500);
+  border: var(--border-w-strong) solid var(--pf-bosco-900);
+  border-radius: var(--radius-xs);
+}
+.pf-voce-segno .pf-icon { width: 18px; height: 18px; opacity: 0; stroke-width: 3; }
+.is-scelta .pf-voce-segno { background: var(--pf-bosco-900); }
+.is-scelta .pf-voce-segno .pf-icon { opacity: 1; }
+/* Il nome va al massimo su due righe. Con più colonne tiene sempre lo
+   spazio di due righe, così zona e dati dei segnavia affiancati restano
+   allineati; su una colonna no, e non lascia buchi. */
+.pf-voce-nome {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font: 900 clamp(21px, 5.6vw, 24px)/1 var(--font-display);
+  text-transform: uppercase;
+  color: var(--fg-brand);
+}
+@media (min-width: 860px) { .pf-voce-nome { min-height: 2em; } }
+.is-scelta .pf-voce-nome { color: var(--pf-bosco-900); }
+/* Zona e dati su una riga sola: nessun segnavia va a capo diversamente */
+.pf-voce-zona { display: flex; min-width: 0; font-size: 14px; }
+.pf-voce-zona span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.is-scelta .pf-zona, .is-scelta .pf-zona .pf-icon, .is-scelta .pf-dato .pf-icon { color: var(--pf-bosco-900); }
+.pf-voce .pf-dati { flex-wrap: nowrap; gap: var(--space-3); font-size: 12px; }
+/* Sul segnavia oro la difficoltà "intermedia" (oro) sparirebbe: bordo scuro */
+.pf-voce .pf-diff { box-shadow: 0 0 0 var(--border-w) var(--pf-bosco-900); }
+/* In fondo, sotto la riga tratteggiata: difficoltà e dati, il link a destra.
+   Prende lo spazio che avanza, così il vuoto non resta sotto il nome. */
+.pf-voce-piede {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: var(--border-w) dashed var(--border-1);
+}
+.is-scelta .pf-voce-piede { border-top-color: var(--pf-oro-700); }
+.pf-voce-misure { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+/* Su un segnavia stretto (telefono, o tre colonne) il fondo starebbe su
+   tre righe: due bastano. Prima i dati per intero, poi difficoltà a
+   sinistra e link a destra. Decide la larghezza del segnavia. */
+@container (max-width: 520px) {
+  .pf-voce-misure { display: contents; }
+  .pf-voce-piede { display: grid; grid-template-columns: auto 1fr; align-items: center; }
+  .pf-voce .pf-dati { grid-row: 1; grid-column: 1 / -1; }
+  .pf-voce .pf-diff { grid-row: 2; grid-column: 1; justify-self: start; }
+  .pf-voce-link { grid-row: 2; grid-column: 2; justify-self: end; }
+}
+/* Sopra lo strato cliccabile: apre il percorso senza selezionare la meta */
+.pf-voce-link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 700 13px/1 var(--font-mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--fg-brand);
+}
+.is-scelta .pf-voce-link { color: var(--pf-bosco-900); }
+.pf-voce-link .pf-icon { width: 14px; height: 14px; }
+
+/* Contatore e conferma: su telefono restano in fondo allo schermo
+   finché la lista è in vista */
+.pf-sondaggio-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding: var(--space-4) 0;
+  background: var(--verde-notte);
+  border-top: var(--border-w) solid rgba(244, 238, 226, .12);
+}
+@media (max-width: 859px) {
+  .pf-sondaggio-barra {
+    position: sticky;
+    bottom: 0;
+    z-index: 3;
+    margin-inline: calc(-1 * var(--space-4));
+    padding-inline: var(--space-4);
+  }
+  .pf-sondaggio-barra .pf-btn { flex: 1 1 auto; }
+}
+.pf-sondaggio-conta { font: 700 15px/1 var(--font-mono); letter-spacing: .06em; color: var(--su-verde-1); }
+.pf-sondaggio-barra .pf-btn:disabled { opacity: .55; cursor: not-allowed; box-shadow: none; }
+.pf-sondaggio-errore { flex-basis: 100%; font-weight: 600; color: var(--pf-oro-200); }
+
+/* Classifica */
+.pf-risultati { display: grid; gap: var(--space-3); margin-top: var(--space-5); scroll-margin-top: 88px; }
+.pf-sondaggio-avviso {
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-w-strong) solid var(--pf-oro-500);
+  border-radius: var(--radius-sm);
+  color: var(--su-verde-1);
+}
+.pf-risultati-titolo {
+  font: 900 clamp(26px, 3.6vw, 34px)/1 var(--font-display);
+  text-transform: uppercase;
+  color: var(--su-verde-1);
+  scroll-margin-top: 88px;
+}
+.pf-risultati-nota { color: var(--su-verde-2); }
+.pf-classifica { display: grid; gap: var(--space-4); margin-top: var(--space-3); }
+.pf-classifica-voce { display: grid; gap: var(--space-2); }
+.pf-classifica-testa { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); }
+.pf-classifica-nome { font: 800 22px/1.05 var(--font-display); text-transform: uppercase; color: var(--su-verde-1); }
+.pf-classifica-voti { margin-left: auto; font: 700 14px/1 var(--font-mono); color: var(--su-verde-2); }
+.pf-classifica-tag,
+.pf-classifica-tuo {
+  padding: 4px 7px;
+  border-radius: var(--radius-xs);
+  font: 800 13px/1 var(--font-display);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.pf-classifica-tag { background: var(--pf-oro-500); color: var(--pf-bosco-900); }
+.pf-classifica-tuo { border: var(--border-w-strong) solid var(--pf-sabbia-400); color: var(--pf-sabbia-200); }
+.pf-classifica-barra {
+  display: block;
+  height: 10px;
+  overflow: hidden;
+  background: rgba(244, 238, 226, .12);
+  border-radius: var(--radius-xs);
+}
+.pf-classifica-barra span {
+  display: block;
+  height: 100%;
+  width: calc(var(--quota) * 100%);
+  background: var(--pf-bosco-300);
+  transform-origin: left;
+  animation: pf-cresce .9s var(--ease-trail) both;
+}
+.is-vincitrice .pf-classifica-barra span { background: var(--pf-oro-500); }
+@keyframes pf-cresce { from { transform: scaleX(0); } }
 
 /* ---------- CTA finale: paesaggio al tramonto ---------- */
 .pf-cta {
