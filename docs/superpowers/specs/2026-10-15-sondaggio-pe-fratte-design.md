@@ -9,8 +9,8 @@ La community Pe' Fratte sceglie le uscite di novembre votando sulla pagina `/pe-
 - Circa 15 mete candidate. Ogni persona ne vota **esattamente tre**, tutte con lo stesso peso.
 - Si vota **una volta per dispositivo**. Il voto è definitivo.
 - La classifica parziale si vede **solo dopo aver votato**.
-- Il sondaggio resta aperto da **lunedì 19 ottobre** a **giovedì 22 ottobre 2026 notte**, ora italiana. Gli orari esatti sono un dato di lancio (§10).
-- Alla chiusura la classifica **non** si vede subito. Diventa pubblica **venerdì 23 ottobre alle 18:00**, il giorno dopo, per tutti allo stesso momento, con le **prime tre** mete evidenziate come mete di novembre. Nella pausa nessuno la vede, nemmeno chi ha votato.
+- Si vota da **lunedì 19 ottobre alle 19:00** a **mercoledì 21 ottobre 2026 alle 23:59**, ora italiana (orari confermati il 15 ottobre).
+- Alla chiusura la classifica **non** si vede subito. Diventa pubblica **giovedì 22 ottobre alle 18:00**, il giorno dopo, per tutti allo stesso momento, con le **prime tre** mete evidenziate come mete di novembre. Nella pausa nessuno la vede, nemmeno chi ha votato.
 
 **Criteri di successo**
 
@@ -72,9 +72,9 @@ I file sotto `api/_lib/` non diventano funzioni, perché iniziano con underscore
 export const SONDAGGIO = {
   id: "novembre-2026",
   attivo: true,                                // false = sezione e API spente
-  apertura: "2026-10-19T<HH:MM>:00+02:00",     // dato di lancio (§10)
-  chiusura: "2026-10-22T<HH:MM>:00+02:00",     // dato di lancio (§10)
-  pubblicazione: "2026-10-23T18:00:00+02:00",  // la classifica diventa pubblica
+  apertura: "2026-10-19T19:00:00+02:00",
+  chiusura: "2026-10-21T23:59:00+02:00",
+  pubblicazione: "2026-10-22T18:00:00+02:00",  // la classifica diventa pubblica
   voti: 3,
   vincitrici: 3,
   tettoPerRete: 10,
@@ -176,6 +176,7 @@ Risponde `200` con:
 
 - La sezione `id="sondaggio"` sta subito dopo la hero, prima di "Prossime uscite", sul fondo notte.
 - Link diretto da condividere: `/pe-fratte#sondaggio`.
+- Anche la hero della home (Cave Lab) invita al voto: mentre si vota, apre con una carta "Dove andiamo a novembre?" nello stile Pe' Fratte che porta a `/pe-fratte/#sondaggio`. (Richiesta del 15 ottobre.)
 - Mentre il voto è aperto, secondo l'orologio locale e la configurazione:
   - il bottone oro della hero diventa "Vota le mete di novembre" e porta alla sezione;
   - "Entra nella community" passa a secondario;
@@ -198,7 +199,7 @@ Risponde `200` con:
 | `aperto`, non votato | `fieldset` con legenda, una riga per meta (checkbox nativa con aspetto a riga), contatore "N di 3", bottone "Conferma il voto, non si può cambiare". |
 | `aperto`, appena votato | Classifica parziale, "Il tuo voto" sulle tre scelte, totale dei votanti, "Si chiude giovedì alle HH:MM", nota che la si vede solo adesso. |
 | `aperto`, votato e pagina riaperta | "Hai già votato" con le tre scelte e l'ora della classifica finale. Nessuna classifica. Nella hero torna l'oro su "Entra nella community". |
-| `attesa` | "Il sondaggio è chiuso, la classifica esce venerdì 23 ottobre alle 18:00". Chi ha votato vede anche le sue tre scelte. Nessuna classifica. |
+| `attesa` | "Il sondaggio è chiuso, la classifica esce giovedì 22 ottobre alle 18:00". Chi ha votato vede anche le sue tre scelte. Nessuna classifica. |
 | `chiuso` | Classifica finale, prime tre (o le pari merito) evidenziate come mete di novembre, nota sul pari merito se serve, "Il tuo voto" se hai votato. |
 
 **Scegliere le mete**
@@ -282,7 +283,7 @@ Anteprima del dev server, a 375 px e su desktop, con `prefers-reduced-motion` at
 
 1. Elenco delle mete, con zona, difficoltà e i dati sentiero disponibili.
 2. Ora di apertura di lunedì 19 ottobre.
-3. Ora di chiusura di giovedì 22 ottobre. La pubblicazione della classifica è fissata a venerdì 23 ottobre alle 18:00.
+3. Ora di chiusura: mercoledì 21 ottobre alle 23:59. Pubblicazione della classifica: giovedì 22 ottobre alle 18:00.
 
 Senza questi dati si sviluppa e si prova con valori finti. Non si pubblica in produzione finché non sono nella configurazione.
 

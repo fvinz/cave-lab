@@ -10,10 +10,10 @@
 export const SONDAGGIO = {
   id: "novembre-2026",
   attivo: true,
-  /* Orari PROVVISORI: da confermare prima del merge */
-  apertura: "2026-10-19T08:00:00+02:00",
-  chiusura: "2026-10-22T23:59:00+02:00",
-  pubblicazione: "2026-10-23T18:00:00+02:00",
+  /* Si vota da lunedì 19 alle 19:00 a mercoledì 21 alle 23:59; classifica giovedì 22 alle 18:00 */
+  apertura: "2026-10-19T19:00:00+02:00",
+  chiusura: "2026-10-21T23:59:00+02:00",
+  pubblicazione: "2026-10-22T18:00:00+02:00",
   voti: 3,
   vincitrici: 3,
   tettoPerRete: 10,
