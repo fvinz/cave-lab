@@ -7,23 +7,28 @@ import { COMMUNITY, EVENTI, HERO_EVENTI, SOCIAL } from "../content.js";
 import { etichettaMancanti, isInArrivo } from "../date.js";
 import { Foglia, Paesaggio } from "../pe-fratte/Natura.jsx";
 import useNatura from "../pe-fratte/useNatura.js";
+import { SONDAGGIO } from "../pe-fratte/sondaggio.config.js";
+import { giornoEOra } from "../pe-fratte/sondaggio-utili.js";
+import { statoSondaggio } from "../../api/_lib/regole.js";
 
 /* Apertura del sito: se ci sono eventi in primo piano (`evidenza` in
    EVENTI) ancora in arrivo, la hero li presenta e il manifesto scende
-   subito sotto; altrimenti il manifesto torna a essere la hero. */
+   subito sotto; altrimenti il manifesto torna a essere la hero.
+   Mentre si vota il sondaggio di Pe' Fratte, la sua carta apre la hero. */
 export default function Hero() {
+  const sondaggioAperto = SONDAGGIO.attivo && statoSondaggio(SONDAGGIO, new Date()) === "aperto";
   const inEvidenza = EVENTI
     .filter((e) => e.evidenza && isInArrivo(e.iso))
     .sort((a, b) => a.iso.localeCompare(b.iso))
-    .slice(0, HERO_EVENTI.max)
+    .slice(0, HERO_EVENTI.max - (sondaggioAperto ? 1 : 0))
     /* l'evento principale (`grande`) apre la griglia e la lettura */
     .sort((a, b) => Number(!!b.evidenza.grande) - Number(!!a.evidenza.grande));
 
-  if (inEvidenza.length === 0) return <Manifesto asHero />;
+  if (inEvidenza.length === 0 && !sondaggioAperto) return <Manifesto asHero />;
 
   return (
     <>
-      <HeroEventi eventi={inEvidenza} />
+      <HeroEventi eventi={inEvidenza} sondaggio={sondaggioAperto} />
       <Manifesto />
     </>
   );
@@ -81,9 +86,9 @@ function useApertura() {
   return scope;
 }
 
-function HeroEventi({ eventi }) {
+function HeroEventi({ eventi, sondaggio }) {
   const scope = useApertura();
-  const solo = eventi.length === 1;
+  const solo = eventi.length + (sondaggio ? 1 : 0) === 1;
 
   return (
     <section className="hero-eventi" aria-labelledby="hero-eventi-titolo" ref={scope}>
@@ -103,6 +108,7 @@ function HeroEventi({ eventi }) {
         </header>
 
         <div className={"hero-eventi-griglia" + (solo ? " is-solo" : "")}>
+          {sondaggio && <CartaSondaggio />}
           {eventi.map((evento) =>
             evento.evidenza.stile === "in-vino-veritas" ? (
               <CartaInVinoVeritas key={evento.iso} evento={evento} />
@@ -209,6 +215,35 @@ function CartaPeFratte({ evento }) {
         <div className="carta-pf-azioni">
           <a href={COMMUNITY.inviteUrl} target="_blank" rel="noopener noreferrer" className="pf-tessera-cta">
             Entra nella community
+          </a>
+          <a href="/pe-fratte/" className="carta-pf-link">Scopri Pe' Fratte</a>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/* Carta del sondaggio di Pe' Fratte: stessa tessera "bosco" delle uscite,
+   porta dritta alla sezione del voto. Compare solo mentre si vota. */
+function CartaSondaggio() {
+  const scope = useNatura();
+
+  return (
+    <article className="pf-tessera carta-pf carta-sondaggio" data-scena data-in-cima ref={scope}>
+      <Paesaggio variante="tramonto" />
+      <Foglia x="84%" y="8%" size={22} tono="oro" velocita={0.6} giro={200} />
+
+      <div className="pf-tessera-corpo">
+        <p className="pf-tessera-meta">Pe' Fratte · Sondaggio · {SONDAGGIO.mete.length} mete</p>
+        <h2 className="carta-pf-nome">Dove andiamo a novembre?</h2>
+        <p className="carta-pf-data">Si vota fino a {giornoEOra(SONDAGGIO.chiusura)}</p>
+        <p className="pf-tessera-desc">
+          Scegli le {SONDAGGIO.voti} mete che vorresti fare: le {SONDAGGIO.vincitrici} più votate diventano le
+          uscite di novembre. La classifica esce {giornoEOra(SONDAGGIO.pubblicazione)}.
+        </p>
+        <div className="carta-pf-azioni">
+          <a href="/pe-fratte/#sondaggio" className="pf-tessera-cta">
+            Vota le mete
           </a>
           <a href="/pe-fratte/" className="carta-pf-link">Scopri Pe' Fratte</a>
         </div>

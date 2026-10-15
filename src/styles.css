@@ -626,6 +626,9 @@ body::after {
 }
 .carta-pf-link:hover { color: var(--pf-oro-500); }
 .carta-pf-link:focus-visible { outline: 2px solid var(--pf-oro-500); outline-offset: 3px; border-radius: 2px; }
+/* Carta Pe' Fratte da sola (es. il sondaggio quando non ci sono eventi):
+   il testo non corre su tutta la larghezza, il paesaggio sì */
+.hero-eventi-griglia.is-solo .carta-pf .pf-tessera-corpo { max-width: 44rem; }
 
 /* Manifesto sotto la hero degli eventi: solo la dichiarazione (i
    pulsanti sono già nella carta dell'evento), quindi meno altezza */
