@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
+    "test": "node --test \"api/_lib/*.test.js\" \"src/pe-fratte/*.test.js\"",
     "preview": "vite preview",
     "images:webp": "node scripts/generate-webp.mjs"
   },
