@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Analytics } from "@vercel/analytics/react";
 import PfIcon from "./PfIcon.jsx";
+import { DatiSentiero, DifficoltaBadge } from "./Sentiero.jsx";
 import { FilaDiPini, Foglia, Paesaggio } from "./Natura.jsx";
 import useNatura from "./useNatura.js";
 import CookieBanner, { openCookieBanner } from "../components/CookieBanner.jsx";
@@ -28,16 +29,6 @@ const ANCORA_USCITE = prossime.length > 0 ? "#uscite" : "#galleria";
 /* "Pe' Fratte: Monte Gennaro" → "Monte Gennaro" */
 const meta = (u) => u.title.split(": ").pop();
 
-function DifficoltaBadge({ chiave }) {
-  const d = PE_FRATTE.difficolta[chiave];
-  if (!d) return null;
-  return (
-    <span className={"pf-diff pf-diff-" + d.tono} title={d.nota}>
-      {d.label}
-    </span>
-  );
-}
-
 /* Condizioni di partecipazione della singola uscita (es. "Gratuita") */
 function Partecipazione({ valore }) {
   if (!valore) return null;
@@ -45,29 +36,6 @@ function Partecipazione({ valore }) {
     <span className="pf-quota" title="Partecipazione a questa uscita">
       {valore}
     </span>
-  );
-}
-
-/* Dati sentiero in mono, formato fisso: 9,4 KM · ↑ 410 M · 3–4 H */
-function DatiSentiero({ p }) {
-  const dati = [
-    p.km && { icon: "route", testo: `${p.km} km`, label: "Lunghezza" },
-    p.dislivello && { icon: "mountain", testo: `↑ ${p.dislivello} m`, label: "Dislivello" },
-    p.durata && { icon: "clock", testo: p.durata, label: "Durata camminata" },
-  ].filter(Boolean);
-  if (dati.length === 0) return null;
-  return (
-    <dl className="pf-dati">
-      {dati.map((d) => (
-        <div key={d.icon} className="pf-dato">
-          <dt className="pf-visually-hidden">{d.label}</dt>
-          <dd>
-            <PfIcon name={d.icon} />
-            {d.testo}
-          </dd>
-        </div>
-      ))}
-    </dl>
   );
 }
 
