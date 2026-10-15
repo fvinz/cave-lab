@@ -3,6 +3,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Analytics } from "@vercel/analytics/react";
 import PfIcon from "./PfIcon.jsx";
 import { DatiSentiero, DifficoltaBadge } from "./Sentiero.jsx";
+import Sondaggio from "./Sondaggio.jsx";
+import useSondaggio from "./useSondaggio.js";
+import { SONDAGGIO } from "./sondaggio.config.js";
 import { FilaDiPini, Foglia, Paesaggio } from "./Natura.jsx";
 import useNatura from "./useNatura.js";
 import CookieBanner, { openCookieBanner } from "../components/CookieBanner.jsx";
@@ -74,7 +77,7 @@ function Header() {
   );
 }
 
-function Hero() {
+function Hero({ votoAperto }) {
   const prossima = prossime[0];
   return (
     <section className="pf-hero" id="top">
@@ -97,10 +100,22 @@ function Hero() {
           <p className="pf-meta" data-reveal>Comunità trekking · Cave (RM)</p>
           <p className="pf-lead" data-reveal>{PE_FRATTE.intro}</p>
           <div className="pf-hero-actions" data-reveal>
-            <BottoneGruppo />
-            <a href={ANCORA_USCITE} className="pf-btn pf-btn-secondary">
-              Vedi le uscite
-            </a>
+            {/* Nei giorni del voto l'oro va al sondaggio */}
+            {votoAperto ? (
+              <>
+                <a href="#sondaggio" className="pf-btn pf-btn-accent">
+                  Vota le mete di novembre
+                </a>
+                <BottoneGruppo variant="secondary" />
+              </>
+            ) : (
+              <>
+                <BottoneGruppo />
+                <a href={ANCORA_USCITE} className="pf-btn pf-btn-secondary">
+                  Vedi le uscite
+                </a>
+              </>
+            )}
           </div>
         </div>
 
@@ -480,6 +495,7 @@ function Footer() {
 
 export default function PeFratte() {
   const scope = useNatura();
+  const sondaggio = useSondaggio(SONDAGGIO);
   return (
     <div ref={scope}>
       <a className="pf-skip-link" href={ANCORA_USCITE}>
@@ -487,7 +503,8 @@ export default function PeFratte() {
       </a>
       <Header />
       <main>
-        <Hero />
+        <Hero votoAperto={sondaggio.votoAperto} />
+        <Sondaggio config={SONDAGGIO} s={sondaggio} />
         <Uscite />
         <FilaDiPini fondo={VERDI.notte} colore={VERDI.bosco} />
         <ComeFunziona />

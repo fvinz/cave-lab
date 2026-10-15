@@ -411,7 +411,7 @@ button { font: inherit; }
 .pf-section-bosco { background: var(--verde-bosco); }
 .pf-section-muschio { background: var(--verde-muschio); }
 /* Ancore raggiunte dai link della hero: non finire sotto l'header fisso */
-#galleria, .pf-galleria-gruppo, #fatte-titolo { scroll-margin-top: 88px; }
+#galleria, .pf-galleria-gruppo, #fatte-titolo, #sondaggio { scroll-margin-top: 88px; }
 
 /* ---------- Card uscita (carta su verde) ---------- */
 .pf-card-grid {
@@ -620,6 +620,153 @@ button { font: inherit; }
 }
 .pf-archivio .pf-dati { font-size: 12px; color: var(--su-verde-2); }
 .pf-archivio .pf-dato .pf-icon { color: var(--su-verde-3); }
+
+/* ---------- Sondaggio (Sondaggio.jsx) ---------- */
+/* Niente livelli animati qui: senza il ritaglio delle altre sezioni la
+   barra di conferma può restare agganciata al fondo dello schermo
+   (con overflow: hidden la sezione diventa il contenitore dello sticky) */
+.pf-section.pf-sondaggio { overflow: visible; }
+.pf-sondaggio-nota {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+  margin-top: var(--space-5);
+  font: 700 13px/1.4 var(--font-mono);
+  letter-spacing: .04em;
+  color: var(--su-verde-3);
+}
+.pf-sondaggio-form { margin-top: var(--space-5); }
+.pf-sondaggio-mete { margin: 0; padding: 0; border: 0; min-width: 0; }
+.pf-sondaggio-mete ul { display: grid; gap: var(--space-4); margin-top: var(--space-5); }
+@media (min-width: 860px) {
+  .pf-sondaggio-mete ul { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}
+
+/* Meta da votare: carta su verde. L'etichetta si allarga a tutta la riga,
+   così si tocca ovunque; la casella vera resta per tastiera e lettori. */
+.pf-voce {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-4) var(--space-4) calc(var(--space-4) + 40px);
+  background: var(--bg-surface);
+  color: var(--fg-2);
+  border: var(--border-w-strong) solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: 4px 4px 0 var(--pf-bosco-600);
+  transition: box-shadow var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+.pf-voce.is-scelta { box-shadow: var(--shadow-stamp-oro); }
+.pf-voce.is-spenta { opacity: .5; }
+.pf-voce:has(.pf-voce-check:focus-visible) { box-shadow: var(--focus-ring); }
+.pf-voce-check { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.pf-voce-etichetta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  cursor: pointer;
+}
+.pf-voce-etichetta::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.is-spenta .pf-voce-etichetta { cursor: not-allowed; }
+.pf-voce-segno {
+  position: absolute;
+  left: var(--space-4);
+  top: var(--space-4);
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  background: var(--pf-carta-50);
+  color: var(--pf-bosco-900);
+  border: var(--border-w-strong) solid var(--pf-bosco-900);
+  border-radius: var(--radius-xs);
+}
+.pf-voce-segno .pf-icon { width: 18px; height: 18px; opacity: 0; }
+.is-scelta .pf-voce-segno { background: var(--pf-oro-500); }
+.is-scelta .pf-voce-segno .pf-icon { opacity: 1; }
+.pf-voce-nome {
+  font: 900 clamp(24px, 3.4vw, 30px)/.95 var(--font-display);
+  text-transform: uppercase;
+  color: var(--fg-brand);
+}
+.pf-voce-dati { display: grid; gap: var(--space-2); }
+.pf-voce .pf-dati { padding-top: var(--space-2); border-top: var(--border-w) dashed var(--border-1); }
+
+/* Contatore e conferma: su telefono restano in fondo allo schermo
+   finché la lista è in vista */
+.pf-sondaggio-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding: var(--space-4) 0;
+  background: var(--verde-notte);
+  border-top: var(--border-w) solid rgba(244, 238, 226, .12);
+}
+@media (max-width: 859px) {
+  .pf-sondaggio-barra {
+    position: sticky;
+    bottom: 0;
+    z-index: 3;
+    margin-inline: calc(-1 * var(--space-4));
+    padding-inline: var(--space-4);
+  }
+  .pf-sondaggio-barra .pf-btn { flex: 1 1 auto; }
+}
+.pf-sondaggio-conta { font: 700 15px/1 var(--font-mono); letter-spacing: .06em; color: var(--su-verde-1); }
+.pf-sondaggio-barra .pf-btn:disabled { opacity: .55; cursor: not-allowed; box-shadow: none; }
+.pf-sondaggio-errore { margin-top: var(--space-3); font-weight: 600; color: var(--pf-oro-200); }
+
+/* Classifica */
+.pf-risultati { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+.pf-sondaggio-avviso {
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-w-strong) solid var(--pf-oro-500);
+  border-radius: var(--radius-sm);
+  color: var(--su-verde-1);
+}
+.pf-risultati-titolo {
+  font: 900 clamp(26px, 3.6vw, 34px)/1 var(--font-display);
+  text-transform: uppercase;
+  color: var(--su-verde-1);
+  scroll-margin-top: 88px;
+}
+.pf-risultati-nota { color: var(--su-verde-2); }
+.pf-classifica { display: grid; gap: var(--space-4); margin-top: var(--space-3); }
+.pf-classifica-voce { display: grid; gap: var(--space-2); }
+.pf-classifica-testa { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); }
+.pf-classifica-nome { font: 800 22px/1.05 var(--font-display); text-transform: uppercase; color: var(--su-verde-1); }
+.pf-classifica-voti { margin-left: auto; font: 700 14px/1 var(--font-mono); color: var(--su-verde-2); }
+.pf-classifica-tag,
+.pf-classifica-tuo {
+  padding: 4px 7px;
+  border-radius: var(--radius-xs);
+  font: 800 13px/1 var(--font-display);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.pf-classifica-tag { background: var(--pf-oro-500); color: var(--pf-bosco-900); }
+.pf-classifica-tuo { border: var(--border-w-strong) solid var(--pf-sabbia-400); color: var(--pf-sabbia-200); }
+.pf-classifica-barra {
+  display: block;
+  height: 10px;
+  overflow: hidden;
+  background: rgba(244, 238, 226, .12);
+  border-radius: var(--radius-xs);
+}
+.pf-classifica-barra span {
+  display: block;
+  height: 100%;
+  width: calc(var(--quota) * 100%);
+  background: var(--pf-bosco-300);
+  transform-origin: left;
+  animation: pf-cresce .9s var(--ease-trail) both;
+}
+.is-vincitrice .pf-classifica-barra span { background: var(--pf-oro-500); }
+@keyframes pf-cresce { from { transform: scaleX(0); } }
 
 /* ---------- CTA finale: paesaggio al tramonto ---------- */
 .pf-cta {
