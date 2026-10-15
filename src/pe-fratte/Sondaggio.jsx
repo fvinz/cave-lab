@@ -20,6 +20,18 @@ export default function Sondaggio({ config, s }) {
           ? "riepilogo"
           : "scheda";
 
+  /* Il link /pe-fratte#sondaggio (WhatsApp, home) arriva prima che React
+     disegni la sezione: il browser non trova l'ancora e resta in cima.
+     Appena la sezione c'è, ci si porta lì una volta sola. */
+  const ancoraFatta = useRef(false);
+  useEffect(() => {
+    if (!s.visibile || ancoraFatta.current || window.location.hash !== "#sondaggio") return;
+    ancoraFatta.current = true;
+    requestAnimationFrame(() => {
+      document.getElementById("sondaggio")?.scrollIntoView({ behavior: "instant", block: "start" });
+    });
+  }, [s.visibile]);
+
   /* cambiando fase la sezione cambia altezza: i trigger più in basso vanno ricalcolati */
   useEffect(() => {
     if (montato.current) ScrollTrigger.refresh();
