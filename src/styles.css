@@ -671,12 +671,12 @@ body::after {
   opacity: .16;
 }
 /* Le curve si scoprono dalla vetta con la stessa animazione della hero di
-   /pe-fratte (2,4 s, curva "trail"), partendo quando la carta è entrata */
+   /pe-fratte (2,4 s, curva "trail"), partendo mentre la carta entra */
 .carta-manifesto .pf-curve svg {
   width: 100%;
   height: 100%;
   display: block;
-  animation: carta-manifesto-svela 2.4s cubic-bezier(.3, .7, .2, 1) 1.2s both;
+  animation: carta-manifesto-svela 2.4s cubic-bezier(.3, .7, .2, 1) .5s both;
 }
 @keyframes carta-manifesto-svela {
   from { clip-path: circle(0% at 76% 31%); }
