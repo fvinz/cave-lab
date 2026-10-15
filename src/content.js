@@ -20,6 +20,7 @@ export const SOCIAL = {
    Didascalie senza trattino lungo (—): usare due punti o virgola.
    Il più recente in cima: il sito ne mostra solo i primi 9. */
 export const INSTAGRAM_POSTS = [
+  { img: "/instagram/Dee3p8eDPHf.jpg", url: "https://www.instagram.com/p/Dee3p8eDPHf/", caption: "In Vino Veritas: grazie a chi ha riempito Piazza Garibaldi" },
   { img: "/instagram/DePXbUqDJLd.jpg", url: "https://www.instagram.com/p/DePXbUqDJLd/", caption: "Le tre cantine di In Vino Veritas: Tre D, Casale San Paolo e Neri" },
   { img: "/instagram/DeMwHSxDANx.jpg", url: "https://www.instagram.com/p/DeMwHSxDANx/", caption: "In Vino Veritas: programma, ticket e cucina della serata" },
   { img: "/instagram/DeKYd40gJ0p.jpg", url: "https://www.instagram.com/reel/DeKYd40gJ0p/", caption: "Un calice per ogni angolo del paese vecchio" },
