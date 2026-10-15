@@ -136,7 +136,7 @@ Risponde `200` con:
 ```
 
 - `scelte` c'è solo se `haVotato`.
-- `risultati` c'è solo se `haVotato` **e** lo stato è `aperto`, oppure se lo stato è `chiuso`. Prima di aver votato, e per tutti durante l'`attesa`, il server non restituisce la classifica.
+- `risultati` c'è solo nella risposta `200` al voto appena accettato (stato `aperto`), oppure se lo stato è `chiuso`. Rileggendo lo stato (GET, anche dopo aver votato), con un `409` e per tutti durante l'`attesa` il server non restituisce la classifica. (Modifica del 15 ottobre: la classifica parziale si vede solo subito dopo il voto; ricaricando torna nascosta.)
 - `vincitrici` e `pariMerito` ci sono solo se lo stato è `chiuso`.
 - `mete` è ordinata per voti decrescenti, poi per nome.
 
@@ -196,13 +196,14 @@ Risponde `200` con:
 |---|---|
 | `prima` | Nessuna sezione. |
 | `aperto`, non votato | `fieldset` con legenda, una riga per meta (checkbox nativa con aspetto a riga), contatore "N di 3", bottone "Conferma il voto, non si può cambiare". |
-| `aperto`, votato | Classifica parziale, "Il tuo voto" sulle tre scelte, totale dei votanti, "Si chiude giovedì alle HH:MM". |
+| `aperto`, appena votato | Classifica parziale, "Il tuo voto" sulle tre scelte, totale dei votanti, "Si chiude giovedì alle HH:MM", nota che la si vede solo adesso. |
+| `aperto`, votato e pagina riaperta | "Hai già votato" con le tre scelte e l'ora della classifica finale. Nessuna classifica. Nella hero torna l'oro su "Entra nella community". |
 | `attesa` | "Il sondaggio è chiuso, la classifica esce venerdì 23 ottobre alle 18:00". Chi ha votato vede anche le sue tre scelte. Nessuna classifica. |
 | `chiuso` | Classifica finale, prime tre (o le pari merito) evidenziate come mete di novembre, nota sul pari merito se serve, "Il tuo voto" se hai votato. |
 
 **Scegliere le mete**
 
-- Ogni riga mostra nome, zona, `DifficoltaBadge` e `DatiSentiero`. Sono gli stessi componenti già usati in pagina, da estrarre e riusare.
+- Ogni card ha le stesse righe nello stesso posto: nome (sempre due righe), zona (una riga), `DatiSentiero` (una riga), in fondo `DifficoltaBadge` e il link "Vedi su komoot" alla scheda del percorso (campo `link`, nuova scheda, non seleziona la meta). Tutte le card hanno la stessa altezza. (Modifica del 15 ottobre.)
 - Alla terza scelta le righe non scelte si disattivano ma restano leggibili; togliendo una scelta si riattivano.
 - Con meno di tre scelte il bottone è disattivato e dice quante ne mancano.
 - Su telefono, contatore e bottone stanno in una barra fissa in basso finché la sezione è visibile.

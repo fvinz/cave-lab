@@ -16,8 +16,8 @@ export default function Sondaggio({ config, s }) {
       ? "irraggiungibile"
       : s.risultati
         ? "risultati"
-        : s.stato === "attesa"
-          ? "attesa"
+        : s.haVotato || s.stato === "attesa"
+          ? "riepilogo"
           : "scheda";
 
   /* cambiando fase la sezione cambia altezza: i trigger più in basso vanno ricalcolati */
@@ -27,10 +27,10 @@ export default function Sondaggio({ config, s }) {
   }, [fase, s.visibile]);
 
   /* dopo il voto il focus (e lo scroll) passa all'esito: la classifica, o
-     l'attesa se il voto è arrivato a sondaggio chiuso. La lista lunga
+     il riepilogo se il voto è arrivato a sondaggio chiuso. La lista lunga
      sparisce, e senza questo su telefono l'esito resterebbe fuori schermo. */
   useEffect(() => {
-    if ((fase === "risultati" || fase === "attesa") && appenaVotato.current) {
+    if ((fase === "risultati" || fase === "riepilogo") && appenaVotato.current) {
       appenaVotato.current = false;
       titoloRisultati.current?.focus();
     }
@@ -69,7 +69,7 @@ export default function Sondaggio({ config, s }) {
             }}
           />
         )}
-        {fase === "attesa" && <Attesa config={config} s={s} esitoRef={titoloRisultati} />}
+        {fase === "riepilogo" && <Riepilogo config={config} s={s} esitoRef={titoloRisultati} />}
         {fase === "risultati" && <Risultati config={config} s={s} titoloRef={titoloRisultati} />}
       </div>
     </section>
@@ -124,16 +124,25 @@ function Scheda({ config, s, onInvio }) {
                     <PfIcon name="check" />
                   </span>
                   <span className="pf-voce-nome">{m.nome}</span>
-                  <DifficoltaBadge chiave={m.difficolta} />
                 </label>
                 <div id={id + "-dati"} className="pf-voce-dati">
                   {m.zona && (
-                    <p className="pf-zona">
+                    <p className="pf-zona pf-voce-zona" title={m.zona}>
                       <PfIcon name="mapPin" />
-                      {m.zona}
+                      <span>{m.zona}</span>
                     </p>
                   )}
                   <DatiSentiero p={m} />
+                </div>
+                <div className="pf-voce-piede">
+                  <DifficoltaBadge chiave={m.difficolta} />
+                  {m.link && (
+                    <a className="pf-voce-link" href={m.link} target="_blank" rel="noopener noreferrer">
+                      Vedi su komoot
+                      <PfIcon name="externalLink" />
+                      <span className="pf-visually-hidden"> (si apre in una nuova scheda)</span>
+                    </a>
+                  )}
                 </div>
               </li>
             );
@@ -178,14 +187,17 @@ function NonContato() {
   );
 }
 
-/* Tra chiusura e pubblicazione: la classifica non esce dal server per nessuno */
-function Attesa({ config, s, esitoRef }) {
+/* Senza classifica: chi ha già votato e riapre la pagina (la classifica
+   parziale si vede solo subito dopo il voto) e, dopo la chiusura, tutti
+   fino alla pubblicazione */
+function Riepilogo({ config, s, esitoRef }) {
   const nome = new Map(config.mete.map((m) => [m.id, m.nome]));
   return (
     <div className="pf-risultati" ref={esitoRef} tabIndex={-1}>
       {s.avviso === "non-contato" && <NonContato />}
       <p className="pf-lead">
-        Il sondaggio è chiuso. La classifica esce {giornoEOra(config.pubblicazione)}.
+        {s.stato === "attesa" ? "Il sondaggio è chiuso." : "Hai già votato, grazie!"} La classifica esce{" "}
+        {giornoEOra(config.pubblicazione)}.
       </p>
       {s.haVotato && (
         <p className="pf-risultati-nota">Il tuo voto: {s.scelte.map((id) => nome.get(id) ?? id).join(", ")}.</p>
@@ -237,7 +249,11 @@ function Risultati({ config, s, titoloRef }) {
           );
         })}
       </ol>
-      {!chiuso && <p className="pf-note">La classifica si aggiorna quando riapri la pagina.</p>}
+      {!chiuso && (
+        <p className="pf-note">
+          Questa classifica la vedi solo adesso. Quella finale esce {giornoEOra(config.pubblicazione)}.
+        </p>
+      )}
     </div>
   );
 }
