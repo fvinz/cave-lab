@@ -184,12 +184,8 @@ Risponde `200` con:
 
   Dopo l'annuncio torna la hero di sempre e la classifica finale sta nella sezione subito sotto, con lo stesso fondo.
 - **Home di Cave Lab.** In `aperto` e `attesa` la hero apre con una carta manifesto oro: "NOVEMBRE" enorme, conto alla rovescia grande verso chiusura o annuncio, bottone "Vota le mete" / "Vai al sondaggio" verso `/pe-fratte/#sondaggio`. Non è una replica delle carte delle uscite.
-- Mentre il voto è aperto, secondo l'orologio locale e la configurazione:
-  - il bottone oro della hero diventa "Vota le mete di novembre" e porta alla sezione;
-  - "Entra nella community" passa a secondario;
-  - "Vedi le uscite" si nasconde.
-
-  Chiuso il voto, la hero torna com'è oggi.
+- Mentre si vota e fino all'annuncio la sezione **è** la hero della pagina (vedi sotto, "Hero"); dopo l'annuncio torna la hero di sempre e la sezione sta subito sotto. (Sostituisce la regola precedente del bottone oro nella hero, superata il 15 ottobre.)
+- Passata la scadenza che si sta aspettando (chiusura, poi annuncio) la pagina richiede da sola lo stato al server, con un ritardo casuale fino a 15 secondi: chi aspetta le 18:00 con la pagina aperta vede comparire la classifica senza ricaricare.
 
 **Caricamento**
 
@@ -205,7 +201,7 @@ Risponde `200` con:
 | `prima` | Nessuna sezione. |
 | `aperto`, non votato | `fieldset` con legenda, una riga per meta (checkbox nativa con aspetto a riga), contatore "N di 3", bottone "Conferma il voto, non si può cambiare". |
 | `aperto`, appena votato | Classifica parziale, "Il tuo voto" sulle tre scelte, totale dei votanti, "Si chiude giovedì alle HH:MM", nota che la si vede solo adesso. |
-| `aperto`, votato e pagina riaperta | "Hai già votato" con le tre scelte e l'ora della classifica finale. Nessuna classifica. Nella hero torna l'oro su "Entra nella community". |
+| `aperto`, votato e pagina riaperta | "Hai già votato" con le tre scelte e l'ora della classifica finale, dentro la hero del sondaggio. Nessuna classifica. |
 | `attesa` | "Il sondaggio è chiuso, la classifica esce giovedì 22 ottobre alle 18:00". Chi ha votato vede anche le sue tre scelte. Nessuna classifica. |
 | `chiuso` | Classifica finale, prime tre (o le pari merito) evidenziate come mete di novembre, nota sul pari merito se serve, "Il tuo voto" se hai votato. |
 

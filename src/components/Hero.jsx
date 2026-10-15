@@ -233,7 +233,10 @@ function CartaPeFratte({ evento }) {
    livello della hero di Pe' Fratte, appena accennate. */
 function CartaSondaggio() {
   const ora = useAdesso();
-  const attesa = statoSondaggio(SONDAGGIO, ora) === "attesa";
+  const stato = statoSondaggio(SONDAGGIO, ora);
+  /* una scheda lasciata aperta non deve invitare a votare dopo l'annuncio */
+  if (stato !== "aperto" && stato !== "attesa") return null;
+  const attesa = stato === "attesa";
   const verso = attesa ? SONDAGGIO.pubblicazione : SONDAGGIO.chiusura;
   const manca = contoAllaRovescia(verso, ora);
 

@@ -80,3 +80,10 @@ export function contoAllaRovescia(verso, ora) {
     .join(" e ");
   return { parti, testo };
 }
+
+/* La scadenza che la pagina sta aspettando (chiusura durante il voto,
+   annuncio durante l'attesa) è passata: lo stato va richiesto al server */
+export function scadenzaPassata(stato, config, ora) {
+  const verso = stato === "aperto" ? config.chiusura : stato === "attesa" ? config.pubblicazione : null;
+  return verso !== null && ora.getTime() >= new Date(verso).getTime();
+}

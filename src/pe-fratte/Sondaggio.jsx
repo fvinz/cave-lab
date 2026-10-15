@@ -4,7 +4,7 @@ import PfIcon from "./PfIcon.jsx";
 import { DatiSentiero, DifficoltaBadge } from "./Sentiero.jsx";
 import CurveDiLivello from "./CurveDiLivello.jsx";
 import useAdesso from "./useAdesso.js";
-import { contoAllaRovescia, giornoEOra, ordineMescolato } from "./sondaggio-utili.js";
+import { contoAllaRovescia, giornoEOra, ordineMescolato, scadenzaPassata } from "./sondaggio-utili.js";
 import { COMMUNITY } from "../content.js";
 
 /* Sondaggio "Le mete di novembre". Non applica regole: mostra quello che
@@ -12,7 +12,7 @@ import { COMMUNITY } from "../content.js";
    `inHero`: mentre si vota e fino all'annuncio è la hero della pagina;
    dopo l'annuncio torna una sezione sotto la hero di sempre. */
 export default function Sondaggio({ config, s, inHero = false }) {
-  const ora = useAdesso();
+  const ora = useAdesso(10000);
   const titoloRisultati = useRef(null);
   const appenaVotato = useRef(false);
   const montato = useRef(false);
@@ -37,6 +37,19 @@ export default function Sondaggio({ config, s, inHero = false }) {
       document.getElementById("sondaggio")?.scrollIntoView({ behavior: "instant", block: "start" });
     });
   }, [s.visibile]);
+
+  /* Passata la scadenza che si sta aspettando (chiusura, poi annuncio) la
+     pagina chiede da sola lo stato nuovo, senza ricaricare: chi aspetta le
+     18:00 vede comparire la classifica. Un piccolo ritardo casuale sparpaglia
+     le richieste; se il server non è ancora passato, si riprova poco dopo. */
+  const ultimoControllo = useRef(0);
+  useEffect(() => {
+    if (s.caricamento || !scadenzaPassata(s.stato, config, ora)) return;
+    if (Date.now() - ultimoControllo.current < 25000) return;
+    ultimoControllo.current = Date.now();
+    const id = setTimeout(s.ricarica, Math.random() * 15000);
+    return () => clearTimeout(id);
+  }, [ora, s.stato, s.caricamento, s.ricarica, config]);
 
   /* cambiando fase la sezione cambia altezza: i trigger più in basso vanno ricalcolati */
   useEffect(() => {
@@ -116,7 +129,7 @@ function TestaHero({ config, s, ora }) {
   return (
     <header className="pf-sondaggio-testa">
       <h1 className="pf-sondaggio-titolo" id="sondaggio-titolo">
-        {attesa ? "Le mete di" : "Dove andiamo"}
+        {attesa ? "Le mete di" : "Dove andiamo"}{" "}
         <span>{attesa ? "novembre" : "a novembre?"}</span>
       </h1>
       <div className="pf-sondaggio-quando">

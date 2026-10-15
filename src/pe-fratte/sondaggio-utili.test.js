@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { CHIAVE_TOKEN, contoAllaRovescia, giornoEOra, leggiToken, ordineMescolato } from "./sondaggio-utili.js";
+import { CHIAVE_TOKEN, contoAllaRovescia, giornoEOra, leggiToken, ordineMescolato, scadenzaPassata } from "./sondaggio-utili.js";
 
 const VALIDO = "3f2b8c1e-9d4a-4b7e-8f21-0c5d6e7a8b9c";
 const NUOVO = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
@@ -92,4 +92,21 @@ test("contoAllaRovescia: alla scadenza e dopo restituisce null", () => {
   assert.equal(contoAllaRovescia(V, V), null);
   assert.equal(contoAllaRovescia(V, new Date(V.getTime() + MIN)), null);
   assert.equal(contoAllaRovescia("2026-10-21T23:59:00+02:00", prima(42 * MIN)).testo, "42 minuti");
+});
+
+const CFG = { chiusura: "2026-10-21T23:59:00+02:00", pubblicazione: "2026-10-22T18:00:00+02:00" };
+
+test("scadenzaPassata: durante il voto, solo da chiusura in poi", () => {
+  assert.equal(scadenzaPassata("aperto", CFG, new Date("2026-10-21T21:58:59Z")), false);
+  assert.equal(scadenzaPassata("aperto", CFG, new Date("2026-10-21T21:59:00Z")), true);
+});
+
+test("scadenzaPassata: durante l'attesa, solo dall'annuncio in poi", () => {
+  assert.equal(scadenzaPassata("attesa", CFG, new Date("2026-10-22T15:59:59Z")), false);
+  assert.equal(scadenzaPassata("attesa", CFG, new Date("2026-10-22T16:00:00Z")), true);
+});
+
+test("scadenzaPassata: prima e dopo l'annuncio non c'è nulla da aspettare", () => {
+  assert.equal(scadenzaPassata("prima", CFG, new Date("2026-10-30T10:00:00Z")), false);
+  assert.equal(scadenzaPassata("chiuso", CFG, new Date("2026-10-30T10:00:00Z")), false);
 });
