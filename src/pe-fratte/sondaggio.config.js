@@ -9,28 +9,31 @@
 export const SONDAGGIO = {
   id: "novembre-2026",
   attivo: true,
-  /* PROVVISORI: orari e mete veri arrivano prima del lancio (Task 8) */
+  /* Orari PROVVISORI: da confermare prima del merge */
   apertura: "2026-10-19T08:00:00+02:00",
   chiusura: "2026-10-22T23:59:00+02:00",
   pubblicazione: "2026-10-23T18:00:00+02:00",
   voti: 3,
   vincitrici: 3,
   tettoPerRete: 10,
+  /* Candidate scelte dalle guide komoot del Lazio (ottobre 2026). Dati
+     sentiero come li riporta komoot: km, salita e tempo di cammino stimato;
+     difficoltà komoot Facile/Moderato/Difficile → facile/intermedia/impegnativa. */
   mete: [
-    { id: "prova-01", nome: "Meta di prova uno", zona: "Zona di prova", difficolta: "facile", km: "6,2", dislivello: "250", durata: "2 h" },
-    { id: "prova-02", nome: "Meta di prova due", zona: "Zona di prova", difficolta: "intermedia", km: "9,4", dislivello: "410", durata: "3–4 h" },
-    { id: "prova-03", nome: "Meta di prova con un nome molto lungo", zona: "Zona di prova con un nome lungo", difficolta: "impegnativa", km: "14", dislivello: "900", durata: "6 h" },
-    { id: "prova-04", nome: "Meta di prova quattro", zona: "Zona di prova", difficolta: "facile" },
-    { id: "prova-05", nome: "Meta di prova cinque", difficolta: "intermedia", km: "8" },
-    { id: "prova-06", nome: "Meta di prova sei", zona: "Zona di prova" },
-    { id: "prova-07", nome: "Meta di prova sette", zona: "Zona di prova", difficolta: "intermedia", km: "11,5", dislivello: "600", durata: "4:30 h" },
-    { id: "prova-08", nome: "Meta di prova otto", zona: "Zona di prova", difficolta: "facile", km: "5", durata: "2 h" },
-    { id: "prova-09", nome: "Meta di prova nove", zona: "Zona di prova", difficolta: "impegnativa", dislivello: "1100" },
-    { id: "prova-10", nome: "Meta di prova dieci", zona: "Zona di prova", difficolta: "intermedia", km: "10", dislivello: "500", durata: "4 h" },
-    { id: "prova-11", nome: "Meta di prova undici", zona: "Zona di prova", difficolta: "facile", km: "7", dislivello: "300", durata: "2:30 h" },
-    { id: "prova-12", nome: "Meta di prova dodici", zona: "Zona di prova", difficolta: "intermedia" },
-    { id: "prova-13", nome: "Meta di prova tredici", zona: "Zona di prova", difficolta: "impegnativa", km: "16", dislivello: "1200", durata: "7 h" },
-    { id: "prova-14", nome: "Meta di prova quattordici", zona: "Zona di prova", difficolta: "facile", km: "4,5" },
-    { id: "prova-15", nome: "Meta di prova quindici", zona: "Zona di prova", difficolta: "intermedia", km: "9", dislivello: "450", durata: "3:30 h" },
+    { id: "monte-catillo", nome: "Monte Catillo", zona: "Riserva di Monte Catillo, Tivoli", difficolta: "intermedia", km: "8,45", dislivello: "330", durata: "2:37 h" },
+    { id: "lago-albano", nome: "Giro del Lago Albano", zona: "Parco dei Castelli Romani", difficolta: "intermedia", km: "15,8", dislivello: "380", durata: "4:33 h" },
+    { id: "anello-di-veio", nome: "Grande anello di Veio", zona: "Parco di Veio", difficolta: "intermedia", km: "10", dislivello: "150", durata: "2:44 h" },
+    { id: "monte-viglio", nome: "Monte Viglio", zona: "Serra Sant'Antonio, Monti Simbruini", difficolta: "impegnativa", km: "12,7", dislivello: "700", durata: "4:28 h" },
+    { id: "monte-semprevisa", nome: "Monte Semprevisa ed Erdigheta", zona: "Monti Lepini", difficolta: "intermedia", km: "12,5", dislivello: "670", durata: "4:23 h" },
+    { id: "rifugio-rinaldi", nome: "Rifugio Rinaldi", zona: "Pian de' Valli, Terminillo", difficolta: "intermedia", km: "7,4", dislivello: "530", durata: "3:26 h" },
+    { id: "cascate-vallepietra", nome: "Cascate di Vallepietra", zona: "Vallepietra, Monti Simbruini", difficolta: "intermedia", km: "10,4", dislivello: "610", durata: "3:42 h" },
+    { id: "colle-campitellino", nome: "Colle Campitellino", zona: "Monti Simbruini", difficolta: "intermedia", km: "9,7", dislivello: "190", durata: "2:43 h" },
+    { id: "monte-tarino", nome: "Monte Tarino", zona: "Fiumata, Monti Simbruini", difficolta: "impegnativa", km: "13,5", dislivello: "660", durata: "4:34 h" },
+    { id: "grotta-san-benedetto", nome: "Grotta di San Benedetto", zona: "Guadagnolo, Monti Prenestini", difficolta: "intermedia", km: "11,6", dislivello: "410", durata: "4:14 h" },
+    { id: "acquedotti-san-gregorio", nome: "Acquedotti romani di San Gregorio", zona: "San Gregorio da Sassola", difficolta: "intermedia", km: "15,5", dislivello: "410", durata: "4:30 h" },
+    { id: "cascate-monte-gelato", nome: "Cascate di Monte Gelato", zona: "Calcata, Parco Valle del Treja", difficolta: "intermedia", km: "16,5", dislivello: "270", durata: "4:34 h" },
+    { id: "gole-di-lacerno", nome: "Gole di Lacerno", zona: "Parco Nazionale d'Abruzzo, Lazio e Molise", difficolta: "facile", km: "4,1", dislivello: "180", durata: "1:18 h" },
+    { id: "piramide-etrusca", nome: "Piramide etrusca e necropoli di Santa Cecilia", zona: "Bomarzo, Tuscia", difficolta: "facile", km: "5,6", dislivello: "220", durata: "1:46 h" },
+    { id: "torre-fico", nome: "Sentiero di Torre Fico", zona: "Parco Nazionale del Circeo", difficolta: "facile", km: "6,5", dislivello: "100", durata: "1:47 h" },
   ],
 };
