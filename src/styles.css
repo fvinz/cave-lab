@@ -629,6 +629,14 @@ body::after {
 /* Carta Pe' Fratte da sola (es. il sondaggio quando non ci sono eventi):
    il testo non corre su tutta la larghezza, il paesaggio sì */
 .hero-eventi-griglia.is-solo .carta-pf .pf-tessera-corpo { max-width: 44rem; }
+/* A tutta larghezza il paesaggio alto il 46% della carta è troppo basso
+   per quanto è largo: i crinali (SVG in "slice") si tagliavano in alto e
+   la catena lontana perdeva le cime. Qui tiene le proporzioni del disegno
+   (1440×420 lascia intere tutte le cime) e il testo gli fa spazio sotto. */
+@media (min-width: 641px) {
+  .hero-eventi-griglia.is-solo .pf-tessera.carta-pf .pf-paesaggio { height: auto; aspect-ratio: 1440 / 420; }
+  .hero-eventi-griglia.is-solo .carta-pf .pf-tessera-corpo { padding-bottom: max(200px, calc(29.2% - 8px)); }
+}
 
 /* Manifesto sotto la hero degli eventi: solo la dichiarazione (i
    pulsanti sono già nella carta dell'evento), quindi meno altezza */
