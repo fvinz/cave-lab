@@ -75,6 +75,17 @@ function useApertura() {
           tl.fromTo(q(".carta-ivv-goccia"), { y: -70, scaleY: 1.25, opacity: 0 }, { y: 0, scaleY: 1, opacity: 1, duration: 0.9, ease: "bounce.out" }, 1.55);
         }
 
+        /* Sondaggio Pe' Fratte: entrata la carta, la carta dei sentieri si
+           scopre dalla vetta, come nella hero di /pe-fratte */
+        if (q(".carta-manifesto").length) {
+          tl.fromTo(
+            q(".carta-manifesto .pf-curve svg"),
+            { clipPath: "circle(0% at 76% 31%)" },
+            { clipPath: "circle(150% at 76% 31%)", duration: 2.6, ease: "power1.inOut" },
+            1.2
+          );
+        }
+
         /* Pe' Fratte */
         if (q(".carta-pf").length) {
           sale(q(".carta-pf .pf-paesaggio"), 80, { duration: 1.2 }, 0.8);
@@ -247,7 +258,7 @@ function CartaSondaggio() {
           <p className="carta-manifesto-domanda">
             {attesa
               ? "Le mete sono scelte: manca solo l'annuncio."
-              : `Dove andiamo? Scegli ${SONDAGGIO.voti} mete su ${SONDAGGIO.mete.length}.`}
+              : `Dove andiamo? Scegli ${SONDAGGIO.voti} mete.`}
           </p>
         </div>
         <div className="carta-manifesto-tempo">

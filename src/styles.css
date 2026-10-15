@@ -670,16 +670,12 @@ body::after {
   color: var(--m-bosco);
   opacity: .16;
 }
-.carta-manifesto .pf-curve svg { width: 100%; height: 100%; display: block; animation: carta-manifesto-svela 2.4s cubic-bezier(.3, .7, .2, 1) both; }
+/* lo scoprirsi delle curve è nella sequenza d'apertura della hero (Hero.jsx) */
+.carta-manifesto .pf-curve svg { width: 100%; height: 100%; display: block; }
 .carta-manifesto .pf-curva { stroke-width: 1.5; }
 .carta-manifesto .pf-curva-direttrice { stroke-width: 2.6; }
 .carta-manifesto .pf-curve-sentiero { stroke: var(--m-bosco); }
 .carta-manifesto .pf-curve-vetta { fill: var(--m-bosco); }
-@keyframes carta-manifesto-svela {
-  from { clip-path: circle(0% at 76% 31%); }
-  to { clip-path: circle(150% at 76% 31%); }
-}
-@media (prefers-reduced-motion: reduce) { .carta-manifesto .pf-curve svg { animation: none; } }
 
 .carta-manifesto-corpo {
   display: grid;
