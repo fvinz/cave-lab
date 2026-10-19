@@ -10,8 +10,8 @@
 export const SONDAGGIO = {
   id: "novembre-2026",
   attivo: true,
-  /* Si vota da lunedì 19 alle 19:00 a mercoledì 21 alle 23:59; classifica giovedì 22 alle 18:00 */
-  apertura: "2026-10-19T19:00:00+02:00",
+  /* Annunciato da lunedì 19 alle 19:00, ma aperto già dalle 18:30; si vota fino a mercoledì 21 alle 23:59; classifica giovedì 22 alle 18:00 */
+  apertura: "2026-10-19T18:30:00+02:00",
   chiusura: "2026-10-21T23:59:00+02:00",
   pubblicazione: "2026-10-22T18:00:00+02:00",
   voti: 3,
