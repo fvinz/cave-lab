@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { CHIAVE_TOKEN, contoAllaRovescia, giornoEOra, leggiToken, ordineMescolato, scadenzaPassata } from "./sondaggio-utili.js";
+import { CHIAVE_TOKEN, contoAllaRovescia, giornoEOra, inPercentuale, leggiToken, ordineMescolato, scadenzaPassata } from "./sondaggio-utili.js";
 
 const VALIDO = "3f2b8c1e-9d4a-4b7e-8f21-0c5d6e7a8b9c";
 const NUOVO = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
@@ -109,4 +109,12 @@ test("scadenzaPassata: durante l'attesa, solo dall'annuncio in poi", () => {
 test("scadenzaPassata: prima e dopo l'annuncio non c'è nulla da aspettare", () => {
   assert.equal(scadenzaPassata("prima", CFG, new Date("2026-10-30T10:00:00Z")), false);
   assert.equal(scadenzaPassata("chiuso", CFG, new Date("2026-10-30T10:00:00Z")), false);
+});
+
+test("inPercentuale: intera, mai 0% per chi ha almeno un voto", () => {
+  assert.equal(inPercentuale(33.3), "33%");
+  assert.equal(inPercentuale(26.7), "27%");
+  assert.equal(inPercentuale(100), "100%");
+  assert.equal(inPercentuale(0.4), "<1%");
+  assert.equal(inPercentuale(0), "0%");
 });

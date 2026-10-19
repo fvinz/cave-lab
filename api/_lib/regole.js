@@ -41,6 +41,13 @@ export function vincitrici(config, ordinata) {
   return { vincitrici: vinte, pariMerito: vinte.length > config.vincitrici };
 }
 
+/* Quello che esce dal server: per ogni meta la sua quota sul totale dei voti
+   (un decimale), nello stesso ordine. I conteggi assoluti restano in Redis. */
+export function percentuali(ordinata) {
+  const totale = ordinata.reduce((somma, m) => somma + m.voti, 0);
+  return ordinata.map((m) => ({ id: m.id, percentuale: totale ? Math.round((m.voti / totale) * 1000) / 10 : 0 }));
+}
+
 /* L'hash della rete si cancella da solo sette giorni dopo la chiusura */
 export function scadenzaRete(config) {
   return Math.floor(Date.parse(config.chiusura) / 1000) + 7 * 24 * 60 * 60;

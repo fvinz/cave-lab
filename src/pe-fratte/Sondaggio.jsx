@@ -4,7 +4,7 @@ import PfIcon from "./PfIcon.jsx";
 import { DatiSentiero, DifficoltaBadge } from "./Sentiero.jsx";
 import CurveDiLivello from "./CurveDiLivello.jsx";
 import useAdesso from "./useAdesso.js";
-import { contoAllaRovescia, giornoEOra, ordineMescolato, scadenzaPassata } from "./sondaggio-utili.js";
+import { contoAllaRovescia, giornoEOra, inPercentuale, ordineMescolato, scadenzaPassata } from "./sondaggio-utili.js";
 import { COMMUNITY } from "../content.js";
 
 /* Sondaggio "Le mete di novembre". Non applica regole: mostra quello che
@@ -290,9 +290,7 @@ function Risultati({ config, s, titoloRef }) {
   const chiuso = s.stato === "chiuso";
   const perId = new Map(config.mete.map((m) => [m.id, m]));
   const vincenti = new Set(risultati.vincitrici ?? []);
-  const massimo = Math.max(1, ...risultati.mete.map((m) => m.voti));
-  const votanti =
-    risultati.votanti === 1 ? "Ha votato 1 persona" : `Hanno votato ${risultati.votanti} persone`;
+  const massimo = Math.max(1, ...risultati.mete.map((m) => m.percentuale));
 
   return (
     <div className="pf-risultati">
@@ -301,7 +299,7 @@ function Risultati({ config, s, titoloRef }) {
         {chiuso ? "Classifica finale" : "Come sta andando"}
       </h3>
       <p className="pf-risultati-nota">
-        {votanti}. {chiuso ? "Il sondaggio è chiuso." : `Si chiude ${giornoEOra(config.chiusura)}.`}
+        Percentuali sul totale dei voti. {chiuso ? "Il sondaggio è chiuso." : `Si chiude ${giornoEOra(config.chiusura)}.`}
       </p>
       {chiuso && risultati.pariMerito && (
         <p className="pf-risultati-nota">
@@ -318,10 +316,10 @@ function Risultati({ config, s, titoloRef }) {
                 <span className="pf-classifica-nome">{meta.nome}</span>
                 {vincenti.has(m.id) && <span className="pf-classifica-tag">Si va</span>}
                 {s.scelte.includes(m.id) && <span className="pf-classifica-tuo">Il tuo voto</span>}
-                <span className="pf-classifica-voti">{m.voti === 1 ? "1 voto" : `${m.voti} voti`}</span>
+                <span className="pf-classifica-voti">{inPercentuale(m.percentuale)}</span>
               </div>
               <span className="pf-classifica-barra" aria-hidden="true">
-                <span style={{ "--quota": m.voti / massimo }} />
+                <span style={{ "--quota": m.percentuale / massimo }} />
               </span>
             </li>
           );

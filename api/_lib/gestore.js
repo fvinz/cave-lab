@@ -1,10 +1,11 @@
-import { classifica, sceltaValida, scadenzaRete, statoSondaggio, tokenValido, vincitrici } from "./regole.js";
+import { classifica, percentuali, sceltaValida, scadenzaRete, statoSondaggio, tokenValido, vincitrici } from "./regole.js";
 
 /* Una richiesta al sondaggio, senza HTTP né Redis: li mettono
    api/sondaggio.js (Vercel) e vite.config.js (sviluppo).
    La classifica parziale esce solo nella risposta al voto appena accettato:
    rileggendo lo stato (ricarica) chi ha votato vede solo le sue scelte.
-   Dopo la pubblicazione esce per tutti; durante l'attesa per nessuno. */
+   Dopo la pubblicazione esce per tutti; durante l'attesa per nessuno.
+   Esce solo in percentuale: né voti né votanti in numero assoluto. */
 export async function gestisci({ metodo, token, mete, rete, ora }, { config, archivio }) {
   if (!config.attivo) return { status: 404, corpo: { errore: "non-attivo" } };
   const stato = statoSondaggio(config, ora);
@@ -42,9 +43,9 @@ async function corpoStato(config, archivio, stato, scheda, { appenaVotato = fals
   const corpo = { stato, haVotato: Boolean(scheda) };
   if (scheda) corpo.scelte = scheda.mete;
   if ((appenaVotato && stato === "aperto") || stato === "chiuso") {
-    const { votanti, voti } = await archivio.conteggi();
+    const { voti } = await archivio.conteggi();
     const mete = classifica(config, voti);
-    corpo.risultati = { votanti, mete, ...(stato === "chiuso" ? vincitrici(config, mete) : {}) };
+    corpo.risultati = { mete: percentuali(mete), ...(stato === "chiuso" ? vincitrici(config, mete) : {}) };
   }
   return corpo;
 }

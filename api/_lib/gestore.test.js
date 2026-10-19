@@ -46,11 +46,13 @@ test("POST valido: voto registrato e classifica parziale senza vincitrici", asyn
   assert.equal(r.corpo.stato, "aperto");
   assert.equal(r.corpo.haVotato, true);
   assert.deepEqual(r.corpo.scelte, ["a", "b", "c"]);
-  assert.equal(r.corpo.risultati.votanti, 1);
-  assert.deepEqual(r.corpo.risultati.mete.slice(0, 3), [
-    { id: "a", voti: 1 },
-    { id: "b", voti: 1 },
-    { id: "c", voti: 1 },
+  assert.equal("votanti" in r.corpo.risultati, false);
+  assert.deepEqual(r.corpo.risultati.mete, [
+    { id: "a", percentuale: 33.3 },
+    { id: "b", percentuale: 33.3 },
+    { id: "c", percentuale: 33.3 },
+    { id: "d", percentuale: 0 },
+    { id: "e", percentuale: 0 },
   ]);
   assert.equal("vincitrici" in r.corpo.risultati, false);
 });
@@ -91,7 +93,8 @@ test("dopo la pubblicazione: POST 403 con la classifica finale, nessun voto cont
   assert.equal(r.corpo.errore, "chiuso");
   assert.equal(r.corpo.stato, "chiuso");
   assert.equal(r.corpo.haVotato, false);
-  assert.equal(r.corpo.risultati.votanti, 1);
+  assert.equal("votanti" in r.corpo.risultati, false);
+  assert.equal(r.corpo.risultati.mete.some((m) => "voti" in m), false);
   assert.deepEqual(r.corpo.risultati.vincitrici, ["a", "b", "c"]);
   assert.equal(r.corpo.risultati.pariMerito, false);
 });

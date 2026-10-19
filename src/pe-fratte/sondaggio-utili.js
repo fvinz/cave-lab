@@ -56,6 +56,11 @@ export function giornoEOra(iso) {
   return `${GIORNO.format(d)} alle ${ORA.format(d)}`;
 }
 
+/* "33%"; una meta votata non scende mai a "0%" per l'arrotondamento */
+export function inPercentuale(p) {
+  return p > 0 && p < 1 ? "<1%" : `${Math.round(p)}%`;
+}
+
 /* Quanto manca a `verso` (chiusura o pubblicazione): due unità al massimo,
    giorni e ore, poi ore e minuti, poi minuti. I secondi arrotondano al
    minuto successivo; a scadenza raggiunta restituisce null. */

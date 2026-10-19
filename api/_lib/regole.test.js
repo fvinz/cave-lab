@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { statoSondaggio, tokenValido, sceltaValida, classifica, vincitrici, scadenzaRete } from "./regole.js";
+import { statoSondaggio, tokenValido, sceltaValida, classifica, vincitrici, percentuali, scadenzaRete } from "./regole.js";
 
 const config = {
   id: "prova",
@@ -96,6 +96,27 @@ test("vincitrici: una meta a zero voti non vince mai", () => {
 test("vincitrici: nessun voto, nessuna vincitrice", () => {
   const o = [voce("a", 0), voce("b", 0), voce("d", 0), voce("e", 0), voce("c", 0)];
   assert.deepEqual(vincitrici(config, o), { vincitrici: [], pariMerito: false });
+});
+
+test("percentuali: quota sul totale dei voti, un decimale, stesso ordine, niente conteggi", () => {
+  const o = [voce("b", 5), voce("a", 4), voce("c", 3), voce("d", 2), voce("e", 1)];
+  assert.deepEqual(percentuali(o), [
+    { id: "b", percentuale: 33.3 },
+    { id: "a", percentuale: 26.7 },
+    { id: "c", percentuale: 20 },
+    { id: "d", percentuale: 13.3 },
+    { id: "e", percentuale: 6.7 },
+  ]);
+});
+
+test("percentuali: a pari voti pari percentuale", () => {
+  const o = [voce("a", 1), voce("b", 1), voce("c", 1), voce("d", 0), voce("e", 0)];
+  assert.deepEqual(percentuali(o).map((m) => m.percentuale), [33.3, 33.3, 33.3, 0, 0]);
+});
+
+test("percentuali: nessun voto, tutte a zero", () => {
+  const o = [voce("a", 0), voce("b", 0)];
+  assert.deepEqual(percentuali(o), [{ id: "a", percentuale: 0 }, { id: "b", percentuale: 0 }]);
 });
 
 test("scadenzaRete: sette giorni dopo la chiusura, in secondi Unix", () => {
