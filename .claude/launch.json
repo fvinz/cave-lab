@@ -37,6 +37,12 @@
         "--strictPort"
       ],
       "port": 5198
+    },
+    {
+      "name": "pe-fratte-sondaggio",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "--port", "5196", "--strictPort"],
+      "port": 5196
     }
   ]
 }

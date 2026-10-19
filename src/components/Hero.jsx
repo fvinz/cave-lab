@@ -7,23 +7,32 @@ import { COMMUNITY, EVENTI, HERO_EVENTI, SOCIAL } from "../content.js";
 import { etichettaMancanti, isInArrivo } from "../date.js";
 import { Foglia, Paesaggio } from "../pe-fratte/Natura.jsx";
 import useNatura from "../pe-fratte/useNatura.js";
+import { SONDAGGIO } from "../pe-fratte/sondaggio.config.js";
+import { contoAllaRovescia, giornoEOra } from "../pe-fratte/sondaggio-utili.js";
+import CurveDiLivello from "../pe-fratte/CurveDiLivello.jsx";
+import useAdesso from "../pe-fratte/useAdesso.js";
+import { statoSondaggio } from "../../api/_lib/regole.js";
 
 /* Apertura del sito: se ci sono eventi in primo piano (`evidenza` in
    EVENTI) ancora in arrivo, la hero li presenta e il manifesto scende
-   subito sotto; altrimenti il manifesto torna a essere la hero. */
+   subito sotto; altrimenti il manifesto torna a essere la hero.
+   Mentre si vota il sondaggio di Pe' Fratte, e fino all'annuncio della
+   classifica, la sua carta apre la hero. */
 export default function Hero() {
+  const statoVoto = SONDAGGIO.attivo ? statoSondaggio(SONDAGGIO, new Date()) : "spento";
+  const sondaggioAperto = statoVoto === "aperto" || statoVoto === "attesa";
   const inEvidenza = EVENTI
     .filter((e) => e.evidenza && isInArrivo(e.iso))
     .sort((a, b) => a.iso.localeCompare(b.iso))
-    .slice(0, HERO_EVENTI.max)
+    .slice(0, HERO_EVENTI.max - (sondaggioAperto ? 1 : 0))
     /* l'evento principale (`grande`) apre la griglia e la lettura */
     .sort((a, b) => Number(!!b.evidenza.grande) - Number(!!a.evidenza.grande));
 
-  if (inEvidenza.length === 0) return <Manifesto asHero />;
+  if (inEvidenza.length === 0 && !sondaggioAperto) return <Manifesto asHero />;
 
   return (
     <>
-      <HeroEventi eventi={inEvidenza} />
+      <HeroEventi eventi={inEvidenza} sondaggio={sondaggioAperto} />
       <Manifesto />
     </>
   );
@@ -81,9 +90,9 @@ function useApertura() {
   return scope;
 }
 
-function HeroEventi({ eventi }) {
+function HeroEventi({ eventi, sondaggio }) {
   const scope = useApertura();
-  const solo = eventi.length === 1;
+  const solo = eventi.length + (sondaggio ? 1 : 0) === 1;
 
   return (
     <section className="hero-eventi" aria-labelledby="hero-eventi-titolo" ref={scope}>
@@ -103,6 +112,7 @@ function HeroEventi({ eventi }) {
         </header>
 
         <div className={"hero-eventi-griglia" + (solo ? " is-solo" : "")}>
+          {sondaggio && <CartaSondaggio />}
           {eventi.map((evento) =>
             evento.evidenza.stile === "in-vino-veritas" ? (
               <CartaInVinoVeritas key={evento.iso} evento={evento} />
@@ -211,6 +221,56 @@ function CartaPeFratte({ evento }) {
             Entra nella community
           </a>
           <a href="/pe-fratte/" className="carta-pf-link">Scopri Pe' Fratte</a>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/* Carta del sondaggio di Pe' Fratte: un manifesto oro, volutamente diverso
+   dalle carte delle uscite. "Novembre" enorme, il conto alla rovescia alla
+   scadenza che conta adesso (chiusura del voto, poi annuncio) e le curve di
+   livello della hero di Pe' Fratte, appena accennate. */
+function CartaSondaggio() {
+  const ora = useAdesso();
+  const stato = statoSondaggio(SONDAGGIO, ora);
+  /* una scheda lasciata aperta non deve invitare a votare dopo l'annuncio */
+  if (stato !== "aperto" && stato !== "attesa") return null;
+  const attesa = stato === "attesa";
+  const verso = attesa ? SONDAGGIO.pubblicazione : SONDAGGIO.chiusura;
+  const manca = contoAllaRovescia(verso, ora);
+
+  return (
+    <article className="carta-manifesto" aria-labelledby="carta-manifesto-titolo">
+      <CurveDiLivello className="carta-manifesto-curve" />
+      <div className="carta-manifesto-corpo">
+        <div className="carta-manifesto-testo">
+          <span className="carta-manifesto-marchio" role="img" aria-label="Pe' Fratte"></span>
+          <h2 className="carta-manifesto-titolo" id="carta-manifesto-titolo">Novembre</h2>
+          <p className="carta-manifesto-domanda">
+            {attesa
+              ? "Le mete sono scelte: manca solo l'annuncio."
+              : `Dove andiamo? Scegli ${SONDAGGIO.voti} mete.`}
+          </p>
+        </div>
+        <div className="carta-manifesto-tempo">
+          <p className="carta-manifesto-scadenza">
+            {attesa ? "La classifica si svela" : "Si vota fino a"} <strong>{giornoEOra(verso)}</strong>
+          </p>
+          {manca && (
+            <p className="carta-manifesto-conto" aria-label={`Mancano ${manca.testo}`}>
+              {manca.parti.map((p) => (
+                <span key={p.unita} className="carta-manifesto-unita">
+                  <span className="carta-manifesto-numero">{String(p.valore).padStart(2, "0")}</span>
+                  <span className="carta-manifesto-etichetta">{p.unita}</span>
+                </span>
+              ))}
+            </p>
+          )}
+          <a href="/pe-fratte/#sondaggio" className="carta-manifesto-cta">
+            {attesa ? "Vai al sondaggio" : "Vota le mete"}
+            <Icon name="arrowRight" />
+          </a>
         </div>
       </div>
     </article>
