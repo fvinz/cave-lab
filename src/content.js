@@ -155,6 +155,20 @@ export const PE_FRATTE = {
        visibili), con `poster`; `largo: true` lo mette a tutta larghezza
      Solo materiale vero delle uscite. Con la lista vuota la sezione non compare. */
   galleria: [
+    { uscita: "2026-10-18", tipo: "video", largo: true, src: "/pe-fratte/galleria/autore-crinale.mp4", poster: "/pe-fratte/galleria/autore-crinale-poster.jpg", w: 848, h: 478, alt: "Un'escursionista con la giacca rossa e il cane camminano sul crinale tra i faggi d'autunno, con le valli dei Monti Simbruini sullo sfondo" },
+    { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-vetta-gruppo.jpg", w: 1200, h: 900, alt: "Foto di gruppo in vetta al Monte Autore sotto la croce, con lo striscione Pe' Fratte e i cani" },
+    { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-laghetto.jpg", w: 900, h: 1200, alt: "Il laghetto nel bosco con la faggeta autunnale che si specchia nell'acqua" },
+    { uscita: "2026-10-18", tipo: "video", src: "/pe-fratte/galleria/autore-bosco.mp4", poster: "/pe-fratte/galleria/autore-bosco-poster.jpg", w: 832, h: 464, alt: "Un momento di gioco nella faggeta: un escursionista salta tra gli alberi, con il cane in primo piano" },
+    { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-striscione.jpg", w: 1200, h: 900, alt: "Un escursionista regge lo striscione Pe' Fratte sul crinale, con le montagne e i boschi d'autunno alle spalle" },
+    { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-faggeta.jpg", w: 900, h: 1200, alt: "La strada sterrata che entra nella faggeta, tra alberi arancioni e cielo limpido" },
+    { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-tra-i-faggi.jpg", w: 900, h: 1200, alt: "Il gruppo in posa nella faggeta, tra foglie secche e tronchi, con i cani" },
+    { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-partenza.jpg", w: 1200, h: 900, alt: "Il gruppo parte a piedi dal piazzale di Campo dell'Osso sotto il cielo azzurro" },
+    { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-verso-la-cima.jpg", w: 1200, h: 900, alt: "Gli escursionisti salgono il prato verso la cima, sotto i rami dorati di un faggio" },
+    { uscita: "2026-10-18", tipo: "video", src: "/pe-fratte/galleria/autore-valle.mp4", poster: "/pe-fratte/galleria/autore-valle-poster.jpg", w: 540, h: 960, alt: "Panoramica verticale sulle valli dei Monti Simbruini vista dalla cima" },
+    { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-panorama.jpg", w: 1200, h: 900, alt: "Le valli e le creste dei Simbruini viste dall'alto, sotto le nuvole" },
+    { uscita: "2026-10-18", tipo: "video", src: "/pe-fratte/galleria/autore-vetta.mp4", poster: "/pe-fratte/galleria/autore-vetta-poster.jpg", w: 848, h: 478, alt: "Il gruppo con lo striscione Pe' Fratte sotto la croce di vetta" },
+    { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-pranzo.jpg", w: 1200, h: 900, alt: "Pranzo al sacco seduti sulle rocce, con i boschi d'autunno e le colline davanti" },
+    { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-compagni.jpg", w: 900, h: 1200, alt: "Un escursionista sorride abbracciato a un cane, sotto gli alberi d'autunno" },
     { uscita: "2026-10-03", tipo: "video", largo: true, src: "/pe-fratte/galleria/cavo-drone.mp4", poster: "/pe-fratte/galleria/cavo-drone-poster.jpg", w: 848, h: 478, alt: "Il drone si alza dal gruppo con lo striscione Pe' Fratte, sorvola la cima del Monte Cavo e scopre i laghi sotto" },
     { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-vetta-striscione.jpg", w: 1200, h: 904, alt: "Foto di gruppo in cima al Monte Cavo con lo striscione Pe' Fratte e la pianura sullo sfondo" },
     { uscita: "2026-10-03", tipo: "foto", src: "/pe-fratte/galleria/cavo-lago.jpg", w: 1200, h: 900, alt: "Il lago vulcanico visto dall'alto tra i boschi dei Castelli Romani" },
