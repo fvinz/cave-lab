@@ -500,7 +500,7 @@ export default function PeFratte() {
         ) : (
           <>
             <Hero />
-            <Sondaggio config={SONDAGGIO} s={sondaggio} />
+            <Sondaggio config={SONDAGGIO} s={sondaggio} compatto={sondaggio.stato === "chiuso"} />
           </>
         )}
         <Uscite />

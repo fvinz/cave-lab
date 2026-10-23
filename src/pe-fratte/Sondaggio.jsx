@@ -10,8 +10,10 @@ import { COMMUNITY } from "../content.js";
 /* Sondaggio "Le mete di novembre". Non applica regole: mostra quello che
    dice il server (useSondaggio) e gli manda le tre scelte.
    `inHero`: mentre si vota e fino all'annuncio è la hero della pagina;
-   dopo l'annuncio torna una sezione sotto la hero di sempre. */
-export default function Sondaggio({ config, s, inHero = false }) {
+   dopo l'annuncio torna una sezione sotto la hero di sempre.
+   `compatto`: a sondaggio chiuso la classifica resta, ma in piccolo, per
+   non rubare la scena alle uscite che ha scelto. */
+export default function Sondaggio({ config, s, inHero = false, compatto = false }) {
   const ora = useAdesso(10000);
   const titoloRisultati = useRef(null);
   const appenaVotato = useRef(false);
@@ -74,14 +76,21 @@ export default function Sondaggio({ config, s, inHero = false }) {
 
   return (
     <section
-      className={"pf-sondaggio " + (inHero ? "pf-sondaggio-hero" : "pf-section")}
+      className={"pf-sondaggio " + (inHero ? "pf-sondaggio-hero" : compatto ? "pf-sondaggio-compatto" : "pf-section")}
       id="sondaggio"
       aria-labelledby="sondaggio-titolo"
     >
-      <CurveDiLivello />
+      {!compatto && <CurveDiLivello />}
       <div className="pf-container pf-sondaggio-dentro">
         {inHero ? (
           <TestaHero config={config} s={s} ora={ora} />
+        ) : compatto ? (
+          <>
+            <p className="pf-meta">Sondaggio · Classifica finale</p>
+            <h2 className="pf-sondaggio-compatto-titolo" id="sondaggio-titolo">
+              Le mete di novembre, scelte da voi
+            </h2>
+          </>
         ) : (
           <>
             <p className="pf-meta">Sondaggio</p>
@@ -114,7 +123,7 @@ export default function Sondaggio({ config, s, inHero = false }) {
           />
         )}
         {fase === "riepilogo" && <Riepilogo config={config} s={s} esitoRef={titoloRisultati} />}
-        {fase === "risultati" && <Risultati config={config} s={s} titoloRef={titoloRisultati} />}
+        {fase === "risultati" && <Risultati config={config} s={s} titoloRef={titoloRisultati} compatto={compatto} />}
       </div>
     </section>
   );
@@ -285,7 +294,7 @@ function Riepilogo({ config, s, esitoRef }) {
   );
 }
 
-function Risultati({ config, s, titoloRef }) {
+function Risultati({ config, s, titoloRef, compatto = false }) {
   const { risultati } = s;
   const chiuso = s.stato === "chiuso";
   const perId = new Map(config.mete.map((m) => [m.id, m]));
@@ -295,11 +304,14 @@ function Risultati({ config, s, titoloRef }) {
   return (
     <div className="pf-risultati">
       {s.avviso === "non-contato" && <NonContato />}
-      <h3 className="pf-risultati-titolo" ref={titoloRef} tabIndex={-1}>
+      {/* nella versione compatta "Classifica finale" è già nell'occhiello */}
+      <h3 className={compatto ? "pf-visually-hidden" : "pf-risultati-titolo"} ref={titoloRef} tabIndex={-1}>
         {chiuso ? "Classifica finale" : "Come sta andando"}
       </h3>
       <p className="pf-risultati-nota">
-        Percentuali sul totale dei voti. {chiuso ? "Il sondaggio è chiuso." : `Si chiude ${giornoEOra(config.chiusura)}.`}
+        {compatto
+          ? "Percentuali sul totale dei voti."
+          : `Percentuali sul totale dei voti. ${chiuso ? "Il sondaggio è chiuso." : `Si chiude ${giornoEOra(config.chiusura)}.`}`}
       </p>
       {chiuso && risultati.pariMerito && (
         <p className="pf-risultati-nota">
