@@ -156,7 +156,9 @@ function Hero() {
 
 function UscitaCard({ uscita, inEvidenza }) {
   const p = uscita.percorso || {};
-  const haDettagli = Boolean(p.km || p.ritrovoOra || p.programma);
+  /* km e dislivello stanno già in DatiSentiero: i "dettagli" sono orari,
+     programma e cose da portare. Finché non ci sono, si legge la descrizione. */
+  const haDettagli = Boolean(p.ritrovoOra || p.partenzaOra || p.programma || p.portare?.length);
   return (
     <article className={"pf-card" + (inEvidenza ? " is-evidenza" : "")} id={"uscita-" + uscita.iso} data-reveal>
       <div className="pf-card-top">

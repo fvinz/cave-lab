@@ -22,3 +22,12 @@ export function etichettaMancanti(iso) {
   if (n === 1) return "Domani";
   return `Mancano ${n} giorni`;
 }
+
+/* Per un'uscita con il giorno ancora da scegliere nel weekend che inizia
+   il sabato `dal`: si conta fino al weekend, non fino a un giorno inventato. */
+export function etichettaWeekend(dal) {
+  const n = giorniMancanti(dal);
+  if (n <= 0) return "Questo weekend";
+  if (n === 1) return "Il weekend è domani";
+  return `Mancano ${n} giorni al weekend`;
+}

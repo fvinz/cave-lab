@@ -222,7 +222,11 @@ export const EVENTI = [
      quelli assenti non vengono mostrati (mai inventare dati di un
      sentiero). `difficolta` è una chiave di PE_FRATTE.difficolta.
      `partecipazione` (es. "Gratuita" o una quota) vale per la singola
-     uscita: le condizioni possono cambiare da un'uscita all'altra. */
+     uscita: le condizioni possono cambiare da un'uscita all'altra.
+     `dal` (facoltativo) serve quando il giorno non è ancora deciso: `dal`
+     è il sabato e `iso` la domenica del weekend, e il conto alla rovescia
+     arriva al weekend invece di fingere un giorno preciso. Deciso il
+     giorno, si aggiornano `iso` e `date` e si toglie `dal`. */
   {
     iso: "2026-09-19", date: "Sabato 19 settembre", gruppo: "Pf",
     title: "Pe' Fratte: Monte Scalambra",
@@ -314,6 +318,48 @@ export const EVENTI = [
       portare: ["Scarpe da trekking o trail", "Pranzo al sacco", "Giacca antivento e uno strato caldo", "Scorta d'acqua"],
     },
     evidenza: { stile: "pe-fratte", numeroUscita: 4 },
+  },
+  /* Le tre mete di novembre, scelte con il sondaggio (vedi
+     src/pe-fratte/sondaggio.config.js). Dati del carosello pubblicato il
+     22 ottobre: ritrovo, orari e partecipazione non sono ancora annunciati. */
+  {
+    iso: "2026-11-08", dal: "2026-11-07", date: "Weekend 7–8 novembre", gruppo: "Pf",
+    title: "Pe' Fratte: Monte Crepacuore",
+    desc: "Quinta uscita, scelta da voi nel sondaggio: 10,9 km e 460 m di dislivello sui Monti Ernici. Sabato o domenica? Si decide nel gruppo, insieme a ritrovo e orari.",
+    percorso: {
+      zona: "Monti Ernici, Guarcino",
+      difficolta: "intermedia",
+      km: "10,9",
+      dislivello: "460",
+      durata: "3:35 h",
+    },
+    evidenza: { stile: "pe-fratte", numeroUscita: 5 },
+  },
+  {
+    iso: "2026-11-15", dal: "2026-11-14", date: "Weekend 14–15 novembre", gruppo: "Pf",
+    title: "Pe' Fratte: Monte Semprevisa",
+    desc: "Sesta uscita, scelta da voi nel sondaggio: 9,1 km e 660 m di dislivello sui Monti Lepini. Sabato o domenica? Si decide nel gruppo, insieme a ritrovo e orari.",
+    percorso: {
+      zona: "Pian della Faggeta, Monti Lepini",
+      difficolta: "intermedia",
+      km: "9,1",
+      dislivello: "660",
+      durata: "3:35 h",
+    },
+    evidenza: { stile: "pe-fratte", numeroUscita: 6 },
+  },
+  {
+    iso: "2026-11-22", dal: "2026-11-21", date: "Weekend 21–22 novembre", gruppo: "Pf",
+    title: "Pe' Fratte: Monte Redentore",
+    desc: "Settima uscita, scelta da voi nel sondaggio: l'anello corto, 9,4 km e 490 m di dislivello vicino a Formia. Sabato o domenica? Si decide nel gruppo, insieme a ritrovo e orari.",
+    percorso: {
+      zona: "Fossa Massaraccio, Formia",
+      difficolta: "intermedia",
+      km: "9,4",
+      dislivello: "490",
+      durata: "3:14 h",
+    },
+    evidenza: { stile: "pe-fratte", numeroUscita: 7 },
   },
   { iso: "2026-08-18", date: "Martedì 18 agosto", title: "Cinema sotto le stelle: Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
   { iso: "2026-08-11", date: "Martedì 11 agosto", title: "Cinema sotto le stelle: Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },

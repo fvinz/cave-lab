@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import Icon from "./Icon.jsx";
 import Manifesto from "./Manifesto.jsx";
 import { COMMUNITY, EVENTI, HERO_EVENTI, SOCIAL } from "../content.js";
-import { etichettaMancanti, isInArrivo } from "../date.js";
+import { etichettaMancanti, etichettaWeekend, isInArrivo } from "../date.js";
 import { Foglia, Paesaggio } from "../pe-fratte/Natura.jsx";
 import useNatura from "../pe-fratte/useNatura.js";
 import { SONDAGGIO } from "../pe-fratte/sondaggio.config.js";
@@ -210,7 +210,8 @@ function CartaPeFratte({ evento }) {
 
       <div className="pf-tessera-corpo">
         <p className="pf-tessera-meta">
-          Pe' Fratte · Uscita {String(e.numeroUscita).padStart(2, "0")} · {etichettaMancanti(evento.iso)}
+          Pe' Fratte · Uscita {String(e.numeroUscita).padStart(2, "0")} ·{" "}
+          {evento.dal ? etichettaWeekend(evento.dal) : etichettaMancanti(evento.iso)}
         </p>
         <h2 className="carta-pf-nome">{meta}</h2>
         <p className="carta-pf-data">{evento.date}</p>
