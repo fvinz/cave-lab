@@ -155,6 +155,22 @@ export const PE_FRATTE = {
        visibili), con `poster`; `largo: true` lo mette a tutta larghezza
      Solo materiale vero delle uscite. Con la lista vuota la sezione non compare. */
   galleria: [
+    { uscita: "2026-11-08", tipo: "video", largo: true, src: "/pe-fratte/galleria/crepacuore-drone.mp4", poster: "/pe-fratte/galleria/crepacuore-drone-poster.jpg", w: 848, h: 478, alt: "Il drone riprende dall'alto il gruppo con lo striscione Pe' Fratte sulla cresta del Monte Crepacuore, poi si allontana verso le nuvole" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-vetta-gruppo.jpg", w: 900, h: 1200, alt: "Foto di gruppo in vetta al Monte Crepacuore accanto alla croce con le bandierine, con lo striscione Pe' Fratte e i cani" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-valle.jpg", w: 1200, h: 904, alt: "Le nuvole scendono sulla valle coperta di faggete arancioni e rosse d'autunno" },
+    { uscita: "2026-11-08", tipo: "video", src: "/pe-fratte/galleria/crepacuore-fila.mp4", poster: "/pe-fratte/galleria/crepacuore-fila-poster.jpg", w: 540, h: 960, alt: "Il gruppo in fila sul sentiero di cresta tra le rocce, con le nuvole che salgono dalla valle" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-partenza.jpg", w: 1200, h: 900, alt: "Il gruppo parte da Campocatino accanto agli impianti di risalita, con le prime chiazze di neve" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-croce.jpg", w: 900, h: 1200, alt: "Due escursionisti si arrampicano sulla croce di vetta, uno appeso a testa in giù, sotto il cielo blu" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-neve.jpg", w: 903, h: 1200, alt: "La prima neve sul crinale, sotto un cielo pieno di nuvole a pecorelle" },
+    { uscita: "2026-11-08", tipo: "video", src: "/pe-fratte/galleria/crepacuore-cresta-nuvole.mp4", poster: "/pe-fratte/galleria/crepacuore-cresta-nuvole-poster.jpg", w: 848, h: 478, alt: "Il drone sorvola la cresta erbosa mentre le nuvole la avvolgono da un lato" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-rocce.jpg", w: 900, h: 1200, alt: "Due escursioniste superano un passaggio tra le rocce aiutandosi con le mani" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-moka.jpg", w: 1200, h: 1180, alt: "La moka del caffè appoggiata tra le pietre in vetta, con le montagne e le nuvole sullo sfondo" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-cresta.jpg", w: 1200, h: 903, alt: "Gli escursionisti scendono lungo la cresta verso le montagne coperte di nuvole" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-cane.jpg", w: 855, h: 1200, alt: "Un cane lupo con il guinzaglio in posa su una roccia, con le nuvole alle spalle" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-striscione.jpg", w: 1200, h: 900, alt: "Un gruppo di escursionisti sorride con lo striscione Pe' Fratte davanti alla croce di vetta" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-nuvole.jpg", w: 904, h: 1200, alt: "Una nuvola scavalca la cresta rocciosa e scende sull'altro versante" },
+    { uscita: "2026-11-08", tipo: "video", src: "/pe-fratte/galleria/crepacuore-muso.mp4", poster: "/pe-fratte/galleria/crepacuore-muso-poster.jpg", w: 640, h: 480, alt: "Il cane lupo avvicina il muso alla videocamera sul prato" },
+    { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-brindisi.jpg", w: 1200, h: 900, alt: "Il gruppo brinda al tavolo di un bar, sorridendo verso la fotocamera" },
     { uscita: "2026-10-18", tipo: "video", largo: true, src: "/pe-fratte/galleria/autore-crinale.mp4", poster: "/pe-fratte/galleria/autore-crinale-poster.jpg", w: 848, h: 478, alt: "Un'escursionista con la giacca rossa e il cane camminano sul crinale tra i faggi d'autunno, con le valli dei Monti Simbruini sullo sfondo" },
     { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-vetta-gruppo.jpg", w: 1200, h: 900, alt: "Foto di gruppo in vetta al Monte Autore sotto la croce, con lo striscione Pe' Fratte e i cani" },
     { uscita: "2026-10-18", tipo: "foto", src: "/pe-fratte/galleria/autore-laghetto.jpg", w: 900, h: 1200, alt: "Il laghetto nel bosco con la faggeta autunnale che si specchia nell'acqua" },
@@ -321,17 +337,24 @@ export const EVENTI = [
   },
   /* Le tre mete di novembre, scelte con il sondaggio (vedi
      src/pe-fratte/sondaggio.config.js). Dati del carosello pubblicato il
-     22 ottobre: ritrovo, orari e partecipazione non sono ancora annunciati. */
+     22 ottobre; finché il giorno non è deciso nel gruppo l'uscita resta sul
+     weekend (`dal`) senza ritrovo né orari. Il Crepacuore è fatto: giorno,
+     ritrovo e partenza sono quelli della storia dell'uscita. */
   {
-    iso: "2026-11-08", dal: "2026-11-07", date: "Weekend 7–8 novembre", gruppo: "Pf",
+    iso: "2026-11-08", date: "Domenica 8 novembre", gruppo: "Pf",
     title: "Pe' Fratte: Monte Crepacuore",
-    desc: "Quinta uscita, scelta da voi nel sondaggio: 10,9 km e 460 m di dislivello sui Monti Ernici. Sabato o domenica? Si decide nel gruppo, insieme a ritrovo e orari.",
+    desc: "Quinta uscita, scelta da voi nel sondaggio: 10,9 km e 460 m di dislivello da Campocatino fino alla croce di vetta, sui Monti Ernici. Ritrovo a Cave alle 07:45, partecipazione gratuita.",
     percorso: {
-      zona: "Monti Ernici, Guarcino",
+      zona: "Campocatino, Guarcino",
       difficolta: "intermedia",
+      partecipazione: "Gratuita",
       km: "10,9",
       dislivello: "460",
       durata: "3:35 h",
+      ritrovoOra: "07:45",
+      partenzaOra: "09:30",
+      programma: "Partenza da Campocatino e su per i Monti Ernici, tra la prima neve e le nuvole che salgono dalla valle, fino alla croce di vetta del Monte Crepacuore. Pranzo al sacco in cima, la moka per il caffè e poi rientro con calma.",
+      portare: ["Scarpe da trekking o trail", "Pranzo al sacco", "Giacca antivento e uno strato caldo", "Scorta d'acqua"],
     },
     evidenza: { stile: "pe-fratte", numeroUscita: 5 },
   },
