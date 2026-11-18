@@ -8,6 +8,7 @@ import useSondaggio from "./useSondaggio.js";
 import { SONDAGGIO } from "./sondaggio.config.js";
 import { FilaDiPini, Foglia, Paesaggio } from "./Natura.jsx";
 import useNatura from "./useNatura.js";
+import NomeUscita from "./NomeUscita.jsx";
 import CookieBanner, { openCookieBanner } from "../components/CookieBanner.jsx";
 import { COMMUNITY, EVENTI, PE_FRATTE } from "../content.js";
 import { isInArrivo } from "../date.js";
@@ -132,7 +133,7 @@ function Hero() {
           ) : ultima ? (
             <>
               <p className="pf-prossima-data">{ultima.date}</p>
-              <p className="pf-prossima-titolo">{meta(ultima)}</p>
+              <p className="pf-prossima-titolo"><NomeUscita u={ultima} /></p>
               {ultima.percorso?.zona && (
                 <p className="pf-zona">
                   <PfIcon name="mapPin" />
@@ -378,7 +379,7 @@ function GruppoGalleria({ g, recente }) {
     <div className="pf-galleria-gruppo" id={"foto-" + g.iso}>
       {g.uscita && (
         <p className="pf-galleria-uscita">
-          <span className="pf-galleria-nome">{meta(g.uscita)}</span>
+          <span className="pf-galleria-nome"><NomeUscita u={g.uscita} /></span>
           <span className="pf-galleria-data">{g.uscita.date}</span>
         </p>
       )}
@@ -434,7 +435,7 @@ function Archivio() {
           {fatte.map((u) => (
             <li key={u.iso} data-reveal>
               <span className="pf-archivio-data">{u.date}</span>
-              <span className="pf-archivio-nome">{meta(u)}</span>
+              <span className="pf-archivio-nome"><NomeUscita u={u} /></span>
               {u.percorso && <DatiSentiero p={u.percorso} />}
             </li>
           ))}

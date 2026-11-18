@@ -1,0 +1,72 @@
+/* Cambio di meta (NomeUscita.jsx): la montagna annunciata, barrata in oro,
+   sopra quella fatta davvero. Eredita font e colore del titolo in cui sta,
+   quindi va bene nella pagina /pe-fratte/ come nella tessera della home. */
+.pf-cambio {
+  display: inline-flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  gap: .14em;
+  vertical-align: baseline;
+}
+/* La data accanto al nome va in basso, all'altezza della meta fatta:
+   con l'allineamento sulla linea di base finirebbe su quella barrata */
+.pf-galleria-uscita:has(.pf-cambio),
+.pf-archivio li:has(.pf-cambio),
+.pf-tessera-uscite li:has(.pf-cambio) { align-items: end; }
+/* nella tessera della home i nomi stanno a destra, e il timbro "Fatta"
+   resta accanto alla meta fatta invece di salire da solo sulla riga sopra */
+.pf-tessera-nome:has(.pf-cambio) {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.pf-tessera-nome .pf-cambio { align-items: flex-end; }
+.pf-tessera-nome:has(.pf-cambio) .pf-tessera-fatta { flex: none; margin-bottom: .1em; }
+
+.pf-cambio-prima {
+  position: relative;
+  font-size: .58em;
+  line-height: 1;
+  color: var(--pf-sabbia-400);
+  text-decoration: none; /* la riga è quella d'oro qui sotto */
+}
+.pf-cambio-riga {
+  position: absolute;
+  left: -.1em;
+  right: -.1em;
+  top: 50%;
+  height: max(2px, .13em);
+  margin-top: max(-1px, -.065em);
+  background: var(--pf-oro-500);
+  border-radius: var(--radius-xs, 2px);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .55s cubic-bezier(.65, 0, .35, 1) .15s;
+}
+.pf-cambio.is-barrato .pf-cambio-riga { transform: scaleX(1); }
+
+.pf-cambio-dopo {
+  display: inline-flex;
+  align-items: center;
+  gap: .18em;
+  opacity: 0;
+  transform: translateY(.18em);
+  transition: opacity .4s ease .65s, transform .4s ease .65s;
+}
+.pf-cambio.is-barrato .pf-cambio-dopo { opacity: 1; transform: none; }
+.pf-cambio-spunta {
+  flex: none;
+  width: .72em;
+  height: .72em;
+  color: var(--pf-oro-500);
+}
+
+.pf-cambio-sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-cambio-riga { transform: scaleX(1); transition: none; }
+  .pf-cambio-dopo { opacity: 1; transform: none; transition: none; }
+}

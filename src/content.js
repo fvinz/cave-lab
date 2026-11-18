@@ -155,6 +155,23 @@ export const PE_FRATTE = {
        visibili), con `poster`; `largo: true` lo mette a tutta larghezza
      Solo materiale vero delle uscite. Con la lista vuota la sezione non compare. */
   galleria: [
+    { uscita: "2026-11-14", tipo: "video", largo: true, src: "/pe-fratte/galleria/lupone-drone.mp4", poster: "/pe-fratte/galleria/lupone-drone-poster.jpg", w: 848, h: 478, alt: "Il drone riprende dall'alto il gruppo che saluta sul crinale pietroso del Monte Lupone, poi sale sopra la faggeta e le nuvole" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-vetta-gruppo.jpg", w: 1200, h: 900, alt: "Foto di gruppo accanto alla croce di vetta del Monte Lupone, avvolta nella nebbia" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-cavalli.jpg", w: 1200, h: 900, alt: "Un cavallo bianco e un puledro nero sul pianoro verde, sotto le colline d'autunno e un cielo di nuvole" },
+    { uscita: "2026-11-14", tipo: "video", src: "/pe-fratte/galleria/lupone-pianoro.mp4", poster: "/pe-fratte/galleria/lupone-pianoro-poster.jpg", w: 848, h: 478, alt: "Il drone vola basso sul pianoro mentre il sole del mattino accende le colline" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-salto.jpg", w: 900, h: 1200, alt: "Due escursionisti saltano sul prato del pianoro, con le nuvole alle spalle" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-faggeta.jpg", w: 900, h: 1200, alt: "Un escursionista cammina da solo nella faggeta gialla, sul sentiero coperto di foglie" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-fungo.jpg", w: 900, h: 1200, alt: "Un fungo dal cappello sottile spunta tra le foglie arancioni della faggeta" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-tronco-gruppo.jpg", w: 1200, h: 900, alt: "Il gruppo in posa su un grande tronco caduto nella faggeta, chi seduto e chi con le braccia al cielo" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-muretto.jpg", w: 900, h: 1200, alt: "Tre escursionisti si affacciano da un muretto a secco, con la nebbia dietro" },
+    { uscita: "2026-11-14", tipo: "video", src: "/pe-fratte/galleria/lupone-cavalli-clip.mp4", poster: "/pe-fratte/galleria/lupone-cavalli-clip-poster.jpg", w: 848, h: 478, alt: "Il cavallo bianco e il puledro nero davanti alla videocamera, sul pianoro al sole" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-acrobazie.jpg", w: 900, h: 1200, alt: "Due escursionisti fanno acrobazie su un tronco coperto di muschio, tra i faggi gialli" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-nebbia.jpg", w: 1200, h: 900, alt: "Il gruppo sale tra le rocce verso la vetta, dentro la nebbia" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-cappuccio.jpg", w: 675, h: 1200, alt: "Selfie nel freddo: lei col cappuccio e il pollice alzato, lui con la lingua di fuori" },
+    { uscita: "2026-11-14", tipo: "video", src: "/pe-fratte/galleria/lupone-quaderno.mp4", poster: "/pe-fratte/galleria/lupone-quaderno-poster.jpg", w: 848, h: 478, alt: "In vetta si cammina verso le nuvole, poi il quaderno di vetta con la scritta Pe' Fratte e la data 14/11/26" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-tronco-saluto.jpg", w: 1200, h: 900, alt: "Due escursionisti salutano seduti su un tronco nella faggeta" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-fila.jpg", w: 1200, h: 900, alt: "Il gruppo in fila su un tronco caduto nel bosco, tra le foglie gialle" },
+    { uscita: "2026-11-14", tipo: "foto", src: "/pe-fratte/galleria/lupone-selfie-faggeta.jpg", w: 1200, h: 900, alt: "Selfie con il gruppo che sorride nella faggeta d'autunno" },
     { uscita: "2026-11-08", tipo: "video", largo: true, src: "/pe-fratte/galleria/crepacuore-drone.mp4", poster: "/pe-fratte/galleria/crepacuore-drone-poster.jpg", w: 848, h: 478, alt: "Il drone riprende dall'alto il gruppo con lo striscione Pe' Fratte sulla cresta del Monte Crepacuore, poi si allontana verso le nuvole" },
     { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-vetta-gruppo.jpg", w: 900, h: 1200, alt: "Foto di gruppo in vetta al Monte Crepacuore accanto alla croce con le bandierine, con lo striscione Pe' Fratte e i cani" },
     { uscita: "2026-11-08", tipo: "foto", src: "/pe-fratte/galleria/crepacuore-valle.jpg", w: 1200, h: 904, alt: "Le nuvole scendono sulla valle coperta di faggete arancioni e rosse d'autunno" },
@@ -358,21 +375,26 @@ export const EVENTI = [
     },
     evidenza: { stile: "pe-fratte", numeroUscita: 5 },
   },
+  /* Annunciata sul Monte Semprevisa; per il maltempo si è fatto il piano B
+     sul Monte Lupone. `invece` tiene la meta annunciata: nella pagina e
+     nella tessera compare barrata, come nel reel. Dati dal percorso Komoot
+     "Da Campo di Segni a Monte Lupone - giro ad anello". */
   {
-    iso: "2026-11-15", dal: "2026-11-14", date: "Weekend 14–15 novembre", gruppo: "Pf",
-    title: "Pe' Fratte: Monte Semprevisa",
-    desc: "Sesta uscita, scelta da voi nel sondaggio: 9,1 km e 660 m di dislivello sui Monti Lepini. Sabato o domenica? Si decide nel gruppo, insieme a ritrovo e orari.",
+    iso: "2026-11-14", date: "Sabato 14 novembre", gruppo: "Pf",
+    title: "Pe' Fratte: Monte Lupone",
+    invece: "Monte Semprevisa",
+    desc: "Sesta uscita: doveva essere il Monte Semprevisa, ma il meteo ha cambiato idea e noi con lui. Piano B: l'anello da Campo di Segni fino in vetta al Monte Lupone, 9,7 km e 520 m di dislivello sui Monti Lepini.",
     percorso: {
-      zona: "Pian della Faggeta, Monti Lepini",
+      zona: "Campo di Segni, Monti Lepini",
       difficolta: "intermedia",
-      km: "9,1",
-      dislivello: "660",
-      durata: "3:35 h",
+      km: "9,7",
+      dislivello: "520",
     },
     evidenza: { stile: "pe-fratte", numeroUscita: 6 },
   },
+  /* Spostato dal 21–22 al 28–29 novembre (annunciato nel reel del Lupone) */
   {
-    iso: "2026-11-22", dal: "2026-11-21", date: "Weekend 21–22 novembre", gruppo: "Pf",
+    iso: "2026-11-29", dal: "2026-11-28", date: "Weekend 28–29 novembre", gruppo: "Pf",
     title: "Pe' Fratte: Monte Redentore",
     desc: "Settima uscita, scelta da voi nel sondaggio: l'anello corto, 9,4 km e 490 m di dislivello vicino a Formia. Sabato o domenica? Si decide nel gruppo, insieme a ritrovo e orari.",
     percorso: {

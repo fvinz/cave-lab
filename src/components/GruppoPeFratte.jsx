@@ -1,6 +1,7 @@
 import { isInArrivo } from "../date.js";
 import { Foglia, Paesaggio } from "../pe-fratte/Natura.jsx";
 import useNatura from "../pe-fratte/useNatura.js";
+import NomeUscita from "../pe-fratte/NomeUscita.jsx";
 
 /* Tessera del gruppo Pe' Fratte nella Community: esce dalla tavola
    periodica e parla la lingua della pagina /pe-fratte/ — fondo bosco,
@@ -35,7 +36,7 @@ export default function GruppoPeFratte({ gruppo, uscite }) {
                   <span className="pf-tessera-data">{u.date}</span>
                   <span className="pf-tessera-nome">
                     {fatta && <span className="pf-tessera-fatta">Fatta</span>}
-                    {u.title.split(": ").pop()}
+                    <NomeUscita u={u} />
                   </span>
                 </li>
               );
