@@ -161,10 +161,16 @@ function UscitaCard({ uscita, inEvidenza }) {
      programma e cose da portare. Finché non ci sono, si legge la descrizione. */
   const haDettagli = Boolean(p.ritrovoOra || p.partenzaOra || p.programma || p.portare?.length);
   return (
-    <article className={"pf-card" + (inEvidenza ? " is-evidenza" : "")} id={"uscita-" + uscita.iso} data-reveal>
+    <article className={"pf-card" + (inEvidenza ? " is-evidenza" : "") + (uscita.natale ? " is-natale" : "")} id={"uscita-" + uscita.iso} data-reveal>
       <div className="pf-card-top">
         <span className="pf-card-data">{uscita.date}</span>
         <span className="pf-card-badge">
+          {/* l'occhiello della storia "Pranzo di Natale" */}
+          {uscita.natale && (
+            <span className="pf-natale-badge">
+              <span aria-hidden="true">★</span> Speciale Natale
+            </span>
+          )}
           <DifficoltaBadge chiave={p.difficolta} />
           <Partecipazione valore={p.partecipazione} />
         </span>
