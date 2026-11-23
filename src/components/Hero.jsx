@@ -10,6 +10,7 @@ import useNatura from "../pe-fratte/useNatura.js";
 import { SONDAGGIO } from "../pe-fratte/sondaggio.config.js";
 import { contoAllaRovescia, giornoEOra } from "../pe-fratte/sondaggio-utili.js";
 import CurveDiLivello from "../pe-fratte/CurveDiLivello.jsx";
+import Slitta from "../pe-fratte/Slitta.jsx";
 import useAdesso from "../pe-fratte/useAdesso.js";
 import { statoSondaggio } from "../../api/_lib/regole.js";
 
@@ -82,6 +83,14 @@ function useApertura() {
           sale(q(".carta-pf .pf-tessera-meta, .carta-pf-data, .carta-pf .pf-tessera-desc, .carta-pf-chip, .carta-pf-azioni > *"), 14, { duration: 0.55, stagger: 0.06 }, 1.1);
         }
 
+        /* Pe' Fratte di Natale: la slitta attraversa, il calendario si appende */
+        if (q(".carta-natale").length) {
+          tl.fromTo(q(".carta-natale-slitta"), { x: -60, y: 24, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 1.3, ease: "power2.out" }, 0.7);
+          sale(q(".carta-natale-titolo > span"), 28, { duration: 0.7, stagger: 0.1 }, 0.9);
+          tl.fromTo(q(".carta-natale-cal"), { y: -40, rotate: 6, opacity: 0 }, { y: 0, rotate: -3, opacity: 1, duration: 0.9, ease: "back.out(1.8)" }, 1.05);
+          sale(q(".carta-natale-occhiello, .carta-natale .pf-tessera-meta, .carta-natale .pf-tessera-desc, .carta-natale .carta-pf-azioni > *"), 14, { duration: 0.55, stagger: 0.06 }, 1.1);
+        }
+
       });
     },
     { scope }
@@ -116,6 +125,8 @@ function HeroEventi({ eventi, sondaggio }) {
           {eventi.map((evento) =>
             evento.evidenza.stile === "in-vino-veritas" ? (
               <CartaInVinoVeritas key={evento.iso} evento={evento} />
+            ) : evento.evidenza.stile === "pe-fratte-natale" ? (
+              <CartaNatale key={evento.iso} evento={evento} />
             ) : (
               <CartaPeFratte key={evento.iso} evento={evento} />
             )
@@ -223,6 +234,62 @@ function CartaPeFratte({ evento }) {
           </a>
           <a href="/pe-fratte/" className="carta-pf-link">Scopri Pe' Fratte</a>
         </div>
+      </div>
+    </article>
+  );
+}
+
+/* Carta Pe' Fratte di Natale: la variante natalizia del design system
+   della storia IG "Pranzo di Natale" (22 novembre). Verde abete al posto
+   del bosco, neve al posto della carta, la slitta nei pittogrammi sabbia
+   e il rosso agrifoglio solo per il calendario della data. In fondo la
+   foto di vetta, come nella storia. `e.titolo` sono le due righe del
+   titolo, la seconda in oro. */
+function CartaNatale({ evento }) {
+  const e = evento.evidenza;
+  const [riga1, riga2] = e.titolo;
+  const d = new Date(evento.iso + "T12:00:00");
+  const giorno = d.toLocaleDateString("it-IT", { weekday: "long" });
+  const mese = d.toLocaleDateString("it-IT", { month: "long" });
+
+  return (
+    <article className="pf-tessera carta-natale">
+      <span className="carta-natale-neve" aria-hidden="true"></span>
+      <span className="carta-natale-neve is-vicina" aria-hidden="true"></span>
+      <Slitta className="carta-natale-slitta" />
+
+      <div className="carta-natale-corpo">
+        <p className="carta-natale-occhiello">
+          <span aria-hidden="true">★</span> Speciale Natale
+        </p>
+        <p className="pf-tessera-meta">
+          Pe' Fratte · Uscita {String(e.numeroUscita).padStart(2, "0")} · {etichettaMancanti(evento.iso)}
+        </p>
+        <div className="carta-natale-testa">
+          <h2 className="carta-natale-titolo">
+            <span>{riga1}</span> <span className="is-oro">{riga2}</span>
+          </h2>
+          <p className="carta-natale-cal" aria-label={evento.date}>
+            <span className="carta-natale-cal-giorno">{giorno}</span>
+            <span className="carta-natale-cal-numero">{d.getDate()}</span>
+            <span className="carta-natale-cal-mese">{mese}</span>
+          </p>
+        </div>
+        <p className="pf-tessera-desc">{evento.desc}</p>
+        <div className="carta-pf-azioni">
+          <a href={COMMUNITY.inviteUrl} target="_blank" rel="noopener noreferrer" className="pf-tessera-cta">
+            Vuoi esserci? Entra nel gruppo
+          </a>
+          <a href="/pe-fratte/" className="carta-pf-link">Scopri Pe' Fratte</a>
+        </div>
+      </div>
+
+      <div className="carta-natale-foto">
+        <picture>
+          <source srcSet={e.foto + ".webp"} type="image/webp" />
+          <img src={e.foto + ".jpg"} alt={e.fotoAlt} width="900" height="1200" decoding="async" />
+        </picture>
+        <p className="carta-natale-firma">Buone feste da Pe' Fratte</p>
       </div>
     </article>
   );

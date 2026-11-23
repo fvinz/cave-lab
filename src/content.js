@@ -406,15 +406,24 @@ export const EVENTI = [
     },
     evidenza: { stile: "pe-fratte", numeroUscita: 7 },
   },
-  /* Annunciata a grandi linee: si cammina e poi si pranza tutti insieme.
-     Meta, ritrovo, orari e quota del pranzo non sono ancora usciti, quindi
-     niente `percorso`: si legge solo la descrizione. Quando escono, il nome
-     della meta va nel `title` (dopo "Pe' Fratte: ") e i dati in `percorso`. */
+  /* Speciale Natale, come la storia IG "Pranzo di Natale" del 22 novembre:
+     stile "pe-fratte-natale" (verde abete, neve, slitta, calendario rosso;
+     vedi CartaNatale in Hero.jsx). Meta, ritrovo, orari e quota del pranzo
+     non sono ancora usciti, quindi niente `percorso`: si legge solo la
+     descrizione. Quando escono, i dati vanno in `percorso`; la meta si può
+     aggiungere nella descrizione e in `percorso.zona`. */
   {
     iso: "2026-12-05", date: "Sabato 5 dicembre", gruppo: "Pf",
-    title: "Pe' Fratte: Uscita con pranzo",
-    desc: "Ottava uscita, e stavolta dopo il sentiero ci si siede a tavola: pranzo tutti insieme. Meta, ritrovo, orari e costo del pranzo arrivano a breve nel gruppo.",
-    evidenza: { stile: "pe-fratte", numeroUscita: 8 },
+    title: "Pe' Fratte: Trekking + pranzo",
+    natale: true,
+    desc: "Ottava uscita, speciale Natale: un trekking leggero, poi concludiamo l'anno a tavola, tutti insieme. Meta, ritrovo, orari e costo del pranzo arrivano a breve nel gruppo.",
+    evidenza: {
+      stile: "pe-fratte-natale",
+      numeroUscita: 8,
+      titolo: ["Trekking", "+ pranzo"],
+      foto: "/pe-fratte/natale/vetta-gruppo",
+      fotoAlt: "Il gruppo Pe' Fratte in vetta al Monte Crepacuore con lo striscione, i cani e la croce sullo sfondo",
+    },
   },
   { iso: "2026-08-18", date: "Martedì 18 agosto", title: "Cinema sotto le stelle: Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
   { iso: "2026-08-11", date: "Martedì 11 agosto", title: "Cinema sotto le stelle: Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },

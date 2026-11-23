@@ -34,6 +34,9 @@
   --pf-pietra-600: #6E6656;
   --pf-pietra-800: #3B372F;
   --pf-rosso-600: #B4492F;
+  /* variante natalizia (storia IG "Pranzo di Natale"): rosso agrifoglio e ombra abete */
+  --pf-natale-rosso: #B62A28;
+  --pf-natale-ombra: #0A160F;
 
   /* Fondi delle sezioni (coincidono con VERDI in PeFratte.jsx) */
   --verde-notte: var(--pf-bosco-900);
@@ -451,6 +454,24 @@ button { font: inherit; }
   text-transform: uppercase;
   color: var(--fg-tagline);
 }
+/* Uscita speciale Natale: la data nel rosso agrifoglio del calendario della
+   storia IG "Pranzo di Natale", l'occhiello oro con la stella */
+.pf-card.is-natale .pf-card-data {
+  padding: 5px 8px 4px;
+  background: var(--pf-natale-rosso);
+  color: var(--pf-carta-50);
+  box-shadow: 3px 3px 0 var(--pf-natale-ombra);
+  transform: rotate(-2deg);
+}
+.pf-natale-badge {
+  font: 700 11px/1.2 var(--font-mono);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  /* sul fondo carta l'oro non si legge: testo agrifoglio, stella oro */
+  color: var(--pf-natale-rosso);
+  align-self: center;
+}
+.pf-natale-badge > span { color: var(--pf-oro-500); font-size: 13px; }
 .pf-card-titolo {
   font: 900 clamp(34px, 5vw, 44px)/.95 var(--font-display);
   text-transform: uppercase;

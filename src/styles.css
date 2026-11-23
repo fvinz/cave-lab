@@ -1227,6 +1227,177 @@ section[id] { scroll-margin-top: 96px; }
 }
 .community-ignoto .element-symbol { color: var(--color-muted); text-shadow: none; }
 
+/* Carta Pe' Fratte di Natale: il design system della storia IG "Pranzo di
+   Natale" (22 novembre). Verde bosco -> verde abete, oro -> oro festivo,
+   carta -> neve, sabbia -> pittogrammi, più il rosso agrifoglio solo per
+   il calendario della data. Valori presi da sorgenti/build_storia.py. */
+/* doppia classe: deve vincere sul fondo di .pf-tessera, dichiarato più sotto */
+.pf-tessera.carta-natale {
+  --natale-abete: #13261D;
+  --natale-ombra: #0A160F;
+  --natale-neve: #F4EEE2;
+  --natale-salvia: #9EB5A3;
+  --natale-rosso: #B62A28;
+  --natale-rosso-scuro: #841A1C;
+
+  background: var(--natale-abete);
+  border-color: var(--natale-ombra);
+  isolation: isolate;
+}
+/* Neve: due strati di fiocchi (lontani e vicini) che scendono piano */
+.carta-natale-neve {
+  position: absolute;
+  inset: -200px 0 0 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(244, 238, 226, .7) 0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 37% 62%, rgba(244, 238, 226, .55) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 68% 34%, rgba(244, 238, 226, .65) 0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 86% 78%, rgba(244, 238, 226, .5) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 52% 8%, rgba(244, 238, 226, .6) 0 1px, transparent 2px);
+  background-size: 180px 200px;
+  animation: natale-neve 26s linear infinite;
+}
+.carta-natale-neve.is-vicina {
+  background-image:
+    radial-gradient(circle at 22% 40%, rgba(244, 238, 226, .8) 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 74% 12%, rgba(244, 238, 226, .45) 0 3.5px, transparent 5px),
+    radial-gradient(circle at 58% 82%, rgba(244, 238, 226, .7) 0 2px, transparent 3px);
+  background-size: 260px 280px;
+  filter: blur(.6px);
+  animation-duration: 17s;
+}
+@keyframes natale-neve {
+  from { transform: translateY(0); }
+  to { transform: translateY(200px); }
+}
+.carta-natale-slitta {
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  z-index: 1;
+  width: min(52%, 270px);
+  height: auto;
+  color: var(--pf-sabbia-400);
+}
+.carta-natale-corpo {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  /* in alto lo spazio per la slitta, come nella storia */
+  padding: calc(var(--space-md) + 92px) var(--space-md) var(--space-sm);
+}
+.carta-natale-occhiello {
+  font: 700 12px/1 "Space Mono", ui-monospace, monospace;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--pf-oro-500);
+}
+.carta-natale-occhiello span { font-size: 15px; letter-spacing: 0; margin-right: 4px; }
+.carta-natale .pf-tessera-meta { color: var(--natale-salvia); }
+.carta-natale-testa {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin: var(--space-2xs) 0;
+}
+.carta-natale-titolo {
+  margin: 0;
+  font: 800 clamp(2.7rem, 4.4vw, 3.8rem)/0.86 "Big Shoulders Display", Impact, sans-serif;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  color: var(--natale-neve);
+  text-shadow: 0 4px 24px rgba(10, 22, 15, .85);
+}
+.carta-natale-titolo > span { display: block; }
+.carta-natale-titolo .is-oro { color: var(--pf-oro-500); }
+/* Il calendario rosso della storia: fascia scura col giorno, anelli neve */
+.carta-natale-cal {
+  position: relative;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  margin-top: 10px;
+  padding-bottom: 8px;
+  background: var(--natale-rosso);
+  color: var(--natale-neve);
+  box-shadow: 6px 6px 0 var(--natale-ombra);
+  transform: rotate(-3deg);
+  text-transform: uppercase;
+}
+.carta-natale-cal::before,
+.carta-natale-cal::after {
+  content: "";
+  position: absolute;
+  top: -9px;
+  width: 8px;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--natale-neve);
+  box-shadow: inset 0 -6px 0 -2px var(--natale-rosso-scuro);
+}
+.carta-natale-cal::before { left: 26%; }
+.carta-natale-cal::after { right: 26%; }
+.carta-natale-cal-giorno {
+  align-self: stretch;
+  padding: 12px 0 6px;
+  background: var(--natale-rosso-scuro);
+  text-align: center;
+  font: 700 11px/1 "Space Mono", ui-monospace, monospace;
+  letter-spacing: .22em;
+}
+.carta-natale-cal-numero {
+  font: 800 4.4rem/1 "Big Shoulders Display", Impact, sans-serif;
+  margin: 2px 0 -4px;
+}
+.carta-natale-cal-mese {
+  font: 700 10px/1 "Space Mono", ui-monospace, monospace;
+  letter-spacing: .18em;
+}
+.carta-natale .pf-tessera-desc { color: var(--natale-neve); }
+.carta-natale .pf-tessera-cta { box-shadow: 4px 4px 0 var(--natale-ombra); border-color: var(--natale-ombra); }
+/* In fondo la foto di vetta, che sfuma nel verde abete come nella storia */
+.carta-natale-foto {
+  position: relative;
+  z-index: 1;
+  flex: 1 0 220px;
+  margin-top: calc(var(--space-sm) * -1);
+  overflow: hidden;
+}
+.carta-natale-foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 58%;
+}
+.carta-natale-foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--natale-abete) 0%, rgba(19, 38, 29, 0) 38%, rgba(19, 38, 29, 0) 70%, rgba(10, 22, 15, .85) 100%);
+}
+.carta-natale-firma {
+  position: absolute;
+  right: var(--space-md);
+  bottom: 12px;
+  z-index: 1;
+  font: 700 10px/1 "Space Mono", ui-monospace, monospace;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--natale-salvia);
+}
+@media (prefers-reduced-motion: reduce) {
+  .carta-natale-neve { animation: none; }
+}
+
 /* --------------------------------------------------------------------------
    Tessera Pe' Fratte (Community): unico punto della home che usa il design
    system Pe' Fratte, nella versione "bosco" della pagina /pe-fratte/ —
