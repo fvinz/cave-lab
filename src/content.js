@@ -406,6 +406,16 @@ export const EVENTI = [
     },
     evidenza: { stile: "pe-fratte", numeroUscita: 7 },
   },
+  /* Annunciata a grandi linee: si cammina e poi si pranza tutti insieme.
+     Meta, ritrovo, orari e quota del pranzo non sono ancora usciti, quindi
+     niente `percorso`: si legge solo la descrizione. Quando escono, il nome
+     della meta va nel `title` (dopo "Pe' Fratte: ") e i dati in `percorso`. */
+  {
+    iso: "2026-12-05", date: "Sabato 5 dicembre", gruppo: "Pf",
+    title: "Pe' Fratte: Uscita con pranzo",
+    desc: "Ottava uscita, e stavolta dopo il sentiero ci si siede a tavola: pranzo tutti insieme. Meta, ritrovo, orari e costo del pranzo arrivano a breve nel gruppo.",
+    evidenza: { stile: "pe-fratte", numeroUscita: 8 },
+  },
   { iso: "2026-08-18", date: "Martedì 18 agosto", title: "Cinema sotto le stelle: Il sorpasso", desc: "Ultima serata della rassegna, giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
   { iso: "2026-08-11", date: "Martedì 11 agosto", title: "Cinema sotto le stelle: Un sacco bello", desc: "Proiezione all'aperto nel giardino di Liberty Photo, Piazza Guglielmo Marconi 8, ore 21:15. Ingresso gratuito." },
   { iso: "2026-07-28", date: "Martedì 28 luglio", title: "Cinema sotto le stelle: Mediterraneo", desc: "Il capolavoro Premio Oscar di Gabriele Salvatores, nel giardino di Liberty Photo, ore 21:15. Ingresso gratuito." },
