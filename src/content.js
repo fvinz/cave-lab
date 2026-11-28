@@ -392,11 +392,12 @@ export const EVENTI = [
     },
     evidenza: { stile: "pe-fratte", numeroUscita: 6 },
   },
-  /* Spostato dal 21–22 al 28–29 novembre (annunciato nel reel del Lupone) */
+  /* Spostato dal 21–22 al 28–29 novembre (annunciato nel reel del Lupone);
+     deciso il giorno: domenica 29 */
   {
-    iso: "2026-11-29", dal: "2026-11-28", date: "Weekend 28–29 novembre", gruppo: "Pf",
+    iso: "2026-11-29", date: "Domenica 29 novembre", gruppo: "Pf",
     title: "Pe' Fratte: Monte Redentore",
-    desc: "Settima uscita, scelta da voi nel sondaggio: l'anello corto, 9,4 km e 490 m di dislivello vicino a Formia. Sabato o domenica? Si decide nel gruppo, insieme a ritrovo e orari.",
+    desc: "Settima uscita, scelta da voi nel sondaggio: l'anello corto, 9,4 km e 490 m di dislivello vicino a Formia. Ritrovo e orari arrivano nel gruppo.",
     percorso: {
       zona: "Fossa Massaraccio, Formia",
       difficolta: "intermedia",
